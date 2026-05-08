@@ -201,6 +201,27 @@ class View
     $this->content = $content;
   }
 
+  public static function tpl(string $template, ?array $vars = []): string
+  {
+    $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+    $callerFile = $trace[0]['file'] ?? null;
+
+    if (!$callerFile) {
+      throw new ViewTemplateWasNotFound($template);
+    }
+
+    $callerDir = dirname($callerFile);
+    $templatePath = $callerDir . DIRECTORY_SEPARATOR . $template . '.phtml';
+
+    if (!is_file($templatePath)) {
+      throw new ViewTemplateWasNotFound($templatePath);
+    }
+
+    $view = new self();
+    $view->setVars($vars);
+    return $view->_render($templatePath);
+  }
+
   public function render(?string $template = null, array $vars = []): string
   {
     if (count($vars)) {

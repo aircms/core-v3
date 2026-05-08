@@ -234,19 +234,16 @@ final class Front
       }
 
       if (!$exception) {
+        $errorRouter = FrontHelper::getErrorRouter(
+          $this->request,
+          $this->router,
+          $this->config
+        );
 
-        $errorRouter = new Router();
+        if ($errorRouter) {
+          $this->router = $errorRouter;
+        }
 
-        $errorRouter->setRequest($this->request);
-        $errorRouter->setContext($this->router->getContext());
-        $errorRouter->setModule($this->router->getModule());
-        $errorRouter->setController('error');
-        $errorRouter->setAction('index');
-        $errorRouter->setRoutes($this->config['router'] ?? []);
-        $errorRouter->setConfig($this->router->getConfig());
-        $errorRouter->setIsError(true);
-
-        $this->router = $errorRouter;
         return $this->run($localException);
       }
 

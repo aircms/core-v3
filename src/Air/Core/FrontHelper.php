@@ -84,7 +84,7 @@ final class FrontHelper
       'Module',
       ucfirst($module),
       ucfirst($context),
-      "Controller",
+      'Controller',
       ucfirst($controller)
     ]));
 
@@ -135,5 +135,46 @@ final class FrontHelper
     }
 
     return $plugins;
+  }
+
+  public static function getErrorRouter(Request $request, Router $router, array $config): ?Router
+  {
+    $context = $router->getContext();
+    $errorControllerClassname = implode("\\", array_filter([
+      $config['air']['loader']['namespace'],
+      'Module',
+      ucfirst($router->getModule()),
+      ucfirst($router->getContext()),
+      'Controller',
+      'Error'
+    ]));
+
+    if (!class_exists($errorControllerClassname) || !is_subclass_of($errorControllerClassname, ErrorController::class)) {
+      $context = '';
+      $errorControllerClassname = implode("\\", array_filter([
+        $config['air']['loader']['namespace'],
+        'Module',
+        ucfirst($router->getModule()),
+        'Controller',
+        'Error'
+      ]));
+
+      if (!class_exists($errorControllerClassname) || !is_subclass_of($errorControllerClassname, ErrorController::class)) {
+        return null;
+      }
+    }
+
+    $errorRouter = new Router();
+
+    $errorRouter->setRequest($request);
+    $errorRouter->setContext($context);
+    $errorRouter->setModule($router->getModule());
+    $errorRouter->setController('error');
+    $errorRouter->setAction('index');
+    $errorRouter->setRoutes($config['router'] ?? []);
+    $errorRouter->setConfig($router->getConfig());
+    $errorRouter->setIsError(true);
+
+    return $errorRouter;
   }
 }

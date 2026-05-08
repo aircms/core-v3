@@ -41,11 +41,18 @@ class Arr
    * @param callable(T, int|string):mixed $callback
    * @return array<T>
    */
-  public static function map(array|CursorAbstract|Generator $array, callable $callback): array
+  public static function map(array|CursorAbstract|Generator $array, callable|Generator $callback): array
   {
     $result = [];
     foreach ($array as $key => $item) {
-      $result[] = $callback($item, $key);
+
+      if ($callback instanceof Generator) {
+        foreach ($callback($item, $key) as $value) {
+          $result[] = $value;
+        }
+      } else {
+        $result[] = $callback($item, $key);
+      }
     }
     return $result;
   }
@@ -72,7 +79,7 @@ class Arr
   {
     $result = [];
     foreach ($array as $key => $item) {
-      if ($callback($item)) {
+      if ($callback($item, $key)) {
         $result[$key] = $item;
       }
     }

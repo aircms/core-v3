@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Air\Http;
 
+use Closure;
+use CurlHandle;
 use Exception;
-use function Air\dd;
 
 class Request
 {
@@ -27,6 +28,8 @@ class Request
   public mixed $body = null;
   public int $timeout = 30;
   public array $files = [];
+  public ?Closure $progressFunction = null;
+  public ?Closure $writeFunction = null;
 
   public function url(string $url): self
   {
@@ -102,6 +105,18 @@ class Request
     return $this;
   }
 
+  public function progressFunction(Closure $progressFunction): self
+  {
+    $this->progressFunction = $progressFunction;
+    return $this;
+  }
+
+  public function writeFunction(Closure $writeFunction): self
+  {
+    $this->writeFunction = $writeFunction;
+    return $this;
+  }
+
   public function do(): Response
   {
     $ch = curl_init();
@@ -120,6 +135,24 @@ class Request
     curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+    if ($this->progressFunction) {
+      curl_setopt($ch, CURLOPT_NOPROGRESS, false);
+      curl_setopt($ch, CURLOPT_PROGRESSFUNCTION, $this->progressFunction);
+    }
+
+    $response = null;
+    if ($this->writeFunction) {
+      curl_setopt($ch, CURLOPT_WRITEFUNCTION, function (CurlHandle $ch, string $data) use (&$response): int {
+        $writeFunction = $this->writeFunction;
+        $writeFunction($ch, $data);
+
+        $response = $response ?? '';
+        $response .= $data;
+
+        return strlen($data);
+      });
+    }
 
     $headers = $this->headers;
 
@@ -169,7 +202,12 @@ class Request
       die();
     }
 
-    $response = curl_exec($ch);
+    if ($this->writeFunction) {
+      curl_exec($ch);
+    } else {
+      $response = curl_exec($ch);
+    }
+
     curl_close($ch);
 
     if ($response === false) {

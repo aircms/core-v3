@@ -35,6 +35,12 @@ interface ModelInterface
     array            $sort = []
   ): DocumentAbstract|static|null;
 
+  public static function fetchOneAndUpdate(
+    array|string|int $cond = [],
+    array            $sort = [],
+    array            $data = []
+  ): DocumentAbstract|static|null;
+
   public static function one(
     array|string|int $cond = [],
     array            $sort = []

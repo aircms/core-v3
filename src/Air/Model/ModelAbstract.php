@@ -136,6 +136,11 @@ class ModelAbstract implements ModelInterface, ArrayAccess
     return self::__callStatic(__FUNCTION__, func_get_args());
   }
 
+  public static function fetchOneAndUpdate(array|string|int $cond = [], array $sort = [], array $data = []): static|null
+  {
+    return self::__callStatic(__FUNCTION__, func_get_args());
+  }
+
   public static function addCond(array|string|int $cond = []): array
   {
     $model = new static();

@@ -19,19 +19,24 @@ abstract class Worker extends Controller
     }
     while (true) {
       $r = call_user_func_array([$this, $name], $arguments);
-      sleep(Front::getInstance()->getConfig()['air']['worker']['sleep'] ?? 1);
       if ($r === false) {
         break;
       }
+      $this->didTick($name, $arguments);
+      sleep(Front::getInstance()->getConfig()['air']['worker']['sleep'] ?? 1);
     }
     $this->didFinished($name, $arguments);
   }
 
-  public function didStarted(string $method, array $params = [])
+  protected function didStarted(string $method, array $params = [])
   {
   }
 
-  public function didFinished(string $method, array $params = [])
+  protected function didTick(string $method, array $params = []): void
+  {
+  }
+
+  protected function didFinished(string $method, array $params = [])
   {
   }
 }

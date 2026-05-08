@@ -215,6 +215,56 @@ class Driver extends DriverAbstract
     return $projection;
   }
 
+  public function fetchOneAndUpdate(array $cond = [], array $sort = [], array $data = []): mixed
+  {
+    list($cond, $sort) = $this->processQuery($cond, $sort);
+
+    $cond = $this->normalizeDataTypes($cond);
+
+    if (!count($cond)) {
+      $cond = null;
+    }
+
+    if (!count($sort)) {
+      $sort = null;
+    }
+
+    $model = $this->getModel();
+
+    $command = new Command([
+      'findAndModify' => $model->getMeta()->getCollection(),
+      'query' => (object)$cond,
+      'update' => ['$set' => $data],
+      'sort' => (object)$sort,
+      'new' => true,
+    ]);
+
+    $cursor = $this->getManager()->executeCommand($this->getConfig()['db'], $command);
+    $result = current($cursor->toArray());
+
+    if (empty($result->value)) {
+      return null;
+    }
+
+    $modelData = $result->value;
+
+    if ($modelData->_id instanceof ObjectID) {
+      $modelData->_id = (string)$modelData->_id;
+    }
+
+    $modelData = json_decode(json_encode($modelData), true);
+    $modelClassName = $this->getModel()->getModelClassName();
+
+    $modelData['id'] = $modelData['_id'];
+    unset($modelData['_id']);
+
+    /** @var ModelAbstract $model */
+    $model = new $modelClassName();
+    $model->populate($modelData);
+
+    return $model;
+  }
+
   public function fetchOne(array|string|int $cond = [], array $sort = [], array $map = []): mixed
   {
     if (is_string($cond) || is_int($cond)) {
