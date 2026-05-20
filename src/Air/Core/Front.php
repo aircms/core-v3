@@ -230,6 +230,7 @@ final class Front
     } catch (Throwable $localException) {
 
       if ($localException instanceof Stop) {
+        $this->response->setStatusCode($localException->getCode());
         return $this->render($this->response);
       }
 
@@ -256,6 +257,31 @@ final class Front
   public function getConfig(): array
   {
     return $this->config;
+  }
+
+  public function updateConfig(string $path, mixed $value): void
+  {
+    $config = $this->getConfig();
+
+    $keys = explode('.', $path);
+
+    $current = &$config;
+
+    foreach ($keys as $key) {
+      if (!is_array($current)) {
+        $current = [];
+      }
+
+      if (!array_key_exists($key, $current)) {
+        $current[$key] = [];
+      }
+
+      $current = &$current[$key];
+    }
+
+    $current = $value;
+
+    $this->setConfig($config);
   }
 
   public function setConfig(array $config): void

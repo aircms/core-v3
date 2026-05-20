@@ -7,24 +7,21 @@ namespace Air\Crud\Model;
 use Air\Model\ModelAbstract;
 
 /**
- * @collection EmailQueue
+ * @collection TelegramQueue
  *
  * @property string $id
  * @property integer $when
- * @property string $toAddress
- * @property string toName
- * @property string $subject
- * @property string $body
- * @property array $attachments
+ * @property string $botToken
+ * @property array $chatIds
+ * @property string $message
  *
+ * @property string $debugOutput
  * @property string $status
  * @property boolean $inProgress
- * @property string $debugOutput
  */
-class EmailQueue extends ModelAbstract
+class TelegramQueue extends ModelAbstract
 {
   const string STATUS_NEW = 'new';
-  const string STATUS_IN_PROGRESS = 'in-progress';
   const string STATUS_SUCCESS = 'success';
   const string STATUS_FAIL = 'fail';
 }

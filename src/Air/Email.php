@@ -71,24 +71,28 @@ class Email
     }
   }
 
-  public static function consume(int $chunk = 50): bool
+  public static function consume(): bool
   {
     if (!EmailSettings::one()?->emailQueueEnabled) {
       return false;
     }
 
-    $emailsQueue = EmailQueue::fetchAll(
-      ['when' => ['$lte' => time()], 'status' => EmailQueue::STATUS_NEW],
-      ['when' => -1],
-      $chunk
+    $emailQueue = EmailQueue::fetchOneAndUpdate(
+      cond: [
+        'status' => EmailQueue::STATUS_NEW,
+        'inProgress' => ['$ne' => true],
+        'when' => ['$lte' => time()],
+      ],
+      data: ['inProgress' => true],
+      sort: ['when' => -1]
     );
 
-    foreach ($emailsQueue as $queue) {
-      self::send($queue);
-      unset($queue);
+    if ($emailQueue) {
+      self::send($emailQueue);
+      $emailQueue->inProgress = false;
+      $emailQueue->save();
     }
 
-    unset($emailsQueue);
     return true;
   }
 

@@ -10,7 +10,7 @@ function modelPreview(ModelAbstract $model): string
   if ($model->getMeta()->hasProperty('image')) {
     $image = image($model->image);
   } else if ($model->getMeta()->hasProperty('images')) {
-    $image = image($model->image[0]);
+    $image = image($model->images[0]);
   }
 
   $title = null;

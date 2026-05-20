@@ -6,8 +6,8 @@ use Exception;
 
 class Stop extends Exception
 {
-  public function __construct()
+  public function __construct(int $code = 200)
   {
-    parent::__construct();
+    parent::__construct("Stop execution", $code);
   }
 }
