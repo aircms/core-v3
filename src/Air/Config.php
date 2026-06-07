@@ -17,6 +17,7 @@ class Config
   }
 
   public static function admin(
+    string  $domain = 'admin.*',
     string  $title = 'AirCms',
     ?array  $settings = null,
     ?array  $nav = [],
@@ -28,100 +29,105 @@ class Config
     ?string $tiny = null,
   ): array
   {
-    $title = $title ?? "AirCMS";
-    $settings = $settings ?? Nav::getAllSettings();
+    $title       = $title ?? "AirCMS";
+    $settings    = $settings ?? Nav::getAllSettings();
     $richContent = $richContent ?? RichContent::getAllTypes();
-    $require = [
+    $require     = [
       ...$require,
       'vendor/aircms/core-v2/src/Air/View/Shorts/shorts.php',
       'vendor/aircms/core-v2/src/Air/Crud/View/Ui/ui.php',
     ];
 
-    $login = $login ?? self::getEnv('ADMIN_AUTH_ROOT_LOGIN');
+    $login    = $login ?? self::getEnv('ADMIN_AUTH_ROOT_LOGIN');
     $password = $password ?? self::getEnv('ADMIN_AUTH_ROOT_PASSWORD');
-    $tiny = $tiny ?? self::getEnv('ADMIN_TINY_KEY');
+    $tiny     = $tiny ?? self::getEnv('ADMIN_TINY_KEY');
 
     return [
+      'domain' => $domain,
       'module' => 'admin',
-      'air' => [
+      'air'    => [
         'exception' => $reportErrors,
-        'phpIni' => [
+        'phpIni'    => [
           'display_errors' => $reportErrors ? '1' : '0',
         ],
-        'startup' => [
+        'startup'   => [
           'error_reporting' => $reportErrors ? E_ALL : 0,
         ],
-        'admin' => [
-          'title' => $title,
-          'logo' => '/assets/air/logo.png',
-          'favicon' => '/assets/air/logo.png',
-          'notAllowed' => '_notAllowed',
-          'settings' => $settings,
+        'admin'     => [
+          'title'        => $title,
+          'logo'         => '/assets/air/logo.png',
+          'favicon'      => '/assets/air/logo.png',
+          'notAllowed'   => '_notAllowed',
+          'settings'     => $settings,
           'rich-content' => $richContent,
-          'auth' => [
-            'route' => '_auth',
+          'auth'         => [
+            'route'  => '_auth',
             'source' => 'database',
-            'root' => [
-              'login' => $login,
+            'root'   => [
+              'login'    => $login,
               'password' => $password,
             ],
           ],
-          'tiny' => $tiny,
-          'menu' => $nav,
+          'tiny'         => $tiny,
+          'menu'         => $nav,
         ],
-        'asset' => [
+        'asset'     => [
           'underscore' => false,
-          'prefix' => '/assets/air',
+          'prefix'     => '/assets/air',
         ],
-        'require' => $require,
+        'require'   => $require,
       ],
     ];
   }
 
   public static function api(
-    bool  $strictRoutes = true,
-    bool  $strictInject = true,
-    bool  $cacheEnabled = false,
-    array $routes = [],
-    array $require = [],
+    string $domain = 'api.*',
+    bool   $strictRoutes = true,
+    bool   $strictInject = true,
+    bool   $cacheEnabled = false,
+    array  $routes = [],
+    array  $require = [],
   ): array
   {
     return [
+      'domain' => $domain,
       'strict' => $strictRoutes,
       'module' => 'api',
       'routes' => $routes,
-      'air' => [
+      'air'    => [
         'strictInject' => $strictInject,
-        'cache' => [
+        'cache'        => [
           'enabled' => $cacheEnabled,
         ],
-        'require' => $require,
+        'require'      => $require,
       ],
     ];
   }
 
   public static function ui(
-    bool  $strictInject = true,
-    bool  $strictRoutes = true,
-    bool  $cacheEnabled = false,
-    array $routes = [],
-    array $require = [],
+    string $domain = '*',
+    bool   $strictInject = true,
+    bool   $strictRoutes = true,
+    bool   $cacheEnabled = false,
+    array  $routes = [],
+    array  $require = [],
   ): array
   {
     return [
+      'domain' => $domain,
       'strict' => $strictRoutes,
       'module' => 'ui',
       'routes' => $routes,
-      'air' => [
+      'air'    => [
         'strictInject' => $strictInject,
-        'asset' => [
+        'asset'        => [
           'underscore' => false,
-          'prefix' => '/assets/ui',
+          'prefix'     => '/assets/ui',
         ],
-        'cache' => [
+        'cache'        => [
           'enabled' => $cacheEnabled,
         ],
-        'require' => $require,
+        'require'      => $require,
       ],
     ];
   }
@@ -137,9 +143,9 @@ class Config
       'strict' => $strictRoutes,
       'module' => 'cli',
       'routes' => $routes,
-      'air' => [
+      'air'    => [
         'strictInject' => $strictInject,
-        'require' => $require,
+        'require'      => $require,
       ],
     ];
   }
@@ -161,51 +167,60 @@ class Config
     self::$project = $project;
     $appEntryPoint = realpath(dirname($_SERVER['SCRIPT_FILENAME'], 2));
 
+    $router = [];
+    if ($admin) {
+      $router[$admin['domain']] = $admin;
+    }
+    if ($cli) {
+      $router['cli'] = $cli;
+    }
+    if ($api) {
+      $router[$api['domain']] = $api;
+    }
+    if ($ui) {
+      $router[$ui['domain']] = $ui;
+    }
+
     return [
-      'air' => [
-        'modules' => '\\App\\Module',
+      'air'    => [
+        'modules'   => '\\App\\Module',
         'exception' => $reportErrors,
-        'phpIni' => [
+        'phpIni'    => [
           'display_errors' => $reportErrors ? '1' : '0',
         ],
-        'startup' => [
-          'error_reporting' => $reportErrors ? E_ALL : 0,
+        'startup'   => [
+          'error_reporting'           => $reportErrors ? E_ALL : 0,
           'date_default_timezone_set' => $timezone,
         ],
-        'loader' => [
-          'namespace' => 'App',
-          'path' => $appEntryPoint . '/app',
+        'loader'    => [
+          'namespace'         => 'App',
+          'path'              => $appEntryPoint . '/app',
           'groupedController' => true,
         ],
-        'db' => [
+        'db'        => [
           ...[
-            'driver' => 'mongodb',
-            'user' => self::getEnv("DB_USER"),
-            'pass' => self::getEnv("DB_PASS"),
+            'driver'  => 'mongodb',
+            'user'    => self::getEnv("DB_USER"),
+            'pass'    => self::getEnv("DB_PASS"),
             'servers' => [[
               'host' => self::getEnv("DB_HOST", "localhost"),
               'port' => self::getEnv("DB_PORT", 27017),
             ]],
-            'db' => self::getEnv('DB_DB')
+            'db'      => self::getEnv('DB_DB')
           ],
           ...$db
         ],
-        'storage' => [
+        'storage'   => [
           'url' => self::getEnv('FS_URL'),
           'key' => self::getEnv('FS_KEY'),
         ],
-        'logs' => [
-          'enabled' => $logs,
+        'logs'      => [
+          'enabled'   => $logs,
           'exception' => true,
         ],
-        'fontsUi' => 'fontsUi',
+        'fontsUi'   => 'fontsUi',
       ],
-      'router' => array_filter([
-        'admin.*' => $admin,
-        'cli' => $cli,
-        'api.*' => $api,
-        '*' => $ui
-      ]),
+      'router' => $router,
       ...$extensions
     ];
   }
