@@ -56,7 +56,7 @@ $logout = $this->uri(['controller' => $config['admin']['auth']['route'], 'action
                   <?php continue; ?>
                 <?php endif; ?>
                 <a class="btn btn-link btn-block text-start btn-lg text-capitalize m-0 px-3 admin-nav-link"
-                   href="<?php echo $this->uri($subMenuItems['url'], [], true); ?>"
+                   href="<?php echo $this->uri($subMenuItems['url'], $subMenuItems['url']['params'] ?? [], true); ?>"
                    data-mdb-ripple-init>
                   <?php echo faIcon($subMenuItems['icon'], class: 'me-1'); ?>
                   <?php echo Locale::t($subMenuItems['title']); ?>

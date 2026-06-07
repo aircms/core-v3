@@ -145,7 +145,7 @@ class Request
 
     foreach ($argv as $arg) {
 
-      $e = explode("=", $arg);
+      $e = explode("=", $arg, 2);
 
       if ($e[0] == 'route') {
         $route = $e[1];
@@ -153,7 +153,7 @@ class Request
       }
 
       if (count($e) == 2) {
-        $this->getParams[$e[0]] = $e[1];
+        $this->params[$e[0]] = $e[1];
       }
     }
 

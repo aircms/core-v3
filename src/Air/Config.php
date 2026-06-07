@@ -6,14 +6,19 @@ namespace Air;
 
 use Air\Crud\Nav\Nav;
 use Air\Type\RichContent;
+use Closure;
 
 class Config
 {
-  private static string $project;
+  private static ?string $project = null;
 
-  public static function getEnv(string $var, mixed $default = null): array|false|string|null
+  public static function getEnv(string $var, mixed $default = null): mixed
   {
-    return getenv(self::$project . "_" . $var) ?? $default;
+    $val = getenv(self::$project . "_" . $var);
+    if (!$val) {
+      $val = $default;
+    }
+    return $val;
   }
 
   public static function admin(
@@ -21,7 +26,7 @@ class Config
     string  $title = 'AirCms',
     ?array  $settings = null,
     ?array  $nav = [],
-    ?bool   $reportErrors = false,
+    ?bool   $reportErrors = true,
     ?array  $richContent = null,
     ?array  $require = [],
     ?string $login = null,
@@ -34,13 +39,13 @@ class Config
     $richContent = $richContent ?? RichContent::getAllTypes();
     $require     = [
       ...$require,
-      'vendor/aircms/core-v2/src/Air/View/Shorts/shorts.php',
-      'vendor/aircms/core-v2/src/Air/Crud/View/Ui/ui.php',
+      'vendor/aircms/core-v3/src/Air/View/Shorts/shorts.php',
+      'vendor/aircms/core-v3/src/Air/Crud/View/Ui/ui.php',
     ];
 
-    $login    = $login ?? self::getEnv('ADMIN_AUTH_ROOT_LOGIN');
-    $password = $password ?? self::getEnv('ADMIN_AUTH_ROOT_PASSWORD');
-    $tiny     = $tiny ?? self::getEnv('ADMIN_TINY_KEY');
+    $login    = self::getEnv('ADMIN_AUTH_ROOT_LOGIN', $login);
+    $password = self::getEnv('ADMIN_AUTH_ROOT_PASSWORD', $password);
+    $tiny     = self::getEnv('ADMIN_TINY_KEY', $tiny);
 
     return [
       'domain' => $domain,
@@ -151,17 +156,17 @@ class Config
   }
 
   public static function defaults(
-    ?array $admin = null,
-    ?array $cli = null,
-    ?array $api = null,
-    ?array $ui = null,
+    ?Closure $admin = null,
+    ?Closure $cli = null,
+    ?Closure $api = null,
+    ?Closure $ui = null,
 
-    string $project = 'air',
-    array  $extensions = [],
-    string $timezone = "Europe/Kyiv",
-    bool   $reportErrors = true,
-    bool   $logs = true,
-    ?array $db = [],
+    string   $project = 'AIR',
+    array    $extensions = [],
+    string   $timezone = "Europe/Kyiv",
+    bool     $reportErrors = true,
+    bool     $logs = true,
+    ?array   $db = [],
   ): array
   {
     self::$project = $project;
@@ -169,15 +174,19 @@ class Config
 
     $router = [];
     if ($admin) {
+      $admin                    = $admin();
       $router[$admin['domain']] = $admin;
     }
     if ($cli) {
+      $cli           = $cli();
       $router['cli'] = $cli;
     }
     if ($api) {
+      $api                    = $api();
       $router[$api['domain']] = $api;
     }
     if ($ui) {
+      $ui                    = $ui();
       $router[$ui['domain']] = $ui;
     }
 

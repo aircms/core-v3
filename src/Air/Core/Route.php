@@ -13,7 +13,7 @@ class Route
     ?string $context = null,
     ?string $controller = null,
     ?string $action = null,
-    ?array  $params = null,
+    ?array  $params = [],
     bool    $host = false,
     bool    $defaults = false,
   ): string

@@ -28,6 +28,9 @@ use Air\Crud\Controller\SmsSettings;
 use Air\Crud\Controller\SmsTemplate;
 use Air\Crud\Controller\Storage;
 use Air\Crud\Controller\System;
+use Air\Crud\Controller\TelegramQueue;
+use Air\Crud\Controller\TelegramSettings;
+use Air\Crud\Controller\TelegramTemplate;
 use Air\Type\FaIcon;
 
 class Nav
@@ -52,6 +55,9 @@ class Nav
   const string SETTINGS_EMAIL_SETTINGS = 'emailSettings';
   const string SETTINGS_EMAIL_TEMPLATES = 'emailTemplates';
   const string SETTINGS_EMAIL_QUEUE = 'emailQueue';
+  const string SETTINGS_TELEGRAM_SETTINGS = 'telegramSettings';
+  const string SETTINGS_TELEGRAM_TEMPLATES = 'telegramTemplates';
+  const string SETTINGS_TELEGRAM_QUEUE = 'telegramQueue';
   const string SETTINGS_SMS_SETTINGS = 'SMSSettings';
   const string SETTINGS_SMS_TEMPLATES = 'SMSTemplates';
   const string SETTINGS_SMS_QUEUE = 'SMSQueue';
@@ -77,7 +83,8 @@ class Nav
       'controller' => Log::class,
       'icon' => FaIcon::ICON_LIST,
       'title' => 'Logs'
-    ], self::SETTINGS_LANGUAGES => [
+    ],
+    self::SETTINGS_LANGUAGES => [
       'controller' => Language::class,
       'icon' => FaIcon::ICON_GLOBE,
       'title' => 'Languages'
@@ -156,6 +163,21 @@ class Nav
       'controller' => EmailQueue::class,
       'icon' => FaIcon::ICON_DATABASE,
       'title' => 'Email / Queue'
+    ],
+    self::SETTINGS_TELEGRAM_SETTINGS => [
+      'controller' => TelegramSettings::class,
+      'icon' => FaIcon::ICON_MESSAGE,
+      'title' => 'Telegram / Settings'
+    ],
+    self::SETTINGS_TELEGRAM_TEMPLATES => [
+      'controller' => TelegramTemplate::class,
+      'icon' => FaIcon::ICON_FILES,
+      'title' => 'Telegram / Templates'
+    ],
+    self::SETTINGS_TELEGRAM_QUEUE => [
+      'controller' => TelegramQueue::class,
+      'icon' => FaIcon::ICON_DATABASE,
+      'title' => 'Telegram / Queue'
     ],
     self::SETTINGS_SMS_SETTINGS => [
       'controller' => SmsSettings::class,

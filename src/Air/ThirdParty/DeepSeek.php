@@ -69,7 +69,7 @@ class DeepSeek
     $message = $answer['choices'][0]['message'] ?? false;
 
     if (!$message) {
-      throw new Exception('OpenAi error:' . $answer['error']['type'] . '. Message: ' . $answer['error']['message']);
+      throw new Exception('OpenAi error:' . var_export($answer, true));
     }
 
     if ($json) {
