@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Views and layouts · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link active" href="../getting-started/views-layouts.html" aria-current="page">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Views and layouts</strong></div>
+      
+
+<section class="hero">
+    <span class="badge-soft mb-3">Core</span>
+    <h1>Views and layouts</h1>
+    <p class="lead mb-0">View layer в AirCMS отвечает за HTML-рендеринг: подключает нужный script, передаёт данные из контроллера в шаблон, оборачивает результат в layout и предоставляет helpers/shorts для генерации повторяемой разметки.</p>
+</section>
+
+<section class="section" id="what-is-it">
+    <h2>Что это такое</h2>
+    <p><strong>View</strong> в AirCMS — это объект <code>Air\View\View</code>, который создаётся ядром для каждого запроса и передаётся в controller. Через него action может передать данные в шаблон, выбрать другой script, отключить layout, отрендерить partial или собрать HTML вне стандартного auto-render flow.</p>
+    <p>В обычном MVC-сценарии controller отвечает за бизнес-логику, model — за данные, а view — за представление. В AirCMS view layer особенно полезен в <code>ui</code>-модуле и в admin/CRUD-интерфейсах, где action должен вернуть HTML-страницу, а не JSON-ответ.</p>
+    <div class="callout">
+        <strong>Важно:</strong> если action возвращает массив, AirCMS сериализует его в JSON. Если action возвращает строку — эта строка становится body ответа. Если action возвращает <code>null</code>, AirCMS пытается автоматически отрендерить view script и, если включён layout, оборачивает script в layout.
+    </div>
+</section>
+
+<section class="section" id="how-it-works">
+    <h2>Как это работает под капотом</h2>
+    <p>Во время выполнения запроса <code>Air\Core\Front</code> определяет активный module/context/controller/action через router, создаёт объект <code>Air\View\View</code> и передаёт его в controller через <code>setView()</code>.</p>
+    <ol>
+        <li><code>FrontHelper::getView()</code> собирает путь к папке view.</li>
+        <li>Если папка <code>View</code> существует, она становится базовым path для view.</li>
+        <li>Если найден <code>Layouts/index.phtml</code>, layout включается автоматически.</li>
+        <li>Script определяется по паре <code>controller/action</code>.</li>
+        <li>Если action вернул <code>null</code>, вызывается <code>$view-&gt;render()</code>.</li>
+        <li>Если layout включён, результат script помещается в <code>$this-&gt;getContent()</code> и вызывается <code>$view-&gt;renderLayout()</code>.</li>
+    </ol>
+<pre class="code-block"><code class="language-text">Request URI
+    ↓
+Router
+    ↓
+Controller action
+    ↓
+View script: View/Scripts/{controller}/{action}.phtml
+    ↓
+Layout: View/Layouts/index.phtml
+    ↓
+Response body</code></pre>
+</section>
+
+<section class="section" id="structure">
+    <h2>Структура</h2>
+    <p>Для UI-модуля view-файлы обычно находятся внутри <code>app/Module/Ui/View</code>. Если используется context, то view может лежать внутри context-папки: <code>app/Module/Ui/Catalog/View</code>.</p>
+<div class="code-title">Базовая структура UI-модуля</div><pre class="code-block"><code class="language-text">app/
+└── Module/
+    └── Ui/
+        ├── Controller/
+        │   └── Index.php
+        └── View/
+            ├── Layouts/
+            │   └── index.phtml
+            └── Scripts/
+                └── index/
+                    └── index.phtml</code></pre><div class="code-title">Структура с context</div><pre class="code-block"><code class="language-text">app/
+└── Module/
+    └── Ui/
+        └── Catalog/
+            ├── Controller/
+            │   └── Property.php
+            └── View/
+                ├── Layouts/
+                │   └── index.phtml
+                └── Scripts/
+                    └── property/
+                        ├── index.phtml
+                        └── details.phtml</code></pre>
+    <div class="callout success">
+        <strong>Правило поиска script:</strong> если route ведёт в <code>controller: property</code> и <code>action: details</code>, AirCMS будет искать файл <code>View/Scripts/property/details.phtml</code> внутри активного module/context.
+    </div>
+</section>
+
+<section class="section" id="layout">
+    <h2>Layout</h2>
+    <p><strong>Layout</strong> — это общий HTML-каркас страницы. В него обычно помещают <code>&lt;!doctype html&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, подключение assets, header, footer и общий контейнер страницы.</p>
+    <p>По умолчанию AirCMS ищет layout здесь:</p>
+<pre class="code-block"><code class="language-text">View/Layouts/index.phtml</code></pre>
+    <p>Содержимое конкретного script попадает внутрь layout через метод <code>$this-&gt;getContent()</code>.</p>
+<div class="code-title">app/Module/Ui/View/Layouts/index.phtml</div><pre class="code-block"><code class="language-php">&lt;!doctype html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+&lt;head&gt;
+    &lt;?php echo $this-&gt;head(
+        favicon: &#x27;/assets/favicon.svg&#x27;,
+        assets: [
+            &#x27;/assets/css/app.css&#x27;,
+            &#x27;/assets/js/app.js&#x27;,
+        ]
+    ); ?&gt;
+    &lt;title&gt;&lt;?php echo $this-&gt;title ?? &#x27;AirCMS&#x27;; ?&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header class=&quot;site-header&quot;&gt;
+        &lt;a href=&quot;&lt;?php echo $this-&gt;uri([&#x27;controller&#x27; =&gt; &#x27;index&#x27;]); ?&gt;&quot;&gt;Главная&lt;/a&gt;
+    &lt;/header&gt;
+
+    &lt;main class=&quot;site-main&quot;&gt;
+        &lt;?php echo $this-&gt;getContent(); ?&gt;
+    &lt;/main&gt;
+
+    &lt;footer class=&quot;site-footer&quot;&gt;
+        AirCMS - &lt;a href=&quot;https://aircms.pro&quot;&gt;aircms.pro&lt;/a&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <h3>Как отключить layout</h3>
+    <p>Layout можно отключить, если нужно вернуть только fragment HTML, XML, plain text или другой нестандартный response.</p>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Ui\Controller;
+
+use Air\Core\Controller;
+
+class Fragment extends Controller
+{
+    public function menu(): ?string
+    {
+        $this-&gt;getView()-&gt;setLayoutEnabled(false);
+
+        return null;
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="script">
+    <h2>Script</h2>
+    <p><strong>Script</strong> — это конкретный <code>.phtml</code>-файл, который соответствует controller/action. Он содержит HTML конкретной страницы или её части.</p>
+<div class="code-title">Controller</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Ui\Controller;
+
+use Air\Core\Controller;
+use App\Model\Article;
+
+class Articles extends Controller
+{
+    public function details(Article $article): ?string
+    {
+        $this-&gt;getView()-&gt;article = $article;
+        $this-&gt;getView()-&gt;title = $article-&gt;title;
+
+        return null;
+    }
+}</code></pre><div class="code-title">app/Module/Ui/View/Scripts/articles/details.phtml</div><pre class="code-block"><code class="language-php">&lt;article class=&quot;article-page&quot;&gt;
+    &lt;h1&gt;&lt;?php echo $this-&gt;article-&gt;title; ?&gt;&lt;/h1&gt;
+
+    &lt;div class=&quot;article-description&quot;&gt;
+        &lt;?php echo $this-&gt;article-&gt;description; ?&gt;
+    &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    <h3>Как выбрать другой script вручную</h3>
+    <p>Иногда action один, но шаблон нужно выбрать динамически. Для этого используется <code>setScript()</code>.</p>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Ui\Controller;
+
+use Air\Core\Controller;
+
+class Landing extends Controller
+{
+    public function index(string $type = &#x27;default&#x27;): ?string
+    {
+        if ($type === &#x27;promo&#x27;) {
+            $this-&gt;getView()-&gt;setScript(&#x27;landing/promo&#x27;);
+        }
+
+        return null;
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="controller-action">
+    <h2>Работа в controller/action</h2>
+    <p>Внутри controller доступ к view получается через <code>$this-&gt;getView()</code>. Данные можно передавать через magic properties, <code>assign()</code> или <code>setVars()</code>.</p>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Ui\Controller;
+
+use Air\Core\Controller;
+use App\Model\Article;
+
+class Blog extends Controller
+{
+    public function index(): ?string
+    {
+        $articles = Article::all([&#x27;enabled&#x27; =&gt; true], [&#x27;createdAt&#x27; =&gt; -1]);
+
+        $this-&gt;getView()-&gt;articles = $articles;
+        $this-&gt;getView()-&gt;assign(&#x27;title&#x27;, &#x27;Блог&#x27;);
+        $this-&gt;getView()-&gt;setVars([
+            &#x27;description&#x27; =&gt; &#x27;Последние публикации проекта&#x27;,
+            &#x27;currentPage&#x27; =&gt; 1,
+        ]);
+
+        return null;
+    }
+}</code></pre><div class="code-title">View/Scripts/blog/index.phtml</div><pre class="code-block"><code class="language-php">&lt;section class=&quot;blog-page&quot;&gt;
+    &lt;h1&gt;&lt;?php echo $this-&gt;title; ?&gt;&lt;/h1&gt;
+    &lt;p&gt;&lt;?php echo $this-&gt;description; ?&gt;&lt;/p&gt;
+
+    &lt;?php foreach ($this-&gt;articles as $article): ?&gt;
+        &lt;article class=&quot;blog-card&quot;&gt;
+            &lt;h2&gt;&lt;?php echo $article-&gt;title; ?&gt;&lt;/h2&gt;
+            &lt;a href=&quot;&lt;?php echo $this-&gt;uri([&#x27;controller&#x27; =&gt; &#x27;blog&#x27;, &#x27;action&#x27; =&gt; &#x27;details&#x27;], [&#x27;article&#x27; =&gt; $article-&gt;url]); ?&gt;&quot;&gt;
+                Читать дальше
+            &lt;/a&gt;
+        &lt;/article&gt;
+    &lt;?php endforeach; ?&gt;
+&lt;/section&gt;</code></pre>
+</section>
+
+<section class="section" id="methods">
+    <h2>Методы View</h2>
+    <p>Ниже перечислены основные методы <code>Air\View\View</code>, которые полезны при разработке UI-страниц, partials и нестандартного HTML-рендеринга.</p>
+    <div class="table-responsive">
+        <table class="table docs-table">
+            <thead>
+                <tr>
+                    <th>Метод</th>
+                    <th>Что делает</th>
+                    <th>Когда использовать</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>assign($key, $value)</code></td><td>Передаёт одну переменную в view.</td><td>Когда нужно явно добавить значение в шаблон.</td></tr>
+                <tr><td><code>setVars($vars)</code></td><td>Передаёт сразу массив переменных.</td><td>Когда данные уже собраны в массив.</td></tr>
+                <tr><td><code>getVars()</code></td><td>Возвращает все переменные view.</td><td>Для отладки или передачи набора данных дальше.</td></tr>
+                <tr><td><code>setPath($path)</code></td><td>Меняет базовую папку View.</td><td>Для рендера шаблонов из другого модуля или core/admin views.</td></tr>
+                <tr><td><code>render($template = null, $vars = [])</code></td><td>Рендерит script из <code>View/Scripts</code>.</td><td>Для ручного рендера script или partial.</td></tr>
+                <tr><td><code>renderLayout()</code></td><td>Рендерит текущий layout.</td><td>Обычно вызывается ядром автоматически.</td></tr>
+                <tr><td><code>setLayoutEnabled(false)</code></td><td>Отключает layout.</td><td>Для fragments, XML, plain HTML, AJAX-ответов.</td></tr>
+                <tr><td><code>setLayoutTemplate($template)</code></td><td>Выбирает layout.</td><td>Когда нужно использовать другой layout, например <code>print</code>.</td></tr>
+                <tr><td><code>setScript($script)</code></td><td>Выбирает script вручную.</td><td>Когда action должен рендерить не стандартный <code>controller/action</code>.</td></tr>
+                <tr><td><code>setAutoRender(false)</code></td><td>Отключает автоматический render script.</td><td>Когда action сам формирует response.</td></tr>
+                <tr><td><code>setContent($content)</code></td><td>Устанавливает готовый HTML content и отключает auto render.</td><td>Для ручного layout/render flow.</td></tr>
+                <tr><td><code>getContent()</code></td><td>Возвращает текущий content.</td><td>Внутри layout.</td></tr>
+                <tr><td><code>setMeta($meta)</code></td><td>Устанавливает объект meta tags.</td><td>Для SEO-страниц.</td></tr>
+                <tr><td><code>getMeta()</code></td><td>Возвращает meta или default meta.</td><td>В layout/helper <code>head()</code>.</td></tr>
+                <tr><td><code>View::tpl($template, $vars)</code></td><td>Рендерит <code>.phtml</code> рядом с файлом, который вызвал метод.</td><td>Для шаблонов вне MVC.</td></tr>
+            </tbody>
+        </table>
+    </div>
+<div class="code-title">Передача переменных</div><pre class="code-block"><code class="language-php">$this-&gt;getView()-&gt;assign(&#x27;title&#x27;, &#x27;Каталог&#x27;);
+$this-&gt;getView()-&gt;setVars([
+    &#x27;items&#x27; =&gt; $items,
+    &#x27;filters&#x27; =&gt; $filters,
+]);
+
+return null;</code></pre><div class="code-title">Выбор layout и script</div><pre class="code-block"><code class="language-php">$this-&gt;getView()-&gt;setLayoutTemplate(&#x27;print&#x27;);
+$this-&gt;getView()-&gt;setScript(&#x27;invoice/print&#x27;);
+
+return null;</code></pre>
+</section>
+
+<section class="section" id="outside-mvc">
+    <h2>Работа вне MVC</h2>
+    <p>Иногда HTML нужно собрать не из controller/action, а внутри service, mail template renderer, CLI worker или другого PHP-файла. Для этого можно создать <code>View</code> вручную или использовать <code>View::tpl()</code>.</p>
+<div class="code-title">Ручной render через Air\View\View</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\View\View;
+
+$view = new View();
+$view-&gt;setPath(__DIR__ . &#x27;/../Module/Ui/View&#x27;);
+$view-&gt;setVars([
+    &#x27;title&#x27; =&gt; &#x27;Письмо&#x27;,
+    &#x27;userName&#x27; =&gt; &#x27;Edward&#x27;,
+]);
+
+$html = $view-&gt;render(&#x27;email/welcome&#x27;);</code></pre><div class="code-title">View::tpl()</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\View\View;
+
+$html = View::tpl(&#x27;card&#x27;, [
+    &#x27;title&#x27; =&gt; &#x27;AirCMS&#x27;,
+    &#x27;description&#x27; =&gt; &#x27;Лёгкий PHP framework&#x27;,
+]);</code></pre><div class="code-title">card.phtml рядом с вызывающим PHP-файлом</div><pre class="code-block"><code class="language-php">&lt;div class=&quot;card&quot;&gt;
+    &lt;h3&gt;&lt;?php echo $this-&gt;title; ?&gt;&lt;/h3&gt;
+    &lt;p&gt;&lt;?php echo $this-&gt;description; ?&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    <div class="callout warning">
+        <strong>Ограничение:</strong> при ручном создании <code>View</code> вне MVC некоторые helpers могут зависеть от <code>Front::getInstance()</code>, router или config. Например, <code>uri()</code>, <code>asset()</code> и <code>head()</code> ожидают, что приложение уже инициализировано.
+    </div>
+</section>
+
+<section class="section" id="helpers">
+    <h2>View helpers</h2>
+    <p>Helpers вызываются как методы view: <code>$this-&gt;asset()</code>, <code>$this-&gt;uri()</code>, <code>$this-&gt;partial()</code>. Под капотом <code>View::__call()</code> ищет helper сначала в проекте, а затем в core namespace <code>Air\View\Helper</code>.</p>
+    <div class="table-responsive">
+        <table class="table docs-table">
+            <thead>
+                <tr>
+                    <th>Helper</th>
+                    <th>Что делает</th>
+                    <th>Где полезен</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>asset()</code></td><td>Генерирует <code>&lt;script&gt;</code>, <code>&lt;link rel="stylesheet"&gt;</code> или asset URL с учётом prefix.</td><td>Подключение CSS/JS/images/fonts.</td></tr>
+                <tr><td><code>base()</code></td><td>Возвращает HTML <code>&lt;base href="..."&gt;</code>.</td><td>В layout, когда нужно задать базовый URL для относительных ссылок.</td></tr>
+                <tr><td><code>head()</code></td><td>Собирает meta charset, viewport, base, meta object, favicon, fonts, codes и assets.</td><td>Основной helper для <code>&lt;head&gt;</code>.</td></tr>
+                <tr><td><code>partial()</code></td><td>Рендерит другой script с переменными.</td><td>Переиспользуемые блоки: карточки, меню, формы.</td></tr>
+                <tr><td><code>partialCached()</code></td><td>Рендерит partial через single-request cache.</td><td>Повторяющиеся блоки внутри одного запроса.</td></tr>
+                <tr><td><code>uri()</code></td><td>Собирает URL через router assemble.</td><td>Генерация ссылок внутри layout и script.</td></tr>
+            </tbody>
+        </table>
+    </div>
+<div class="code-title">asset()</div><pre class="code-block"><code class="language-php">&lt;?php echo $this-&gt;asset(&#x27;/assets/css/app.css&#x27;); ?&gt;
+&lt;?php echo $this-&gt;asset(&#x27;/assets/js/app.js&#x27;); ?&gt;
+&lt;?php echo $this-&gt;asset([&#x27;/assets/css/app.css&#x27;, &#x27;/assets/js/app.js&#x27;]); ?&gt;</code></pre><div class="code-title">head()</div><pre class="code-block"><code class="language-php">&lt;?php echo $this-&gt;head(
+    favicon: &#x27;/assets/favicon.svg&#x27;,
+    assets: [
+        &#x27;/assets/css/app.css&#x27;,
+        &#x27;/assets/js/app.js&#x27;,
+    ]
+); ?&gt;</code></pre><div class="code-title">uri()</div><pre class="code-block"><code class="language-php">&lt;a href=&quot;&lt;?php echo $this-&gt;uri(
+    [&#x27;controller&#x27; =&gt; &#x27;articles&#x27;, &#x27;action&#x27; =&gt; &#x27;details&#x27;],
+    [&#x27;article&#x27; =&gt; $article-&gt;url]
+); ?&gt;&quot;&gt;
+    &lt;?php echo $article-&gt;title; ?&gt;
+&lt;/a&gt;</code></pre><div class="code-title">partial()</div><pre class="code-block"><code class="language-php">&lt;?php echo $this-&gt;partial(&#x27;partials/card&#x27;, [
+    &#x27;title&#x27; =&gt; $article-&gt;title,
+    &#x27;url&#x27; =&gt; $article-&gt;url,
+]); ?&gt;</code></pre>
+    <h3>Свой helper в проекте</h3>
+    <p>Если helper не найден в проекте, AirCMS использует core helper. Поэтому проект может переопределить или расширить helpers.</p>
+<div class="code-title">app/Module/Ui/View/Helper/Price.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Ui\View\Helper;
+
+use Air\View\Helper\HelperAbstract;
+
+class Price extends HelperAbstract
+{
+    public function call(float $value, string $currency = &#x27;EUR&#x27;): string
+    {
+        return number_format($value, 2, &#x27;.&#x27;, &#x27; &#x27;) . &#x27; &#x27; . $currency;
+    }
+}</code></pre><div class="code-title">Использование helper</div><pre class="code-block"><code class="language-php">&lt;strong&gt;&lt;?php echo $this-&gt;price(1250.5); ?&gt;&lt;/strong&gt;</code></pre>
+</section>
+
+<section class="section" id="shorts">
+    <h2>Shorts</h2>
+    <p><strong>Shorts</strong> — это набор глобальных функций для быстрой генерации HTML. Они лежат в <code>Air\View\Shorts</code> и подключаются ядром. В отличие от helpers, shorts не привязаны к объекту <code>View</code> и вызываются напрямую: <code>div()</code>, <code>a()</code>, <code>img()</code>, <code>text()</code>, <code>table()</code>.</p>
+    <div class="callout">
+        <strong>Идея shorts:</strong> писать меньше HTML вручную и собирать безопасную повторяемую разметку через PHP-функции, особенно в admin/CRUD templates и небольших UI-blocks.
+    </div>
+
+    <h3>Renderer shorts</h3>
+    <div class="table-responsive">
+        <table class="table docs-table">
+            <thead><tr><th>Short</th><th>Что делает</th><th>Пример</th></tr></thead>
+            <tbody>
+                <tr><td><code>content()</code></td><td>Приводит строку, число, bool, массив, Generator или Closure к HTML-строке.</td><td><code>content(['A', 'B'], ', ')</code></td></tr>
+                <tr><td><code>src()</code></td><td>Возвращает URL из строки или <code>Air\Type\File</code>.</td><td><code>src($file)</code></td></tr>
+                <tr><td><code>when()</code></td><td>Возвращает content только если условие истинно.</td><td><code>when($user, 'Hello')</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+<pre class="code-block"><code class="language-php">&lt;?php echo when($article-&gt;enabled, div(
+    class: &#x27;badge bg-success&#x27;,
+    content: &#x27;Published&#x27;
+)); ?&gt;</code></pre>
+    <h3>HTML tag shorts</h3>
+    <p>Функция <code>tag()</code> — базовая. Остальные функции являются удобными обёртками.</p>
+<div class="code-title">tag()</div><pre class="code-block"><code class="language-php">&lt;?php echo tag(
+    tagName: &#x27;section&#x27;,
+    class: [&#x27;hero&#x27;, &#x27;hero-primary&#x27;],
+    attr: [&#x27;id&#x27; =&gt; &#x27;intro&#x27;],
+    data: [&#x27;section&#x27; =&gt; &#x27;home&#x27;],
+    content: [
+        h1(&#x27;AirCMS&#x27;),
+        p(&#x27;&#x27;),
+    ]
+); ?&gt;</code></pre><div class="code-title">div(), h2(), p(), a()</div><pre class="code-block"><code class="language-php">&lt;?php echo div(
+    class: &#x27;card&#x27;,
+    content: [
+        h2($article-&gt;title),
+        p($article-&gt;description),
+        a(&#x27;/article/&#x27; . $article-&gt;url, &#x27;Читать дальше&#x27;, &#x27;btn btn-primary&#x27;),
+    ]
+); ?&gt;</code></pre><div class="code-title">img() с Air\Type\File или строкой</div><pre class="code-block"><code class="language-php">&lt;?php echo img(
+    src: $article-&gt;image,
+    class: &#x27;article-image&#x27;,
+    alt: $article-&gt;title,
+    width: 800,
+    height: 450
+); ?&gt;</code></pre>
+    <h3>Form/input shorts</h3>
+    <div class="table-responsive">
+        <table class="table docs-table">
+            <thead><tr><th>Short</th><th>Что делает</th><th>Где полезен</th></tr></thead>
+            <tbody>
+                <tr><td><code>form()</code></td><td>Создаёт <code>&lt;form&gt;</code>.</td><td>Простые frontend-формы.</td></tr>
+                <tr><td><code>hidden()</code></td><td>Создаёт hidden input.</td><td>CSRF, id, служебные параметры.</td></tr>
+                <tr><td><code>text()</code></td><td>Создаёт text input.</td><td>Поиск, имя, title.</td></tr>
+                <tr><td><code>textarea()</code></td><td>Создаёт textarea.</td><td>Описание, комментарий, сообщение.</td></tr>
+                <tr><td><code>email()</code></td><td>Создаёт email input.</td><td>Контактные формы.</td></tr>
+                <tr><td><code>tel()</code></td><td>Создаёт tel input.</td><td>Телефон.</td></tr>
+                <tr><td><code>number()</code></td><td>Создаёт number input.</td><td>Цена, количество, сортировка.</td></tr>
+                <tr><td><code>checkbox()</code></td><td>Создаёт checkbox.</td><td>Флаги, enabled, agreement.</td></tr>
+                <tr><td><code>select()</code></td><td>Создаёт select.</td><td>Фильтры, категории, enum-поля.</td></tr>
+                <tr><td><code>button()</code></td><td>Создаёт button/submit.</td><td>Действия в формах.</td></tr>
+            </tbody>
+        </table>
+    </div>
+<div class="code-title">Простая форма через shorts</div><pre class="code-block"><code class="language-php">&lt;?php echo form(
+    method: &#x27;post&#x27;,
+    action: &#x27;/contact&#x27;,
+    class: &#x27;contact-form&#x27;,
+    content: [
+        text(&#x27;name&#x27;, class: &#x27;form-control&#x27;, placeholder: &#x27;Ваше имя&#x27;),
+        email(&#x27;email&#x27;, class: &#x27;form-control&#x27;, placeholder: &#x27;Email&#x27;),
+        textarea(&#x27;message&#x27;, class: &#x27;form-control&#x27;, placeholder: &#x27;Сообщение&#x27;),
+        checkbox(&#x27;agree&#x27;, &#x27;1&#x27;, false, [&#x27;id&#x27; =&gt; &#x27;agree&#x27;]),
+        button(&#x27;Отправить&#x27;, class: &#x27;btn btn-primary&#x27;, isSubmit: true),
+    ]
+); ?&gt;</code></pre>
+    <h3>Table shorts</h3>
+<div class="code-title">table(), thead(), tbody(), tr(), th(), td()</div><pre class="code-block"><code class="language-php">&lt;?php echo table(
+    class: &#x27;table&#x27;,
+    content: [
+        thead(tr([
+            th(&#x27;ID&#x27;),
+            th(&#x27;Title&#x27;),
+            th(&#x27;Enabled&#x27;),
+        ])),
+        tbody(array_map(
+            fn($article) =&gt; tr([
+                td($article-&gt;id),
+                td($article-&gt;title),
+                td($article-&gt;enabled ? &#x27;Yes&#x27; : &#x27;No&#x27;),
+            ]),
+            $articles
+        )),
+    ]
+); ?&gt;</code></pre>
+    <h3>Icon shorts</h3>
+<div class="code-title">faIcon() и gsIcon()</div><pre class="code-block"><code class="language-php">&lt;?php echo faIcon(&#x27;house&#x27;); ?&gt;
+&lt;?php echo faIcon(&#x27;github&#x27;, data: [&#x27;provider&#x27; =&gt; &#x27;github&#x27;]); ?&gt;
+&lt;?php echo gsIcon(&#x27;search&#x27;, class: &#x27;material-symbols-outlined&#x27;); ?&gt;</code></pre>
+    <h3>Rich content short</h3>
+    <p><code>richContent()</code> помогает отрендерить массив <code>Air\Type\RichContent</code> с кастомными renderer callbacks для разных типов блоков.</p>
+<pre class="code-block"><code class="language-php">&lt;?php echo richContent(
+    content: $article-&gt;richContent,
+    textRenderer: fn($value) =&gt; p($value, &#x27;rich-text&#x27;),
+    htmlRenderer: fn($value) =&gt; div($value, &#x27;rich-html&#x27;),
+    fileRenderer: fn($value) =&gt; img($value, &#x27;rich-image&#x27;),
+    containerClassName: &#x27;rich-content&#x27;,
+    itemClassName: &#x27;rich-content-item&#x27;
+); ?&gt;</code></pre>
+</section>
+
+<section class="section" id="patterns">
+    <h2>Рекомендуемые паттерны</h2>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Держите controller тонким</h5>
+                <p>Controller должен выбрать данные, передать их во view и выбрать script/layout. Сложную подготовку данных лучше выносить в service или model methods.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Не смешивайте API и UI</h5>
+                <p>Если endpoint должен вернуть JSON — возвращайте массив. Если страница должна вернуть HTML — используйте <code>null</code> и view script.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Partial для повторяемых блоков</h5>
+                <p>Карточки, меню, хлебные крошки и виджеты лучше выносить в partial, чтобы не дублировать HTML.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Shorts для компактной разметки</h5>
+                <p>Shorts удобны для небольших UI-фрагментов, таблиц и форм, но большие страницы часто читаются лучше в обычном HTML/PHTML.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div>
+<a href="#what-is-it">Что это такое</a>
+<a href="#how-it-works">Под капотом</a>
+<a href="#structure">Структура</a>
+<a href="#layout">Layout</a>
+<a href="#script">Script</a>
+<a href="#controller-action">Controller/action</a>
+<a href="#methods">Методы View</a>
+<a href="#outside-mvc">Вне MVC</a>
+<a href="#helpers">Helpers</a>
+<a href="#shorts">Shorts</a>
+<a href="#patterns">Паттерны</a>
+</div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

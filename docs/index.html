@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AirCMS Core V3 · Документация</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/docs.css">
+</head>
+<body data-root-prefix="">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="false">Core</button>
+    <div id="navGroup0" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="forms/index.html">Обзор</a>
+      <a class="nav-link" href="forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="forms/validation.html">Validation</a>
+      <a class="nav-link" href="forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="admin-crud/single.html">Single</a>
+      <a class="nav-link" href="admin-crud/many.html">Many</a>
+      <a class="nav-link" href="admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="utilities/index.html">Обзор</a>
+      <a class="nav-link" href="utilities/map.html">Map</a>
+      <a class="nav-link" href="utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="utilities/csv.html">CSV</a>
+      <a class="nav-link" href="utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="utilities/password.html">Password</a>
+      <a class="nav-link" href="utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="utilities/slug.html">Slug</a>
+      <a class="nav-link" href="utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="notifications/index.html">Обзор</a>
+      <a class="nav-link" href="notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="notifications/email.html">Email</a>
+      <a class="nav-link" href="notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="notifications/sms.html">SMS</a>
+      <a class="nav-link" href="notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="storage/index.html">Обзор</a>
+      <a class="nav-link" href="storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="storage/file-object.html">File object</a>
+      <a class="nav-link" href="storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="localization/index.html">Обзор</a>
+      <a class="nav-link" href="localization/language.html">Language</a>
+      <a class="nav-link" href="localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="billing/index.html">Обзор</a>
+      <a class="nav-link" href="billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="types/index.html">Обзор</a>
+      <a class="nav-link" href="types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="types/file.html">File</a>
+      <a class="nav-link" href="types/meta.html">Meta</a>
+      <a class="nav-link" href="types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">AirCMS Docs</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><strong>Главная</strong></div>
+      
+<section class="hero">
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <span class="badge-soft">PHP 8.3+</span>
+    <span class="badge-soft">MVC</span>
+    <span class="badge-soft">API</span>
+    <span class="badge-soft">Admin CRUD</span>
+    <span class="badge-soft">CLI Workers</span>
+  </div>
+  <h1>AirCMS Core V3</h1>
+  <p class="lead mb-0">AirCMS Core V3 — это PHP-фреймворк для backend/API-проектов, административных панелей, server-rendered UI-страниц и CLI-воркеров, которые работают вокруг одного общего ядра приложения.</p>
+</section>
+
+<section class="section" id="what-is-aircms">
+  <h2>Что такое AirCMS</h2>
+  <p>AirCMS строит приложение вокруг одного публичного входного файла <code>www/index.php</code>, общего проектного конфига <code>config.php</code> и набора модулей: <code>admin</code>, <code>api</code>, <code>ui</code>, <code>cli</code>. Это позволяет держать админку, API, публичный UI и фоновые воркеры в одном проекте, но разделять их по доменам, маршрутам и namespace-структуре.</p>
+  <p>Фреймворк ориентирован на проекты, где много сущностей, CRUD-разделов, API-методов, очередей, файлового хранилища и интеграций. Модели описываются PHP-классами и PHPDoc-аннотациями, а поверх них можно строить формы, админские таблицы, API-маппинг и автоматические выборки.</p>
+  <div class="callout"><strong>Важно:</strong> документация описывает именно ядро AirCMS. Starter-проект и реальные проекты используются как примеры того, как ядро подключается и применяется на практике.</div>
+</section>
+
+<section class="section" id="features">
+  <h2>Основные возможности</h2>
+  <div class="row g-3">
+    <div class="col-md-6"><div class="doc-card"><h5>MVC-ядро</h5><p>Front controller, request/response, router, controllers, actions, views, layouts, plugins и error controllers.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Модули по доменам</h5><p>Один проект может иметь отдельные зоны: <code>admin.*</code>, <code>api.*</code>, публичный <code>ui</code> и консольный <code>cli</code>.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>ORM-подобный слой</h5><p>Модели с PHPDoc-метаданными, MongoDB-драйвером по умолчанию и дополнительным MySQL-драйвером.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Admin CRUD</h5><p>Готовые CRUD-контроллеры, формы, таблицы, настройки, виджеты и стандартные admin-разделы.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Typed Objects</h5><p>Вложенные структуры данных через <code>Air\Type\TypeAbstract</code>: файлы, meta, rich content и кастомные типы проекта.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Интеграции и утилиты</h5><p>HTTP client, storage, cache, email/SMS/Telegram queues, Google Translate, DeepL, DeepSeek, payments и другие helper-классы.</p></div></div>
+  </div>
+</section>
+
+<section class="section" id="architecture">
+  <h2>Архитектура</h2>
+  <p>AirCMS запускает все HTTP- и CLI-запросы через один front controller. Дальше фреймворк определяет активный модуль по домену или CLI-route, находит маршрут, собирает имя controller-класса, создаёт view, запускает plugins, вызывает action и возвращает результат в response.</p>
+  <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Этап</th><th>Что происходит</th></tr></thead><tbody><tr><td>1. Entry point</td><td><code>www/index.php</code> подключает Composer autoload и передаёт <code>config.php</code> в <code>Air\Core\Front</code>.</td></tr><tr><td>2. Bootstrap</td><td><code>Front::bootstrap()</code> создаёт Request, Response, Router, применяет php.ini/startup-настройки и подключает require-файлы.</td></tr><tr><td>3. Module</td><td>Router выбирает module по домену: admin/api/ui или cli.</td></tr><tr><td>4. Route</td><td>Router сопоставляет URI с route-таблицей, извлекает параметры и определяет context/controller/action.</td></tr><tr><td>5. Controller</td><td>Front находит controller-класс, создаёт его, inject-ит request/response/router/view и вызывает action.</td></tr><tr><td>6. Response</td><td>Array/object возвращаются как JSON, string — как body, null может привести к auto-render view.</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="requirements">
+  <h2>Требования</h2>
+  <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Компонент</th><th>Требование</th></tr></thead><tbody><tr><td>PHP</td><td><code>&gt;= 8.3</code></td></tr><tr><td>Composer</td><td>Нужен для установки зависимостей и подключения <code>vendor/autoload.php</code>.</td></tr><tr><td>Required extensions</td><td><code>ext-json</code>, <code>ext-mbstring</code>, <code>ext-mongodb</code>, <code>ext-curl</code>.</td></tr><tr><td>Recommended extensions</td><td><code>ext-dom</code>, <code>ext-intl</code>, <code>ext-openssl</code>.</td></tr><tr><td>Database</td><td>MongoDB используется как основной драйвер по умолчанию. MySQL возможен через отдельный driver и требует PDO/pdo_mysql.</td></tr><tr><td>Web server</td><td>Apache или Nginx, который направляет все не-static запросы в <code>www/index.php</code>.</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="installation">
+  <h2>Установка и composer scripts</h2>
+  <p>В проекте на AirCMS обычно подключается core-пакет и используется starter-структура. В starter-проекте уже есть composer script <code>assets</code>, который создаёт symlink на admin assets ядра.</p>
+  <div class="code-title">composer.json</div><pre class="code-block"><code class="language-json">{
+  &quot;repositories&quot;: [
+    {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;https://github.com/aircms/core-v3.git&quot;
+    }
+  ],
+  &quot;require&quot;: {
+    &quot;aircms/core-v3&quot;: &quot;dev-main&quot;,
+    &quot;ext-mongodb&quot;: &quot;*&quot;,
+    &quot;ext-mbstring&quot;: &quot;*&quot;,
+    &quot;ext-curl&quot;: &quot;*&quot;,
+    &quot;ext-json&quot;: &quot;*&quot;,
+    &quot;ext-dom&quot;: &quot;*&quot;,
+    &quot;ext-intl&quot;: &quot;*&quot;,
+    &quot;ext-openssl&quot;: &quot;*&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;assets&quot;: [
+      &quot;ln -sfn ../../vendor/aircms/core-v3/assets www/assets/air&quot;
+    ]
+  }
+}</code></pre>
+  <div class="code-title">Установка зависимостей и assets</div><pre class="code-block"><code class="language-bash">composer install
+composer assets</code></pre>
+  <div class="callout warning"><strong>Не нужно вручную создавать symlink</strong>, если в проекте есть composer script <code>assets</code>. Ручная команда нужна только если script отсутствует или ты настраиваешь проект без starter-болванки.</div>
+</section>
+
+<section class="section" id="project-structure">
+  <h2>Структура проекта</h2>
+  <div class="code-title">Типовая структура</div><pre class="code-block"><code class="language-text">project/
+├── app/
+│   ├── Bootstrap.php
+│   ├── Model/
+│   ├── Type/
+│   ├── Service/
+│   └── Module/
+│       ├── Admin/
+│       │   └── Controller/
+│       ├── Api/
+│       │   ├── Controller/
+│       │   └── Catalog/
+│       │       └── Controller/
+│       ├── Ui/
+│       │   ├── Controller/
+│       │   └── View/
+│       └── Cli/
+│           └── Controller/
+├── config.php
+├── composer.json
+└── www/
+    ├── index.php
+    └── assets/
+        └── air -&gt; ../../vendor/aircms/core-v3/assets</code></pre>
+</section>
+
+<section class="section" id="config-defaults">
+  <h2>Config::defaults()</h2>
+  <p><code>Config::defaults()</code> собирает базовую конфигурацию приложения: namespace проекта, loader, database, storage, logs, startup-настройки и router-таблицу модулей. Параметр <code>project</code> одновременно задаёт namespace для переменных окружения.</p>
+  <div class="code-title">config.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Config;
+use Air\Core\Route;
+use Air\Crud\Nav\Nav;
+
+return Config::defaults(
+    project: &#x27;AIR&#x27;,
+    timezone: &#x27;Europe/Kyiv&#x27;,
+    reportErrors: true,
+    logs: true,
+    db: [],
+    extensions: [],
+
+    admin: fn() =&gt; Config::admin(
+        domain: &#x27;admin.*&#x27;,
+        title: &#x27;AirCMS&#x27;,
+        nav: [
+            Nav::item(&#x27;Content&#x27;, items: [
+                Nav::item(&#x27;Articles&#x27;, controller: &#x27;article&#x27;),
+            ]),
+        ],
+    ),
+
+    api: fn() =&gt; Config::api(
+        domain: &#x27;api.*&#x27;,
+        strictRoutes: true,
+        strictInject: true,
+        cacheEnabled: false,
+        routes: [
+            &#x27;/articles&#x27; =&gt; Route::r(context: &#x27;blog&#x27;, controller: &#x27;articles&#x27;),
+            &#x27;/article/:article&#x27; =&gt; Route::r(
+                context: &#x27;blog&#x27;,
+                controller: &#x27;articles&#x27;,
+                action: &#x27;details&#x27;
+            ),
+        ],
+    ),
+
+    ui: fn() =&gt; Config::ui(
+        domain: &#x27;*&#x27;,
+        routes: [
+            &#x27;/&#x27; =&gt; Route::r(controller: &#x27;index&#x27;),
+        ],
+    ),
+
+    cli: fn() =&gt; Config::cli()
+);</code></pre>
+  <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Параметр</th><th>Назначение</th></tr></thead><tbody><tr><td><code>project</code></td><td>Prefix/namespace для env-переменных. Например <code>AIR</code> → <code>AIR_DB_HOST</code>.</td></tr><tr><td><code>timezone</code></td><td>Передаётся в startup через <code>date_default_timezone_set</code>.</td></tr><tr><td><code>reportErrors</code></td><td>Управляет display_errors, error_reporting и exception output.</td></tr><tr><td><code>logs</code></td><td>Включает/отключает внутренние логи AirCMS.</td></tr><tr><td><code>db</code></td><td>Позволяет переопределить driver, servers, db, user, pass.</td></tr><tr><td><code>extensions</code></td><td>Дополнительные секции верхнего уровня, которые будут merged в итоговый config.</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="config-modules">
+  <h2>Config::admin(), api(), ui(), cli()</h2>
+  <p>Модульные helper-методы возвращают готовую конфигурацию для конкретной зоны приложения. Router выбирает активную зону по домену или CLI-route.</p>
+  <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Метод</th><th>Основные параметры</th></tr></thead><tbody><tr><td><code>Config::admin()</code></td><td><code>domain</code>, <code>title</code>, <code>settings</code>, <code>nav</code>, <code>reportErrors</code>, <code>richContent</code>, <code>require</code>, <code>login</code>, <code>password</code>, <code>tiny</code>.</td></tr><tr><td><code>Config::api()</code></td><td><code>domain</code>, <code>strictRoutes</code>, <code>strictInject</code>, <code>cacheEnabled</code>, <code>routes</code>, <code>require</code>.</td></tr><tr><td><code>Config::ui()</code></td><td><code>domain</code>, <code>strictInject</code>, <code>strictRoutes</code>, <code>cacheEnabled</code>, <code>routes</code>, <code>require</code>.</td></tr><tr><td><code>Config::cli()</code></td><td><code>strictInject</code>, <code>strictRoutes</code>, <code>routes</code>, <code>require</code>.</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="env">
+  <h2>Environment variables</h2>
+  <p>AirCMS читает env-переменные через <code>Config::getEnv()</code>. Если в конфиге указано <code>project: 'AIR'</code>, то все переменные должны начинаться с <code>AIR_</code>. Если поменять project на <code>ATWA</code>, prefix станет <code>ATWA_</code>.</p>
+  <div class="code-title">.env для project: AIR</div><pre class="code-block"><code class="language-dotenv">AIR_DB_HOST=localhost
+AIR_DB_PORT=27017
+AIR_DB_DB=aircms
+AIR_DB_USER=
+AIR_DB_PASS=
+
+AIR_FS_URL=https://storage.example.com
+AIR_FS_KEY=secret-storage-key
+
+AIR_ADMIN_AUTH_ROOT_LOGIN=root
+AIR_ADMIN_AUTH_ROOT_PASSWORD=change-me
+AIR_ADMIN_TINY_KEY=</code></pre>
+  <div class="code-title">.env для project: ATWA</div><pre class="code-block"><code class="language-dotenv">ATWA_DB_HOST=localhost
+ATWA_DB_PORT=27017
+ATWA_DB_DB=atwa
+ATWA_FS_URL=https://storage.example.com
+ATWA_FS_KEY=secret-storage-key</code></pre>
+  <div class="callout warning"><strong>Не коммить секреты.</strong> Root-пароль админки, ключ storage, API tokens, payment keys и SMTP-пароли должны жить в окружении, а не в Git.</div>
+</section>
+
+<section class="section" id="web-server">
+  <h2>Web server: Apache и Nginx</h2>
+  <p>DocumentRoot должен указывать на папку <code>www</code>. Все несуществующие static-файлы должны попадать в <code>www/index.php</code>.</p>
+  <div class="code-title">Apache VirtualHost</div><pre class="code-block"><code class="language-apache">&lt;VirtualHost *:80&gt;
+    ServerName api.example.com
+    DocumentRoot /var/www/project/www
+
+    &lt;Directory /var/www/project/www&gt;
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/aircms-error.log
+    CustomLog ${APACHE_LOG_DIR}/aircms-access.log combined
+&lt;/VirtualHost&gt;</code></pre>
+  <div class="code-title">www/.htaccess</div><pre class="code-block"><code class="language-apache">RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]</code></pre>
+  <div class="code-title">Nginx + PHP-FPM</div><pre class="code-block"><code class="language-nginx">server {
+    listen 80;
+    server_name api.example.com;
+    root /var/www/project/www;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    location ~ /\. {
+        deny all;
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="core-concepts">
+  <h2>Основные концепции</h2>
+  <div class="row g-3">
+    <div class="col-md-6"><div class="doc-card" id="front"><h5>Front</h5><p><code>Air\Core\Front</code> — центральная точка исполнения. Он создаёт loader, request, response, router, view, controller и запускает lifecycle.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Bootstrap</h5><p>Если существует <code>App\Bootstrap</code>, Front создаёт его и передаёт config. Его используют для проектной инициализации.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Modules</h5><p><code>Admin</code>, <code>Api</code>, <code>Ui</code>, <code>Cli</code> — отдельные зоны приложения с разными routes, controllers и views.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Controllers / Actions</h5><p>Controller — класс, action — public method. Если route не указывает action, используется <code>index()</code>.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Views</h5><p>Для UI AirCMS может auto-render-ить <code>.phtml</code> script и layout, если action вернул <code>null</code>.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Plugins</h5><p>Plugins выполняются до и после action. Их можно располагать на уровне всех модулей, конкретного модуля или context.</p></div></div>
+  </div>
+</section>
+
+<section class="section" id="routing-concept">
+  <h2>Как понимать Routing</h2>
+  <p>Route в AirCMS описывает не только URL, но и то, какой module/context/controller/action должен быть вызван.</p>
+  <div class="code-title">Route без явного action</div><pre class="code-block"><code class="language-php">&#x27;/someRoute/:someParam&#x27; =&gt; Route::r(
+    context: &#x27;catalog&#x27;,
+    controller: &#x27;property&#x27;
+),</code></pre>
+  <p>Такой route в соответствующем модуле будет искать:</p>
+  <div class="code-title">Разрешение controller/action</div><pre class="code-block"><code class="language-text">App\Module\Api\Catalog\Controller\Property::index()</code></pre>
+  <p>Правила:</p>
+  <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Часть route</th><th>Что означает</th></tr></thead><tbody><tr><td><code>context: catalog</code></td><td>Папка <code>Catalog</code> внутри активного модуля. Например <code>app/Module/Api/Catalog</code>.</td></tr><tr><td><code>controller: property</code></td><td>Файл-класс <code>Controller/Property.php</code>. В AirCMS папка называется <code>Controller</code>, не <code>Controllers</code>.</td></tr><tr><td><code>action</code> не указан</td><td>Используется <code>index()</code>.</td></tr><tr><td><code>controller</code> не указан</td><td>Используется <code>Index</code>.</td></tr><tr><td><code>:someParam</code></td><td>Значение из URL попадает в request/get params и может быть injected в action argument.</td></tr></tbody></table></div>
+  <div class="code-title">Route с явным action</div><pre class="code-block"><code class="language-php">&#x27;/article/:article&#x27; =&gt; Route::r(
+    context: &#x27;blog&#x27;,
+    controller: &#x27;articles&#x27;,
+    action: &#x27;details&#x27;
+),</code></pre>
+  <p>Этот route будет вести в:</p>
+  <pre class="code-block"><code class="language-text">App\Module\Api\Blog\Controller\Articles::details()</code></pre>
+</section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div><a href="#what-is-aircms">Что такое AirCMS</a><a href="#features">Возможности</a><a href="#architecture">Архитектура</a><a href="#requirements">Требования</a><a href="#installation">Установка</a><a href="#project-structure">Структура</a><a href="#config-defaults">Config::defaults</a><a href="#env">Environment</a><a href="#web-server">Web server</a><a href="#core-concepts">Концепции</a><a href="#routing-concept">Routing</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/highlight.js"></script>
+<script src="assets/js/docs.js"></script>
+</body>
+</html>

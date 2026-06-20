@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Basic configuration & Environment variables · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link active" href="../getting-started/basic-configuration-environment.html" aria-current="page">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Basic configuration &amp; Environment variables</strong></div>
+      
+
+<section class="hero">
+    <span class="badge-soft mb-3">Core</span>
+    <h1>Basic configuration &amp; Environment variables</h1>
+    <p class="lead mb-0">В AirCMS конфигурация проекта описывается обычным PHP-файлом, чаще всего <code>config.php</code>. Этот файл возвращает массив настроек, по которому <code>Air\Core\Front</code> понимает, какой модуль запустить, какой домен обработать, какие routes использовать, как подключиться к базе данных и какие сервисы включить.</p>
+</section>
+
+<section class="section" id="what-is-it">
+    <h2>Что это такое</h2>
+    <p><strong>Basic configuration</strong> — это центральная точка настройки AirCMS-проекта. В ней описываются общие настройки ядра, база данных, storage, логирование, timezone, а также отдельные модули: <code>admin</code>, <code>api</code>, <code>ui</code> и <code>cli</code>.</p>
+    <p>Конфигурация обычно лежит в корне проекта:</p>
+    <pre class="code-block"><code class="language-text">project/
+    app/
+    config.php
+    composer.json
+    www/
+        index.php</code></pre>
+    <p>Публичная точка входа <code>www/index.php</code> подключает Composer autoload, загружает <code>config.php</code> и передаёт результат в <code>Air\Core\Front</code>.</p>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+require_once __DIR__ . &#x27;/../vendor/autoload.php&#x27;;
+
+$config = require_once __DIR__ . &#x27;/../config.php&#x27;;
+
+echo \Air\\Core\\Front::getInstance($config)
+    -&gt;bootstrap()
+    -&gt;run();</code></pre>
+    <div class="callout">
+        <strong>Главная идея:</strong> AirCMS не требует отдельного конфигурационного языка. Конфиг — это PHP-код, поэтому в нём можно использовать классы, функции, условия, env-переменные, project-specific helpers и любые массивы.
+    </div>
+</section>
+
+<section class="section" id="full-config">
+    <h2>Basic configuration: полный пример</h2>
+    <p>Ниже пример конфигурации, где одновременно подключены все основные модули AirCMS: <code>Admin</code>, <code>Api</code>, <code>Ui</code> и <code>Cli</code>. Это не минимальный пример, а расширенный шаблон, который показывает основные параметры.</p>
+    <div class="code-title">config.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+use Air\Config;
+use Air\Core\Route;
+use Air\\Crud\\Nav\\Nav;
+use Air\Type\FaIcon;
+
+return Config::defaults(
+    project: &#x27;AIR&#x27;,
+    timezone: &#x27;Europe/Bucharest&#x27;,
+    reportErrors: true,
+    logs: true,
+
+    db: [
+        &#x27;driver&#x27; =&gt; &#x27;mongodb&#x27;,
+        &#x27;servers&#x27; =&gt; [[
+            &#x27;host&#x27; =&gt; Config::getEnv(&#x27;DB_HOST&#x27;, &#x27;localhost&#x27;),
+            &#x27;port&#x27; =&gt; (int) Config::getEnv(&#x27;DB_PORT&#x27;, 27017),
+        ]],
+        &#x27;db&#x27; =&gt; Config::getEnv(&#x27;DB_DB&#x27;, &#x27;aircms&#x27;),
+        &#x27;user&#x27; =&gt; Config::getEnv(&#x27;DB_USER&#x27;),
+        &#x27;pass&#x27; =&gt; Config::getEnv(&#x27;DB_PASS&#x27;),
+    ],
+
+    admin: fn() =&gt; Config::admin(
+        domain: &#x27;admin.*&#x27;,
+        title: &#x27;AirCMS Admin&#x27;,
+        settings: [
+            [
+                Nav::SETTINGS_SYSTEM,
+                Nav::SETTINGS_STORAGE,
+                Nav::SETTINGS_LOGS,
+            ],
+            [
+                Nav::SETTINGS_LANGUAGES,
+                Nav::SETTINGS_PHRASES,
+            ],
+            [
+                Nav::SETTINGS_EMAIL_SETTINGS,
+                Nav::SETTINGS_EMAIL_TEMPLATES,
+                Nav::SETTINGS_EMAIL_QUEUE,
+            ],
+        ],
+        nav: [
+            Nav::item(&#x27;Content&#x27;, FaIcon::ICON_FILE_LINES, items: [
+                Nav::item(&#x27;Articles&#x27;, controller: &#x27;articles&#x27;),
+                Nav::item(&#x27;Pages&#x27;, controller: &#x27;pages&#x27;),
+            ]),
+        ],
+        reportErrors: true,
+        require: [
+            __DIR__ . &#x27;/app/Helper/admin.php&#x27;,
+        ],
+        login: &#x27;root&#x27;,
+        password: &#x27;change-me&#x27;,
+        tiny: null,
+    ),
+
+    api: fn() =&gt; Config::api(
+        domain: &#x27;api.*&#x27;,
+        strictRoutes: true,
+        strictInject: true,
+        cacheEnabled: false,
+        routes: [
+            &#x27;/articles&#x27; =&gt; Route::r(
+                context: &#x27;blog&#x27;,
+                controller: &#x27;articles&#x27;
+            ),
+            &#x27;/article/:article&#x27; =&gt; Route::r(
+                context: &#x27;blog&#x27;,
+                controller: &#x27;articles&#x27;,
+                action: &#x27;details&#x27;
+            ),
+        ],
+        require: [
+            __DIR__ . &#x27;/app/Helper/api.php&#x27;,
+        ],
+    ),
+
+    ui: fn() =&gt; Config::ui(
+        domain: &#x27;*&#x27;,
+        strictInject: true,
+        strictRoutes: true,
+        cacheEnabled: true,
+        routes: [
+            &#x27;/&#x27; =&gt; Route::r(controller: &#x27;index&#x27;),
+            &#x27;/page/:page&#x27; =&gt; Route::r(controller: &#x27;pages&#x27;, action: &#x27;details&#x27;),
+        ],
+        require: [
+            __DIR__ . &#x27;/app/Helper/ui.php&#x27;,
+        ],
+    ),
+
+    cli: fn() =&gt; Config::cli(
+        strictInject: false,
+        strictRoutes: false,
+        routes: [
+            &#x27;email/consume&#x27; =&gt; Route::r(controller: &#x27;email&#x27;, action: &#x27;consume&#x27;),
+            &#x27;telegram/consume&#x27; =&gt; Route::r(controller: &#x27;telegram&#x27;, action: &#x27;consume&#x27;),
+        ],
+        require: [
+            __DIR__ . &#x27;/app/Helper/cli.php&#x27;,
+        ],
+    ),
+
+    extensions: [
+        &#x27;project&#x27; =&gt; [
+            &#x27;name&#x27; =&gt; &#x27;AirCMS Project&#x27;,
+            &#x27;version&#x27; =&gt; &#x27;1.0.0&#x27;,
+        ],
+    ],
+);</code></pre>
+    <p>В реальном проекте не обязательно указывать все параметры. Если оставить параметр пустым, AirCMS использует значение по умолчанию. Например, <code>Config::api()</code> по умолчанию использует <code>domain: 'api.*'</code>, <code>strictRoutes: true</code> и <code>strictInject: true</code>.</p>
+</section>
+
+<section class="section" id="config-defaults">
+    <h2>Основные настройки <code>Config::defaults()</code></h2>
+    <p><code>Config::defaults()</code> собирает общий конфиг приложения. Именно здесь задаётся project namespace, timezone, база данных, storage, логирование и список доступных модулей.</p>
+    <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Ключ</th><th>Значение по умолчанию</th><th>Описание</th></tr></thead><tbody><tr><td><code>admin</code></td><td><code>null</code></td><td>Closure, которая возвращает конфигурацию admin-модуля. Если не передана, домен admin не будет добавлен в router.</td></tr><tr><td><code>api</code></td><td><code>null</code></td><td>Closure, которая возвращает конфигурацию API-модуля. Обычно содержит домен <code>api.*</code> и список routes.</td></tr><tr><td><code>ui</code></td><td><code>null</code></td><td>Closure, которая возвращает конфигурацию UI-модуля. Обычно используется для публичных HTML-страниц.</td></tr><tr><td><code>cli</code></td><td><code>null</code></td><td>Closure, которая возвращает конфигурацию CLI-модуля. В router добавляется под ключом <code>cli</code>.</td></tr><tr><td><code>project</code></td><td><code>AIR</code></td><td>Namespace/prefix для переменных окружения. Например <code>project: 'AIR'</code> означает <code>AIR_DB_HOST</code>, <code>AIR_FS_KEY</code>, <code>AIR_ADMIN_AUTH_ROOT_LOGIN</code>.</td></tr><tr><td><code>extensions</code></td><td><code>[]</code></td><td>Дополнительные root-level настройки. Они добавляются в итоговый config через spread. Используйте для проектных секций, которые нужны вашему приложению.</td></tr><tr><td><code>timezone</code></td><td><code>Europe/Kyiv</code></td><td>Передаётся в startup как <code>date_default_timezone_set</code>. Для Румынии обычно можно указать <code>Europe/Bucharest</code>.</td></tr><tr><td><code>reportErrors</code></td><td><code>true</code></td><td>Включает/выключает отображение ошибок и режим exception reporting на базовом уровне. На production обычно ставят <code>false</code>.</td></tr><tr><td><code>logs</code></td><td><code>true</code></td><td>Включает встроенный логгер AirCMS через <code>air.logs.enabled</code>.</td></tr><tr><td><code>db</code></td><td><code>[]</code></td><td>Переопределяет настройки базы данных. Значения из этого массива применяются поверх env-настроек, которые AirCMS собирает по умолчанию.</td></tr></tbody></table></div>
+    <h3>Что создаёт <code>Config::defaults()</code></h3>
+    <p>Внутри итогового массива AirCMS формирует секцию <code>air</code> и секцию <code>router</code>. Секция <code>air</code> содержит системные настройки ядра, а <code>router</code> содержит domain-based routing между модулями.</p>
+    <pre class="code-block"><code class="language-php">[
+    &#x27;air&#x27; =&gt; [
+        &#x27;modules&#x27; =&gt; &#x27;\\App\\Module&#x27;,
+        &#x27;exception&#x27; =&gt; true,
+        &#x27;loader&#x27; =&gt; [
+            &#x27;namespace&#x27; =&gt; &#x27;App&#x27;,
+            &#x27;path&#x27; =&gt; &#x27;/path/to/project/app&#x27;,
+            &#x27;groupedController&#x27; =&gt; true,
+        ],
+        &#x27;db&#x27; =&gt; [
+            &#x27;driver&#x27; =&gt; &#x27;mongodb&#x27;,
+            &#x27;servers&#x27; =&gt; [[
+                &#x27;host&#x27; =&gt; &#x27;localhost&#x27;,
+                &#x27;port&#x27; =&gt; 27017,
+            ]],
+            &#x27;db&#x27; =&gt; &#x27;aircms&#x27;,
+        ],
+        &#x27;storage&#x27; =&gt; [
+            &#x27;url&#x27; =&gt; null,
+            &#x27;key&#x27; =&gt; null,
+        ],
+        &#x27;logs&#x27; =&gt; [
+            &#x27;enabled&#x27; =&gt; true,
+            &#x27;exception&#x27; =&gt; true,
+        ],
+    ],
+    &#x27;router&#x27; =&gt; [
+        &#x27;admin.*&#x27; =&gt; [...],
+        &#x27;api.*&#x27; =&gt; [...],
+        &#x27;*&#x27; =&gt; [...],
+        &#x27;cli&#x27; =&gt; [...],
+    ],
+]</code></pre>
+</section>
+
+<section class="section" id="admin-config">
+    <h2>Настройки модуля Admin <code>Config::admin()</code></h2>
+    <p>Admin-модуль отвечает за административную панель, CRUD-разделы, встроенные widgets/settings, авторизацию, assets админки и UI-helpers.</p>
+    <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Ключ</th><th>Значение по умолчанию</th><th>Описание</th></tr></thead><tbody><tr><td><code>domain</code></td><td><code>admin.*</code></td><td>Маска домена, по которой router выберет admin-модуль. Например <code>admin.example.com</code>.</td></tr><tr><td><code>title</code></td><td><code>AirCms</code></td><td>Название админ-панели. Попадает в <code>air.admin.title</code>.</td></tr><tr><td><code>settings</code></td><td><code>null</code></td><td>Список встроенных settings-разделов. Если <code>null</code>, используется <code>Nav::getAllSettings()</code>.</td></tr><tr><td><code>nav</code></td><td><code>[]</code></td><td>Основное меню админки. Обычно собирается через <code>Air\Crud\Nav\Nav::item()</code>.</td></tr><tr><td><code>reportErrors</code></td><td><code>true</code></td><td>Управляет ошибками именно для admin-модуля: <code>air.exception</code>, <code>display_errors</code>, <code>error_reporting</code>.</td></tr><tr><td><code>richContent</code></td><td><code>null</code></td><td>Список типов RichContent. Если <code>null</code>, используется <code>RichContent::getAllTypes()</code>.</td></tr><tr><td><code>require</code></td><td><code>[]</code></td><td>Файлы, которые нужно подключить при старте admin-модуля. Core автоматически добавляет shortcuts и UI helpers админки.</td></tr><tr><td><code>login</code></td><td><code>null</code></td><td>Fallback-логин root-админа. Может быть переопределён переменной <code>{{PROJECT}}_ADMIN_AUTH_ROOT_LOGIN</code>.</td></tr><tr><td><code>password</code></td><td><code>null</code></td><td>Fallback-пароль root-админа. Может быть переопределён переменной <code>{{PROJECT}}_ADMIN_AUTH_ROOT_PASSWORD</code>.</td></tr><tr><td><code>tiny</code></td><td><code>null</code></td><td>Fallback TinyMCE key. Может быть переопределён переменной <code>{{PROJECT}}_ADMIN_TINY_KEY</code>.</td></tr></tbody></table></div>
+    <h3>Пример минимального admin-конфига</h3>
+    <pre class="code-block"><code class="language-php">admin: fn() =&gt; Config::admin(
+    domain: &#x27;admin.*&#x27;,
+    title: &#x27;AirCMS Admin&#x27;,
+    nav: [
+        Nav::item(&#x27;Content&#x27;, items: [
+            Nav::item(&#x27;Articles&#x27;, controller: &#x27;articles&#x27;),
+        ]),
+    ],
+)</code></pre>
+    <div class="callout warning">
+        <strong>Важно:</strong> root login/password лучше хранить в переменных окружения, а не прямо в <code>config.php</code>. Аргументы <code>login</code> и <code>password</code> удобно использовать только как fallback для локальной разработки.
+    </div>
+</section>
+
+<section class="section" id="api-config">
+    <h2>Настройки модуля Api <code>Config::api()</code></h2>
+    <p>API-модуль обычно возвращает JSON-ответы и используется для backend endpoints. В нём чаще всего описываются strict routes, action injection и domain <code>api.*</code>.</p>
+    <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Ключ</th><th>Значение по умолчанию</th><th>Описание</th></tr></thead><tbody><tr><td><code>domain</code></td><td><code>api.*</code></td><td>Маска домена API-модуля. Например <code>api.example.com</code>.</td></tr><tr><td><code>strictRoutes</code></td><td><code>true</code></td><td>Если включено, запрос должен совпасть с явно описанным route. Если выключено, router может использовать fallback-логику.</td></tr><tr><td><code>strictInject</code></td><td><code>true</code></td><td>Если включено, injection параметров action работает строже и отсутствие обязательных параметров приводит к ошибке.</td></tr><tr><td><code>cacheEnabled</code></td><td><code>false</code></td><td>Включает persistent cache через <code>air.cache.enabled</code> для API-модуля.</td></tr><tr><td><code>routes</code></td><td><code>[]</code></td><td>Список маршрутов API. Ключ — URL pattern, значение — <code>Route::r(...)</code> или callable.</td></tr><tr><td><code>require</code></td><td><code>[]</code></td><td>Дополнительные PHP-файлы, которые нужно подключить для API-модуля.</td></tr></tbody></table></div>
+    <pre class="code-block"><code class="language-php">api: fn() =&gt; Config::api(
+    domain: &#x27;api.*&#x27;,
+    strictRoutes: true,
+    strictInject: true,
+    routes: [
+        &#x27;/articles&#x27; =&gt; Route::r(context: &#x27;blog&#x27;, controller: &#x27;articles&#x27;),
+        &#x27;/article/:article&#x27; =&gt; Route::r(
+            context: &#x27;blog&#x27;,
+            controller: &#x27;articles&#x27;,
+            action: &#x27;details&#x27;
+        ),
+    ],
+)</code></pre>
+</section>
+
+<section class="section" id="ui-config">
+    <h2>Настройки модуля UI <code>Config::ui()</code></h2>
+    <p>UI-модуль используется для server-rendered страниц: layouts, view scripts, HTML-страницы, публичный сайт или документационный сайт.</p>
+    <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Ключ</th><th>Значение по умолчанию</th><th>Описание</th></tr></thead><tbody><tr><td><code>domain</code></td><td><code>*</code></td><td>Маска домена публичного UI. Обычно <code>*</code>, если UI должен принимать основной домен проекта.</td></tr><tr><td><code>strictInject</code></td><td><code>true</code></td><td>Строгий режим injection для UI controllers.</td></tr><tr><td><code>strictRoutes</code></td><td><code>true</code></td><td>Строгий режим route matching для UI.</td></tr><tr><td><code>cacheEnabled</code></td><td><code>false</code></td><td>Включает persistent cache для UI-модуля.</td></tr><tr><td><code>routes</code></td><td><code>[]</code></td><td>Список публичных HTML routes. Например <code>/</code>, <code>/page/:page</code>.</td></tr><tr><td><code>require</code></td><td><code>[]</code></td><td>Дополнительные файлы для подключения в UI-модуле.</td></tr></tbody></table></div>
+    <pre class="code-block"><code class="language-php">ui: fn() =&gt; Config::ui(
+    domain: &#x27;*&#x27;,
+    routes: [
+        &#x27;/&#x27; =&gt; Route::r(controller: &#x27;index&#x27;),
+        &#x27;/about&#x27; =&gt; Route::r(controller: &#x27;pages&#x27;, action: &#x27;about&#x27;),
+        &#x27;/page/:page&#x27; =&gt; Route::r(controller: &#x27;pages&#x27;, action: &#x27;details&#x27;),
+    ],
+)</code></pre>
+</section>
+
+<section class="section" id="cli-config">
+    <h2>Настройки модуля Cli <code>Config::cli()</code></h2>
+    <p>CLI-модуль используется для console-команд, workers, очередей, парсеров, scheduled jobs и фоновой обработки.</p>
+    <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Ключ</th><th>Значение по умолчанию</th><th>Описание</th></tr></thead><tbody><tr><td><code>strictInject</code></td><td><code>false</code></td><td>По умолчанию CLI injection менее строгий, потому что CLI-команды часто запускаются с разными наборами аргументов.</td></tr><tr><td><code>strictRoutes</code></td><td><code>false</code></td><td>По умолчанию CLI routes не strict. CLI route обычно передаётся как <code>route=name/action</code>.</td></tr><tr><td><code>routes</code></td><td><code>[]</code></td><td>Список CLI routes. Если не нужен явный список, можно использовать стандартный route через query/argv.</td></tr><tr><td><code>require</code></td><td><code>[]</code></td><td>Дополнительные файлы для подключения в CLI-модуле.</td></tr></tbody></table></div>
+    <pre class="code-block"><code class="language-php">cli: fn() =&gt; Config::cli(
+    routes: [
+        &#x27;email/consume&#x27; =&gt; Route::r(controller: &#x27;email&#x27;, action: &#x27;consume&#x27;),
+        &#x27;telegram/consume&#x27; =&gt; Route::r(controller: &#x27;telegram&#x27;, action: &#x27;consume&#x27;),
+    ],
+)</code></pre>
+    <p>CLI route обычно запускается через тот же entry point:</p>
+    <pre class="code-block"><code class="language-bash">php www/index.php route=email/consume</code></pre>
+</section>
+
+<section class="section" id="env-overview">
+    <h2>Environment variables</h2>
+    <p>AirCMS читает переменные окружения через <code>Config::getEnv()</code>. Метод не ищет переменную напрямую по имени <code>DB_HOST</code>, а добавляет к ней project namespace.</p>
+    <pre class="code-block"><code class="language-php">// project: &#x27;AIR&#x27;
+Config::getEnv(&#x27;DB_HOST&#x27;, &#x27;localhost&#x27;);
+// ищет AIR_DB_HOST, если переменной нет — вернёт localhost
+
+// project: &#x27;ATWA&#x27;
+Config::getEnv(&#x27;DB_HOST&#x27;, &#x27;localhost&#x27;);
+// ищет ATWA_DB_HOST, если переменной нет — вернёт localhost</code></pre>
+    <p>Это позволяет держать на одном сервере несколько AirCMS-проектов и не смешивать их настройки. Например, один проект может использовать <code>AIR_DB_HOST</code>, а другой — <code>ATWA_DB_HOST</code>.</p>
+    <div class="code-title">Пример env-переменных для project: AIR</div><pre class="code-block"><code class="language-dotenv"># Namespace проекта: project: &#x27;AIR&#x27;
+AIR_DB_HOST=localhost
+AIR_DB_PORT=27017
+AIR_DB_DB=aircms
+AIR_DB_USER=
+AIR_DB_PASS=
+
+AIR_FS_URL=https://storage.example.com
+AIR_FS_KEY=storage-secret-key
+
+AIR_ADMIN_AUTH_ROOT_LOGIN=root
+AIR_ADMIN_AUTH_ROOT_PASSWORD=change-me
+AIR_ADMIN_TINY_KEY=your-tinymce-key</code></pre>
+    <div class="callout warning">
+        <strong>Важно:</strong> ядро AirCMS использует <code>getenv()</code>. Это значит, что переменные должны быть доступны PHP-процессу: через Apache <code>SetEnv</code>, PHP-FPM pool config, Docker environment, Supervisor environment, shell export или ваш собственный dotenv-loader.
+    </div>
+</section>
+
+<section class="section" id="env-table">
+    <h2>Основные env-переменные AirCMS</h2>
+    <div class="table-responsive"><table class="table docs-table align-middle"><thead><tr><th>Переменная</th><th>Значение по умолчанию</th><th>Описание</th></tr></thead><tbody><tr><td><code>{{PROJECT}}_DB_HOST</code></td><td><code>localhost</code></td><td>Хост MongoDB-сервера. Для <code>project: 'AIR'</code> это <code>AIR_DB_HOST</code>.</td></tr><tr><td><code>{{PROJECT}}_DB_PORT</code></td><td><code>27017</code></td><td>Порт MongoDB-сервера.</td></tr><tr><td><code>{{PROJECT}}_DB_DB</code></td><td><code>null</code></td><td>Название базы данных. Обязательно укажите для реального проекта.</td></tr><tr><td><code>{{PROJECT}}_DB_USER</code></td><td><code>null</code></td><td>Пользователь базы данных.</td></tr><tr><td><code>{{PROJECT}}_DB_PASS</code></td><td><code>null</code></td><td>Пароль базы данных.</td></tr><tr><td><code>{{PROJECT}}_FS_URL</code></td><td><code>null</code></td><td>URL файлового storage-сервиса. Используется <code>Air\Storage</code>.</td></tr><tr><td><code>{{PROJECT}}_FS_KEY</code></td><td><code>null</code></td><td>Ключ доступа к storage-сервису.</td></tr><tr><td><code>{{PROJECT}}_ADMIN_AUTH_ROOT_LOGIN</code></td><td>значение аргумента <code>login</code></td><td>Root login для входа в админку. Env имеет приоритет над аргументом <code>login</code>.</td></tr><tr><td><code>{{PROJECT}}_ADMIN_AUTH_ROOT_PASSWORD</code></td><td>значение аргумента <code>password</code></td><td>Root password для входа в админку. Env имеет приоритет над аргументом <code>password</code>.</td></tr><tr><td><code>{{PROJECT}}_ADMIN_TINY_KEY</code></td><td>значение аргумента <code>tiny</code></td><td>TinyMCE key для редактора в админке. Env имеет приоритет над аргументом <code>tiny</code>.</td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="env-override">
+    <h2>Как переопределять значения</h2>
+    <h3>1. Через переменные окружения</h3>
+    <p>Это основной способ для production. Значения не попадают в Git и могут отличаться на локальной машине, staging и production.</p>
+    <pre class="code-block"><code class="language-dotenv"># Namespace проекта: project: &#x27;AIR&#x27;
+AIR_DB_HOST=localhost
+AIR_DB_PORT=27017
+AIR_DB_DB=aircms
+AIR_DB_USER=
+AIR_DB_PASS=
+
+AIR_FS_URL=https://storage.example.com
+AIR_FS_KEY=storage-secret-key
+
+AIR_ADMIN_AUTH_ROOT_LOGIN=root
+AIR_ADMIN_AUTH_ROOT_PASSWORD=change-me
+AIR_ADMIN_TINY_KEY=your-tinymce-key</code></pre>
+    <h3>2. Через Apache</h3>
+    <pre class="code-block"><code class="language-apache">&lt;VirtualHost *:80&gt;
+    ServerName api.example.com
+    DocumentRoot /var/www/project/www
+
+    SetEnv AIR_DB_HOST localhost
+    SetEnv AIR_DB_PORT 27017
+    SetEnv AIR_DB_DB aircms
+    SetEnv AIR_ADMIN_AUTH_ROOT_LOGIN root
+    SetEnv AIR_ADMIN_AUTH_ROOT_PASSWORD change-me
+
+    &lt;Directory /var/www/project/www&gt;
+        Require all granted
+        AllowOverride All
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+    <h3>3. Через PHP-FPM</h3>
+    <pre class="code-block"><code class="language-ini">; /etc/php/8.3/fpm/pool.d/www.conf
+
+env[AIR_DB_HOST] = localhost
+env[AIR_DB_PORT] = 27017
+env[AIR_DB_DB] = aircms
+env[AIR_ADMIN_AUTH_ROOT_LOGIN] = root
+env[AIR_ADMIN_AUTH_ROOT_PASSWORD] = change-me</code></pre>
+    <h3>4. Через Supervisor для CLI workers</h3>
+    <pre class="code-block"><code class="language-ini">[program:aircms-email-worker]
+directory=/var/www/project
+command=php www/index.php route=email/consume
+autostart=true
+autorestart=true
+environment=AIR_DB_HOST=&quot;localhost&quot;,AIR_DB_PORT=&quot;27017&quot;,AIR_DB_DB=&quot;aircms&quot;</code></pre>
+    <h3>5. Через аргументы конфига</h3>
+    <p>Для базы данных массив <code>db</code> в <code>Config::defaults()</code> применяется поверх env-настроек, поэтому он может переопределить <code>{PROJECT}_DB_HOST</code>, <code>{PROJECT}_DB_PORT</code>, <code>{PROJECT}_DB_DB</code> и другие DB-ключи.</p>
+    <pre class="code-block"><code class="language-php">return Config::defaults(
+    project: &#x27;AIR&#x27;,
+
+    // Этот массив будет применён поверх env-конфига базы данных.
+    db: [
+        &#x27;driver&#x27; =&gt; &#x27;mongodb&#x27;,
+        &#x27;servers&#x27; =&gt; [[
+            &#x27;host&#x27; =&gt; &#x27;10.0.0.2&#x27;,
+            &#x27;port&#x27; =&gt; 27017,
+        ]],
+        &#x27;db&#x27; =&gt; &#x27;aircms_production&#x27;,
+    ],
+);</code></pre>
+    <h3>6. Особенность admin credentials</h3>
+    <p>Для admin credentials логика обратная: <code>Config::admin()</code> передаёт <code>login</code>, <code>password</code> и <code>tiny</code> как fallback в <code>Config::getEnv()</code>. Если env-переменная существует, она имеет приоритет.</p>
+    <pre class="code-block"><code class="language-php">return Config::defaults(
+    project: &#x27;AIR&#x27;,
+
+    admin: fn() =&gt; Config::admin(
+        login: &#x27;root-from-config&#x27;,
+        password: &#x27;password-from-config&#x27;,
+    ),
+);
+
+// Если в окружении есть AIR_ADMIN_AUTH_ROOT_LOGIN и AIR_ADMIN_AUTH_ROOT_PASSWORD,
+// AirCMS возьмёт значения из окружения, а не из аргументов login/password.</code></pre>
+</section>
+
+<section class="section" id="namespace-examples">
+    <h2>Namespace переменных окружения</h2>
+    <p>Параметр <code>project</code> не просто название проекта. В рамках <code>Config::getEnv()</code> это prefix для всех env-переменных.</p>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5><code>project: 'AIR'</code></h5>
+                <pre class="code-block"><code class="language-dotenv">AIR_DB_HOST=localhost
+AIR_DB_PORT=27017
+AIR_DB_DB=aircms
+AIR_FS_KEY=air-storage-key</code></pre>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5><code>project: 'ATWA'</code></h5>
+                <pre class="code-block"><code class="language-dotenv">ATWA_DB_HOST=localhost
+ATWA_DB_PORT=27017
+ATWA_DB_DB=atwa
+ATWA_FS_KEY=atwa-storage-key</code></pre>
+            </div>
+        </div>
+    </div>
+    <p class="mt-3">Так можно запускать несколько проектов на одном сервере, не боясь, что один проект случайно прочитает credentials другого проекта.</p>
+</section>
+
+<section class="section" id="best-practices">
+    <h2>Рекомендации</h2>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Для локальной разработки</h5>
+                <p>Можно использовать fallback-значения в <code>config.php</code>, локальный MongoDB и <code>reportErrors: true</code>.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Для production</h5>
+                <p>Пароли, storage keys, database credentials и API tokens храните только в окружении сервера. Для production обычно ставят <code>reportErrors: false</code>.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Для нескольких проектов</h5>
+                <p>Используйте разные значения <code>project</code>: например <code>AIR</code>, <code>DOMIK</code>, <code>ATWA</code>. Это разделит env namespace.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Для CLI workers</h5>
+                <p>Проверяйте, что env-переменные доступны именно CLI-процессу. Переменные Apache не всегда видны worker-процессам, запущенным через Supervisor.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div>
+<a href="#what-is-it">Что это такое</a>
+<a href="#full-config">Полный пример</a>
+<a href="#config-defaults">Основные настройки</a>
+<a href="#admin-config">Admin</a>
+<a href="#api-config">Api</a>
+<a href="#ui-config">UI</a>
+<a href="#cli-config">Cli</a>
+<a href="#env-overview">Environment variables</a>
+<a href="#env-table">Env-переменные</a>
+<a href="#env-override">Переопределение</a>
+<a href="#namespace-examples">Namespace</a>
+<a href="#best-practices">Рекомендации</a>
+</div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

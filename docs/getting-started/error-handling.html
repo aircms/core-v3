@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error handling · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link active" href="../getting-started/error-handling.html" aria-current="page">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Error handling</strong></div>
+      
+
+<section class="hero">
+    <span class="badge-soft mb-3">Core</span>
+    <h1>Error handling</h1>
+    <p class="lead mb-0">Error handling в AirCMS — это механизм, который перехватывает исключения во время обработки запроса и передаёт их в специальный error controller текущего модуля или контекста.</p>
+</section>
+
+<section class="section" id="overview">
+    <h2>Что такое Error handling</h2>
+    <p>Когда приложение обрабатывает запрос, AirCMS проходит цепочку: <code>Front</code> → <code>Router</code> → <code>Controller</code> → <code>Action</code> → <code>View/Response</code>. Если на любом из этих этапов выбрасывается <code>Throwable</code>, фреймворк не должен показывать пользователю сырой PHP error. Вместо этого он пытается найти контроллер ошибки и передать туда исходное исключение.</p>
+    <p>На практике error controller нужен для трёх задач: вернуть аккуратный JSON в API, показать красивую HTML-страницу в UI и записать технические детали ошибки в лог.</p>
+    <div class="callout">
+        <strong>Важно:</strong> error controller — это обычный controller, но он наследуется от <code>Air\Core\ErrorController</code>. Благодаря этому внутри него доступны <code>getException()</code>, <code>isExceptionEnabled()</code>, <code>getRequest()</code>, <code>getResponse()</code>, <code>getRouter()</code> и <code>getView()</code>.
+    </div>
+</section>
+
+<section class="section" id="when-starts">
+    <h2>Когда запускается error controller</h2>
+    <p>Error controller запускается, если во время обработки текущего запроса возникло исключение или PHP error, превращённый во внутреннее исключение через error handler.</p>
+    <div class="row g-3">
+        <div class="col-md-6"><div class="doc-card"><h5>Routing error</h5><p>Например, route не найден, controller class не существует или action method отсутствует.</p></div></div>
+        <div class="col-md-6"><div class="doc-card"><h5>Controller/action error</h5><p>Исключение выброшено вручную внутри action, service, model, form validation или сторонней интеграции.</p></div></div>
+        <div class="col-md-6"><div class="doc-card"><h5>View error</h5><p>Шаблон view/layout не найден или внутри <code>.phtml</code> произошла ошибка.</p></div></div>
+        <div class="col-md-6"><div class="doc-card"><h5>Model/Form error</h5><p>Ошибка ORM metadata, query, validation, filter или validator.</p></div></div>
+    </div>
+    <div class="code-title">Пример action, который выбрасывает исключение</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Catalog\Controller;
+
+use Air\Core\Controller;
+use App\Model\Property;
+use RuntimeException;
+
+class Property extends Controller
+{
+    public function details(Property $property): array
+    {
+        if (!$property-&gt;enabled) {
+            throw new RuntimeException(&#x27;Property is disabled&#x27;, 404);
+        }
+
+        return $property-&gt;toArray();
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="resolution-order">
+    <h2>Как AirCMS ищет error controller</h2>
+    <p>AirCMS учитывает текущий модуль и текущий context. Если ошибка произошла внутри context, фреймворк сначала ищет error controller внутри этого context. Если context-level error controller не найден, используется module-level error controller.</p>
+    <table class="table docs-table">
+        <thead><tr><th>Где произошла ошибка</th><th>Сначала ищет</th><th>Затем ищет</th></tr></thead>
+        <tbody>
+            <tr><td><code>Api / Catalog</code></td><td><code>App\Module\Api\Catalog\Controller\Error</code></td><td><code>App\Module\Api\Controller\Error</code></td></tr>
+            <tr><td><code>Api</code> без context</td><td><code>App\Module\Api\Controller\Error</code></td><td>если не найден — исключение может быть проброшено дальше</td></tr>
+            <tr><td><code>Ui / Blog</code></td><td><code>App\Module\Ui\Blog\Controller\Error</code></td><td><code>App\Module\Ui\Controller\Error</code></td></tr>
+            <tr><td><code>Admin</code></td><td><code>App\Module\Admin\Controller\Error</code></td><td>core/admin fallback зависит от конфигурации проекта</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="section" id="module-error">
+    <h2>Module-level error controller</h2>
+    <p>Module-level error controller лежит прямо внутри папки модуля. Такой контроллер обрабатывает ошибки всего модуля, если для конкретного context не создан свой error controller.</p>
+    <div class="code-title">app/Module/Api/Controller/Error.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\ErrorController;
+
+class Error extends ErrorController
+{
+    public function index(): array
+    {
+        $exception = $this-&gt;getException();
+
+        $this-&gt;getView()-&gt;setLayoutEnabled(false);
+        $this-&gt;getView()-&gt;setAutoRender(false);
+        $this-&gt;getResponse()-&gt;setStatusCode(500);
+
+        return [
+            &#x27;error&#x27; =&gt; true,
+            &#x27;message&#x27; =&gt; $exception?-&gt;getMessage(),
+        ];
+    }
+}</code></pre>
+    <p>Для API почти всегда нужно отключать layout и auto render, потому что error controller обычно возвращает массив, который AirCMS сериализует в JSON.</p>
+</section>
+
+<section class="section" id="context-error">
+    <h2>Context-level error controller</h2>
+    <p>Context-level error controller нужен, когда один context должен иметь собственный формат ошибок. Например, catalog API может возвращать один формат, auth API — другой, а public API — третий.</p>
+    <div class="code-title">app/Module/Api/Catalog/Controller/Error.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Catalog\Controller;
+
+use Air\Core\ErrorController;
+
+class Error extends ErrorController
+{
+    public function index(): array
+    {
+        $exception = $this-&gt;getException();
+
+        $this-&gt;getView()-&gt;setLayoutEnabled(false);
+        $this-&gt;getResponse()-&gt;setStatusCode(404);
+
+        return [
+            &#x27;error&#x27; =&gt; true,
+            &#x27;scope&#x27; =&gt; &#x27;catalog&#x27;,
+            &#x27;message&#x27; =&gt; $exception?-&gt;getMessage(),
+        ];
+    }
+}</code></pre>
+    <div class="callout success">
+        <strong>Когда полезно:</strong> context-level error controller удобно использовать для REST API, где разные группы endpoints имеют разные требования к формату ответа.
+    </div>
+</section>
+
+<section class="section" id="exception-access">
+    <h2>Доступ к исключению</h2>
+    <p>Внутри error controller исходное исключение доступно через <code>$this-&gt;getException()</code>. Метод возвращает <code>Exception</code>, <code>Error</code> или <code>null</code>.</p>
+    <div class="code-title">Получение информации об исключении</div><pre class="code-block"><code class="language-php">&lt;?php
+
+$exception = $this-&gt;getException();
+
+return [
+    &#x27;handler&#x27; =&gt; $exception ? get_class($exception) : null,
+    &#x27;code&#x27; =&gt; $exception?-&gt;getCode(),
+    &#x27;message&#x27; =&gt; $exception?-&gt;getMessage(),
+    &#x27;file&#x27; =&gt; $exception?-&gt;getFile(),
+    &#x27;line&#x27; =&gt; $exception?-&gt;getLine(),
+];</code></pre>
+    <p>Обычно наружу не стоит отдавать <code>file</code>, <code>line</code> и <code>trace</code> в production. Эти данные лучше писать в лог, а пользователю возвращать безопасное сообщение.</p>
+</section>
+
+<section class="section" id="logging">
+    <h2>Запись ошибок в Log</h2>
+    <p>AirCMS содержит helper <code>Air\Log</code>. Он пишет записи в built-in log model, если в конфигурации включены логи: <code>logs: true</code> в <code>Config::defaults()</code> и <code>air.logs.enabled</code> после сборки конфига.</p>
+    <div class="code-title">Ручная запись ошибки в лог</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\ErrorController;
+use Air\Log;
+
+class Error extends ErrorController
+{
+    public function index(): array
+    {
+        $exception = $this-&gt;getException();
+        $request = $this-&gt;getRequest();
+
+        Log::error($exception?-&gt;getMessage() ?? &#x27;Unknown exception&#x27;, [
+            &#x27;handler&#x27; =&gt; $exception ? get_class($exception) : null,
+            &#x27;code&#x27; =&gt; $exception?-&gt;getCode(),
+            &#x27;ip&#x27; =&gt; $request-&gt;getIp(),
+            &#x27;user-agent&#x27; =&gt; $request-&gt;getUserAgent(),
+            &#x27;params&#x27; =&gt; [
+                &#x27;get&#x27; =&gt; $request-&gt;getGetAll(),
+                &#x27;post&#x27; =&gt; $request-&gt;getPostAll(),
+            ],
+        ]);
+
+        return [
+            &#x27;error&#x27; =&gt; true,
+        ];
+    }
+}</code></pre>
+    <p>Для типового логирования исключений и request params можно использовать <code>Log::requestException()</code>.</p>
+    <div class="code-title">Короткая запись исключения и request context</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Log;
+
+$exception = $this-&gt;getException();
+
+if ($exception) {
+    Log::requestException($exception, $this-&gt;getRequest());
+}</code></pre>
+    <div class="callout warning">
+        <strong>Безопасность:</strong> не записывай в лог пароли, access tokens, payment card data и другие секреты. Если логируешь <code>post</code>, лучше заранее очищать чувствительные поля.
+    </div>
+</section>
+
+<section class="section" id="report-errors">
+    <h2>reportErrors и модификация вывода</h2>
+    <p>В <code>Config::defaults()</code> параметр <code>reportErrors</code> влияет на <code>air.exception</code>, <code>display_errors</code> и <code>error_reporting</code>. Внутри error controller можно читать этот флаг и решать, показывать ли подробности исключения.</p>
+    <div class="code-title">Отключение подробных ошибок в config.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Config;
+use Air\Core\Route;
+
+return Config::defaults(
+    project: &#x27;AIR&#x27;,
+    reportErrors: false,
+
+    api: fn() =&gt; Config::api(
+        domain: &#x27;api.*&#x27;,
+        routes: [
+            &#x27;/property/:property&#x27; =&gt; Route::r(
+                context: &#x27;catalog&#x27;,
+                controller: &#x27;property&#x27;,
+                action: &#x27;details&#x27;
+            ),
+        ],
+    ),
+);</code></pre>
+    <div class="code-title">Разный вывод для dev/prod</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Core\Front;
+
+$exception = $this-&gt;getException();
+$reportErrors = Front::getInstance()-&gt;getConfig()[&#x27;air&#x27;][&#x27;exception&#x27;] ?? false;
+
+if ($reportErrors) {
+    return [
+        &#x27;error&#x27; =&gt; true,
+        &#x27;handler&#x27; =&gt; $exception ? get_class($exception) : null,
+        &#x27;message&#x27; =&gt; $exception?-&gt;getMessage(),
+        &#x27;trace&#x27; =&gt; $exception?-&gt;getTrace(),
+    ];
+}
+
+return [
+    &#x27;error&#x27; =&gt; true,
+    &#x27;message&#x27; =&gt; &#x27;Internal server error&#x27;,
+];</code></pre>
+    <p>Также <code>ErrorController</code> получает этот режим через <code>setExceptionEnabled()</code>. Проверить его можно методом <code>$this-&gt;isExceptionEnabled()</code>.</p>
+</section>
+
+<section class="section" id="status-code">
+    <h2>Переопределение status code</h2>
+    <p>Базовый <code>ErrorController::init()</code> пытается поставить HTTP status code из <code>$exception-&gt;getCode()</code>. Но на практике код исключения не всегда является валидным HTTP status code. Поэтому в своём error controller лучше явно нормализовать статус.</p>
+    <div class="code-title">Нормализация HTTP status code</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Exception\InvalidInput;
+use Air\Exception\NotAllowed;
+use Air\Form\Exception\Validation;
+
+$exception = $this-&gt;getException();
+
+$statusCode = 500;
+
+if ($exception instanceof Validation) {
+    $statusCode = 400;
+} elseif ($exception instanceof InvalidInput) {
+    $statusCode = 400;
+} elseif ($exception instanceof NotAllowed) {
+    $statusCode = 403;
+} elseif (is_int($exception?-&gt;getCode()) &amp;&amp; $exception-&gt;getCode() &gt;= 400) {
+    $statusCode = $exception-&gt;getCode();
+}
+
+$this-&gt;getResponse()-&gt;setStatusCode($statusCode);</code></pre>
+    <p>Ответ можно дополнительно настроить через <code>$this-&gt;getResponse()</code>: установить status message, headers или body.</p>
+</section>
+
+<section class="section" id="validation">
+    <h2>Form validation errors</h2>
+    <p>В AirCMS форма выбрасывает <code>Air\Form\Exception\Validation</code>, когда вызывается <code>validateOfFail()</code> и данные не проходят проверку. В такой ситуации error controller может вернуть список ошибок формы вместо обычного server error.</p>
+    <div class="callout">
+        <strong>Название метода:</strong> в ядре AirCMS метод называется <code>validateOfFail()</code>. По смыслу это «validate or fail»: провал validation приводит к исключению <code>Air\Form\Exception\Validation</code>.
+    </div>
+    <div class="code-title">Action с validateOfFail()</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+use Air\Form\Form;
+use Air\Form\Input;
+
+class Contact extends Controller
+{
+    public function send(): array
+    {
+        $form = new Form(elements: [
+            Input::email(&#x27;email&#x27;),
+            Input::textarea(&#x27;message&#x27;),
+        ]);
+
+        $data = $form-&gt;validateOfFail($this-&gt;getParams());
+
+        return [
+            &#x27;success&#x27; =&gt; true,
+            &#x27;data&#x27; =&gt; $data,
+        ];
+    }
+}</code></pre>
+    <div class="code-title">Обработка Air\Form\Exception\Validation</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\ErrorController;
+use Air\Form\Exception\Validation;
+
+class Error extends ErrorController
+{
+    public function index(): array
+    {
+        $exception = $this-&gt;getException();
+        $this-&gt;getView()-&gt;setLayoutEnabled(false);
+        $this-&gt;getResponse()-&gt;setStatusCode(500);
+
+        if ($exception instanceof Validation) {
+            $this-&gt;getResponse()-&gt;setStatusCode(400);
+
+            return [
+                &#x27;error&#x27; =&gt; true,
+                &#x27;type&#x27; =&gt; &#x27;validation&#x27;,
+                &#x27;fields&#x27; =&gt; $exception-&gt;getForm()-&gt;getErrorFields(),
+            ];
+        }
+
+        return [
+            &#x27;error&#x27; =&gt; true,
+            &#x27;message&#x27; =&gt; &#x27;Internal server error&#x27;,
+        ];
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="specific-exceptions">
+    <h2>Обработка конкретных исключений</h2>
+    <p>Error controller может проверять класс исключения через <code>instanceof</code> и возвращать разный формат ответа. Это особенно полезно для validation, access control, API errors и not found сценариев.</p>
+    <div class="code-title">Air\Exception\ApiValidation</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Exception\ApiValidation;
+
+throw new ApiValidation(400, [
+    &#x27;email&#x27; =&gt; &#x27;Email already exists&#x27;,
+    &#x27;phone&#x27; =&gt; &#x27;Phone is invalid&#x27;,
+]);</code></pre>
+    <div class="code-title">Полный пример API error controller</div><pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\ErrorController;
+use Air\Core\Front;
+use Air\Exception\ApiValidation;
+use Air\Exception\InvalidInput;
+use Air\Exception\NotAllowed;
+use Air\Form\Exception\Validation;
+use Air\Log;
+use Throwable;
+
+class Error extends ErrorController
+{
+    public function index(): array
+    {
+        $exception = $this-&gt;getException();
+        $request = $this-&gt;getRequest();
+
+        $this-&gt;getView()-&gt;setLayoutEnabled(false);
+        $this-&gt;getView()-&gt;setAutoRender(false);
+
+        $this-&gt;getResponse()-&gt;setStatusCode(
+            $this-&gt;resolveStatusCode($exception)
+        );
+
+        if ($exception instanceof Validation) {
+            return [
+                &#x27;error&#x27; =&gt; true,
+                &#x27;type&#x27; =&gt; &#x27;validation&#x27;,
+                &#x27;fields&#x27; =&gt; $exception-&gt;getForm()-&gt;getErrorFields(),
+            ];
+        }
+
+        if ($exception instanceof ApiValidation) {
+            return [
+                &#x27;error&#x27; =&gt; true,
+                &#x27;type&#x27; =&gt; &#x27;api-validation&#x27;,
+                &#x27;fields&#x27; =&gt; $exception-&gt;getData(),
+            ];
+        }
+
+        $logsConfig = Front::getInstance()-&gt;getConfig()[&#x27;air&#x27;][&#x27;logs&#x27;] ?? [];
+
+        if (($logsConfig[&#x27;exception&#x27;] ?? false) === true &amp;&amp; $exception) {
+            Log::error($exception-&gt;getMessage(), [
+                &#x27;handler&#x27; =&gt; get_class($exception),
+                &#x27;trace&#x27; =&gt; $exception-&gt;getTrace(),
+                &#x27;code&#x27; =&gt; $this-&gt;getResponse()-&gt;getStatusCode(),
+                &#x27;params&#x27; =&gt; [
+                    &#x27;get&#x27; =&gt; $request-&gt;getGetAll(),
+                    &#x27;post&#x27; =&gt; $request-&gt;getPostAll(),
+                ],
+            ]);
+        }
+
+        $reportErrors = Front::getInstance()-&gt;getConfig()[&#x27;air&#x27;][&#x27;exception&#x27;] ?? false;
+
+        if ($reportErrors &amp;&amp; $exception) {
+            return [
+                &#x27;error&#x27; =&gt; true,
+                &#x27;handler&#x27; =&gt; get_class($exception),
+                &#x27;message&#x27; =&gt; $exception-&gt;getMessage(),
+                &#x27;trace&#x27; =&gt; $exception-&gt;getTrace(),
+            ];
+        }
+
+        return [
+            &#x27;error&#x27; =&gt; true,
+            &#x27;message&#x27; =&gt; &#x27;Internal server error&#x27;,
+        ];
+    }
+
+    private function resolveStatusCode(?Throwable $exception): int
+    {
+        if ($exception instanceof Validation) {
+            return 400;
+        }
+
+        if ($exception instanceof ApiValidation) {
+            return $exception-&gt;getCode() ?: 400;
+        }
+
+        if ($exception instanceof InvalidInput) {
+            return 400;
+        }
+
+        if ($exception instanceof NotAllowed) {
+            return 403;
+        }
+
+        $code = $exception?-&gt;getCode();
+
+        if (is_int($code) &amp;&amp; $code &gt;= 400 &amp;&amp; $code &lt; 600) {
+            return $code;
+        }
+
+        return 500;
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="ui-errors">
+    <h2>HTML error pages в UI-модуле</h2>
+    <p>В UI-модуле error controller может не возвращать массив. Вместо этого он может назначить данные во view и позволить AirCMS отрендерить обычный <code>.phtml</code> script с layout.</p>
+    <div class="code-title">app/Module/Ui/Controller/Error.php</div><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Ui\Controller;
+
+use Air\Core\ErrorController;
+
+class Error extends ErrorController
+{
+    public function index(): void
+    {
+        $this-&gt;getResponse()-&gt;setStatusCode(500);
+        $this-&gt;getView()-&gt;assign(&#x27;exception&#x27;, $this-&gt;getException());
+    }
+}</code></pre>
+    <div class="code-title">app/Module/Ui/View/Scripts/error/index.phtml</div><pre class="code-block"><code class="language-html">&lt;section class=&quot;error-page&quot;&gt;
+    &lt;h1&gt;Что-то пошло не так&lt;/h1&gt;
+    &lt;p&gt;Попробуйте обновить страницу или вернуться позже.&lt;/p&gt;
+
+    &lt;?php if ($this-&gt;exception): ?&gt;
+        &lt;pre&gt;&lt;?php echo htmlspecialchars($this-&gt;exception-&gt;getMessage()); ?&gt;&lt;/pre&gt;
+    &lt;?php endif; ?&gt;
+&lt;/section&gt;</code></pre>
+    <p>Такой подход полезен для публичного сайта, где API-style JSON не нужен, а пользователю нужна аккуратная HTML-страница ошибки.</p>
+</section>
+
+<section class="section" id="built-in-exceptions">
+    <h2>Встроенные исключения AirCMS</h2>
+    <p>Ниже перечислены основные исключения, которые есть в ядре AirCMS. Не каждое из них нужно обрабатывать отдельно, но полезно понимать, откуда может прийти ошибка.</p>
+    <h3>Core exceptions</h3>
+    <table class="table docs-table">
+        <thead><tr><th>Исключение</th><th>Когда возникает</th></tr></thead>
+        <tbody>
+            <tr><td><code>Air\Core\Exception\ActionMethodIsReserved</code></td><td>Route указывает на action, имя которого зарезервировано методами базового controller.</td></tr>
+            <tr><td><code>Air\Core\Exception\ActionMethodWasNotFound</code></td><td>Action method не найден в controller class.</td></tr>
+            <tr><td><code>Air\Core\Exception\ControllerClassWasNotFound</code></td><td>Controller class не найден по текущему route.</td></tr>
+            <tr><td><code>Air\Core\Exception\RouterWasNotFound</code></td><td>Router не смог подобрать route.</td></tr>
+            <tr><td><code>Air\Core\Exception\RouterDomainWasNotFound</code></td><td>Не найден module/router для текущего domain.</td></tr>
+            <tr><td><code>Air\Core\Exception\RouterVarMustBeProvided</code></td><td>Для сборки URL не передана обязательная route variable.</td></tr>
+            <tr><td><code>Air\Core\Exception\ViewTemplateWasNotFound</code></td><td>View script или layout template не найден.</td></tr>
+            <tr><td><code>Air\Core\Exception\Stop</code></td><td>Специальное исключение для остановки выполнения через <code>Front::stop()</code>.</td></tr>
+        </tbody>
+    </table>
+    <h3>Application/API exceptions</h3>
+    <table class="table docs-table">
+        <thead><tr><th>Исключение</th><th>Назначение</th></tr></thead>
+        <tbody>
+            <tr><td><code>Air\Exception\ApiValidation</code></td><td>API validation response с произвольным массивом данных через <code>getData()</code>.</td></tr>
+            <tr><td><code>Air\Exception\InvalidInput</code></td><td>Некорректный input, по умолчанию HTTP code <code>400</code>.</td></tr>
+            <tr><td><code>Air\Exception\NotAllowed</code></td><td>Доступ запрещён, по умолчанию HTTP code <code>403</code>.</td></tr>
+            <tr><td><code>Air\Form\Exception\Validation</code></td><td>Форма не прошла validation, содержит объект формы через <code>getForm()</code>.</td></tr>
+        </tbody>
+    </table>
+    <h3>Model, Form и ThirdParty exceptions</h3>
+    <table class="table docs-table">
+        <thead><tr><th>Группа</th><th>Примеры</th><th>Когда полезно обрабатывать</th></tr></thead>
+        <tbody>
+            <tr><td>Form</td><td><code>FilterClassWasNotFound</code>, <code>ValidatorClassWasNotFound</code></td><td>При динамической генерации форм и кастомных filters/validators.</td></tr>
+            <tr><td>Model</td><td><code>ConfigWasNotProvided</code>, <code>DriverClassDoesNotExists</code>, <code>CallUndefinedMethod</code></td><td>При ошибках ORM-конфигурации или вызове несуществующих model methods.</td></tr>
+            <tr><td>Model metadata</td><td><code>CollectionNameDoesNotExists</code>, <code>PropertyIsSetIncorrectly</code></td><td>При ошибках в PHPDoc annotation модели.</td></tr>
+            <tr><td>Model driver</td><td><code>PropertyWasNotFound</code>, <code>PropertyHasDifferentType</code>, <code>FailedStatement</code></td><td>При проблемах запроса, типов или SQL/MongoDB driver.</td></tr>
+            <tr><td>ThirdParty</td><td><code>GoogleOAuth\InvalidCode</code>, <code>Smsto\InvalidResponse</code>, <code>Gatewayapi\InvalidResponse</code></td><td>При ошибках внешних интеграций.</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="section" id="stop">
+    <h2>Stop exception</h2>
+    <p><code>Air\Core\Exception\Stop</code> — специальный сценарий. Если во время обработки выброшен <code>Stop</code>, <code>Front</code> выставляет status code из исключения и сразу рендерит response без запуска обычного error controller.</p>
+    <div class="code-title">Остановка выполнения</div><pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Core\Front;
+
+$this-&gt;getResponse()-&gt;setStatusCode(204);
+Front::getInstance()-&gt;stop();</code></pre>
+</section>
+
+<section class="section" id="practice">
+    <h2>Практический паттерн для API</h2>
+    <p>Для API-проекта обычно достаточно одного module-level error controller и нескольких специальных обработчиков внутри него: validation, api validation, access denied и fallback 500. Context-level error controller стоит добавлять только тогда, когда конкретная группа endpoints должна возвращать другой формат ошибки.</p>
+    <div class="callout success">
+        <strong>Рекомендуемый минимум:</strong> всегда обрабатывай <code>Air\Form\Exception\Validation</code>, <code>Air\Exception\ApiValidation</code>, <code>Air\Exception\NotAllowed</code>, валидный HTTP code из exception и fallback <code>500</code>.
+    </div>
+</section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div>
+        <a href="#overview">Что такое Error handling</a>
+        <a href="#when-starts">Когда запускается</a>
+        <a href="#resolution-order">Порядок поиска</a>
+        <a href="#module-error">Module-level controller</a>
+        <a href="#context-error">Context-level controller</a>
+        <a href="#exception-access">Доступ к исключению</a>
+        <a href="#logging">Логирование</a>
+        <a href="#report-errors">reportErrors</a>
+        <a href="#status-code">Status code</a>
+        <a href="#validation">Form validation</a>
+        <a href="#specific-exceptions">Конкретные исключения</a>
+        <a href="#ui-errors">HTML error pages</a>
+        <a href="#built-in-exceptions">Встроенные исключения</a>
+        <a href="#stop">Stop exception</a>
+        <a href="#practice">Практический паттерн</a>
+    </div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

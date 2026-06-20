@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RichContent · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="false">Core</button>
+    <div id="navGroup0" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="true">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link active" href="../types/rich-content.html" aria-current="page">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Built-in Type Objects</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Built-in Type Objects</span><span>/</span><strong>RichContent</strong></div>
+      <section class="hero">
+        <span class="badge-soft mb-3">Built-in Type Objects</span>
+        <h1>RichContent</h1>
+        <p class="lead mb-0">Блоки контента разных типов: text, html, file, files, embed и quote, а также рендер в UI/API.</p>
+      </section>
+
+<section class="section" id="overview">
+  <h2>RichContent</h2>
+  <p><code>Air\Type\RichContent</code> хранит один блок контента. Массив таких блоков можно использовать для статей, страниц, лендингов и описаний, где контент состоит из разных типов.</p>
+<div class="code-title">RichContent[] в модели</div><pre class="code-block"><code class="language-php">/**
+ * @property Air\Type\RichContent[] $richContent
+ */
+class Article extends Air\Model\ModelAbstract
+{
+}</code></pre>
+</section>
+<section class="section" id="types">
+  <h2>Типы RichContent</h2>
+  <p>В классе есть такие типы: <code>file</code>, <code>files</code>, <code>quote</code>, <code>text</code>, <code>html</code>, <code>embed</code>. Метод <code>getAllTypes()</code> по умолчанию возвращает <code>file</code>, <code>files</code>, <code>text</code>, <code>html</code>, <code>embed</code>. <code>quote</code> можно добавить через конфигурацию админки.</p>
+<div class="code-title">Разрешённые типы в админке</div><pre class="code-block"><code class="language-php">admin: fn() =&gt; Config::admin(
+  domain: &#x27;admin.*&#x27;,
+  richContent: [
+    Air\Type\RichContent::TYPE_TEXT,
+    Air\Type\RichContent::TYPE_HTML,
+    Air\Type\RichContent::TYPE_FILE,
+    Air\Type\RichContent::TYPE_FILES,
+    Air\Type\RichContent::TYPE_EMBED,
+    Air\Type\RichContent::TYPE_QUOTE,
+  ]
+)</code></pre>
+</section>
+<section class="method-card" id="construct"><h3>__construct()</h3><div class="code-title">Сигнатура</div><pre class="code-block"><code class="language-php">public function __construct(?array $data = null)</code></pre><p>Создаёт блок нужного типа и преобразует value: file → <code>File</code>, files → массив <code>File</code>, quote → <code>Quote</code>, text/html/embed → строка.</p><div class="code-title">Создание блока</div><pre class="code-block"><code class="language-php">$block = new Air\Type\RichContent([
+  &#x27;type&#x27; =&gt; Air\Type\RichContent::TYPE_TEXT,
+  &#x27;value&#x27; =&gt; &#x27;Hello world&#x27;,
+]);</code></pre></section>
+<section class="method-card" id="gettype-getvalue"><h3>getType() и getValue()</h3><div class="code-title">Сигнатура</div><pre class="code-block"><code class="language-php">public function getType(): string
+public function getValue(): mixed</code></pre><p>Используются для рендера блоков в UI или API.</p><div class="code-title">Рендер в UI</div><pre class="code-block"><code class="language-php">foreach ($article-&gt;richContent as $block) {
+  if ($block-&gt;getType() === Air\Type\RichContent::TYPE_HTML) {
+    echo $block-&gt;getValue();
+  }
+
+  if ($block-&gt;getType() === Air\Type\RichContent::TYPE_FILE) {
+    echo &#x27;&lt;img src=&quot;&#x27; . $block-&gt;getValue()-&gt;getSrc(1200) . &#x27;&quot;&gt;&#x27;;
+  }
+}</code></pre></section>
+<section class="method-card" id="toarray-getalltypes"><h3>toArray() и getAllTypes()</h3><div class="code-title">Сигнатура</div><pre class="code-block"><code class="language-php">public function toArray(): array
+public static function getAllTypes(): array</code></pre><p><code>toArray()</code> удобен для API. <code>getAllTypes()</code> возвращает default-набор типов.</p><div class="code-title">RichContent в API</div><pre class="code-block"><code class="language-php">return array_map(
+  fn(Air\Type\RichContent $block) =&gt; $block-&gt;toArray(),
+  $article-&gt;richContent ?? []
+);</code></pre></section>
+
+      <footer class="page-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block">
+      <div class="toc-title">На странице</div>
+      <a href="#overview">Обзор</a><a href="#types">Типы</a>
+    </aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

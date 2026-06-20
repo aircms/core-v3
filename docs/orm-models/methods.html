@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methods · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="false">Core</button>
+    <div id="navGroup0" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="true">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link active" href="../orm-models/methods.html" aria-current="page">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">ORM &amp; Models</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>ORM &amp; Models</span><span>/</span><strong>Methods</strong></div>
+      
+<section class="hero">
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <span class="badge-soft">Read</span>
+    <span class="badge-soft">Insert</span>
+    <span class="badge-soft">Update</span>
+    <span class="badge-soft">Delete</span>
+    <span class="badge-soft">Metadata</span>
+  </div>
+  <h1>Methods</h1>
+  <p class="lead mb-0">Методы моделей сгруппированы по назначению. Каждый метод описан отдельно: сигнатура, что делает и практические примеры.</p>
+</section>
+<section class="section" id="read-methods"><h2>Методы чтения данных</h2><p>Эти методы получают одну или несколько записей из базы. Методы без префикса <code>fetch</code> применяют conventions модели.</p></section>
+
+
+<section class="section method-section" id="one">
+  <h3>one()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function one(
+  array|string|int $cond = [],
+  array $sort = [],
+  array $map = []
+): static|null</code></pre>
+  <p>Возвращает одну модель или <code>null</code>. Перед запросом применяет <code>addCond()</code> и <code>addPosition()</code>, поэтому учитывает <code>enabled</code>, <code>language</code> и <code>position</code>, если такие поля есть в модели.</p>
+  <div class="code-title">Поиск по id или url</div>
+<pre class="code-block"><code class="language-php">$article = Article::one(&#x27;65f02d1f2d7c9d1011111111&#x27;);
+$article = Article::one(&#x27;about-us&#x27;);</code></pre><div class="code-title">Поиск по условию</div>
+<pre class="code-block"><code class="language-php">$article = Article::one([
+  &#x27;url&#x27; =&gt; &#x27;about-us&#x27;,
+]);</code></pre><div class="code-title">Сортировка</div>
+<pre class="code-block"><code class="language-php">$latest = Article::one(
+  [&#x27;enabled&#x27; =&gt; true],
+  [&#x27;createdAt&#x27; =&gt; -1]
+);</code></pre>
+</section>
+
+<section class="section method-section" id="fetch-one">
+  <h3>fetchOne()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function fetchOne(
+  array|string|int $cond = [],
+  array $sort = [],
+  array $map = []
+): static|null</code></pre>
+  <p>Возвращает одну модель напрямую через driver. Не добавляет automatic conditions <code>enabled</code> и <code>language</code>, и не добавляет default sort по <code>position</code>. Полезно для служебных задач, админки, миграций и случаев, когда нужно получить запись независимо от её статуса.</p>
+  <div class="code-title">Получить отключённую запись</div>
+<pre class="code-block"><code class="language-php">$article = Article::fetchOne([
+  &#x27;url&#x27; =&gt; &#x27;draft-page&#x27;,
+]);</code></pre><div class="code-title">Projection / map</div>
+<pre class="code-block"><code class="language-php">$article = Article::fetchOne(
+  [&#x27;url&#x27; =&gt; &#x27;about-us&#x27;],
+  [],
+  [&#x27;id&#x27;, &#x27;title&#x27;, &#x27;url&#x27;]
+);</code></pre>
+</section>
+
+<section class="section method-section" id="single-one">
+  <h3>singleOne()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function singleOne(
+  array|string|int $cond = [],
+  array $sort = [],
+  array $map = []
+): static|null</code></pre>
+  <p>То же, что <code>one()</code>, но результат кэшируется внутри одного request через <code>Air\Cache::single()</code>. Это не persistent cache между запросами.</p>
+  <div class="code-title">Повторное чтение в рамках одного запроса</div>
+<pre class="code-block"><code class="language-php">$settings = Settings::singleOne();
+
+// Второй вызов с теми же параметрами вернётся из request-cache.
+$settingsAgain = Settings::singleOne();</code></pre>
+</section>
+
+<section class="section method-section" id="object">
+  <h3>object()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function object(
+  array|string|int $cond = [],
+  array $sort = [],
+  array $map = []
+): static|null</code></pre>
+  <p>Пытается найти запись через <code>one()</code>. Если запись не найдена, возвращает новый пустой объект модели. Удобно для single settings или формы редактирования, где объект нужен всегда.</p>
+  <div class="code-title">Settings object</div>
+<pre class="code-block"><code class="language-php">$settings = Settings::object();
+$settings-&gt;title = $settings-&gt;title ?: &#x27;Default title&#x27;;</code></pre>
+</section>
+
+<section class="section method-section" id="fetch-object">
+  <h3>fetchObject()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function fetchObject(
+  array|string|int $cond = [],
+  array $sort = []
+): static</code></pre>
+  <p>Driver-level аналог <code>object()</code>. Если запись найдена — возвращает её, если нет — возвращает пустой объект модели. Не применяет conventions <code>one()</code>.</p>
+  <div class="code-title">Сырой settings object</div>
+<pre class="code-block"><code class="language-php">$settings = Settings::fetchObject([
+  &#x27;key&#x27; =&gt; &#x27;main&#x27;,
+]);</code></pre>
+</section>
+
+<section class="section method-section" id="all">
+  <h3>all()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function all(
+  array|string|int $cond = [],
+  array $sort = [],
+  ?int $count = null,
+  ?int $offset = null,
+  array $map = []
+): CursorAbstract|array</code></pre>
+  <p>Возвращает набор моделей. Применяет automatic conventions: <code>enabled</code>, <code>language</code>, <code>position</code>. Обычно это основной метод для публичных выборок.</p>
+  <div class="code-title">Список записей</div>
+<pre class="code-block"><code class="language-php">$articles = Article::all(
+  [&#x27;category&#x27; =&gt; $category],
+  [&#x27;createdAt&#x27; =&gt; -1],
+  20,
+  0
+);
+
+foreach ($articles as $article) {
+  echo $article-&gt;title;
+}</code></pre><div class="code-title">Projection</div>
+<pre class="code-block"><code class="language-php">$articles = Article::all(
+  [],
+  [&#x27;position&#x27; =&gt; 1],
+  map: [&#x27;id&#x27;, &#x27;title&#x27;, &#x27;url&#x27;]
+);</code></pre>
+</section>
+
+<section class="section method-section" id="fetch-all">
+  <h3>fetchAll()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function fetchAll(
+  array|string|int $cond = [],
+  array $sort = [],
+  ?int $count = null,
+  ?int $offset = null,
+  array $map = []
+): CursorAbstract|array</code></pre>
+  <p>Сырой метод чтения коллекции без automatic conventions. Используется, когда нужно получить все записи, включая disabled или записи на другом языке.</p>
+  <div class="code-title">Все записи без enabled filter</div>
+<pre class="code-block"><code class="language-php">$articles = Article::fetchAll([], [&#x27;createdAt&#x27; =&gt; -1]);</code></pre><div class="code-title">Пагинация</div>
+<pre class="code-block"><code class="language-php">$page = 3;
+$limit = 20;
+$offset = ($page - 1) * $limit;
+
+$articles = Article::fetchAll(
+  [],
+  [&#x27;createdAt&#x27; =&gt; -1],
+  $limit,
+  $offset
+);</code></pre>
+</section>
+
+<section class="section method-section" id="single-all">
+  <h3>singleAll()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function singleAll(
+  array|string|int $cond = [],
+  array $sort = [],
+  ?int $count = null,
+  ?int $offset = null,
+  array $map = []
+): CursorAbstract|array</code></pre>
+  <p>То же, что <code>all()</code>, но результат кэшируется внутри одного request через <code>Air\Cache::single()</code>. Полезно для меню, справочников, настроек и повторного чтения одних и тех же данных.</p>
+  <div class="code-title">Меню</div>
+<pre class="code-block"><code class="language-php">$items = MenuItem::singleAll([], [&#x27;position&#x27; =&gt; 1]);
+$itemsAgain = MenuItem::singleAll([], [&#x27;position&#x27; =&gt; 1]);</code></pre>
+</section>
+
+<section class="section method-section" id="quantity">
+  <h3>quantity()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function quantity(array|string|int $cond = []): int</code></pre>
+  <p>Возвращает количество записей с применением automatic conventions через <code>addCond()</code>. То есть если у модели есть <code>enabled</code>, по умолчанию будут считаться только включённые записи.</p>
+  <div class="code-title">Количество опубликованных записей</div>
+<pre class="code-block"><code class="language-php">$total = Article::quantity();</code></pre><div class="code-title">Количество по категории</div>
+<pre class="code-block"><code class="language-php">$total = Article::quantity([
+  &#x27;category&#x27; =&gt; $category,
+]);</code></pre>
+</section>
+
+<section class="section method-section" id="count">
+  <h3>count()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function count(array|string|int $cond = []): int</code></pre>
+  <p>Считает записи напрямую через driver. Не применяет conventions. Используй, когда нужно посчитать всё или когда условия уже подготовлены полностью.</p>
+  <div class="code-title">Сырой count</div>
+<pre class="code-block"><code class="language-php">$total = Article::count();
+$disabled = Article::count([&#x27;enabled&#x27; =&gt; false]);</code></pre>
+</section>
+
+<section class="section method-section" id="iterate">
+  <h3>iterate()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function iterate(
+  callable $callback,
+  int $batchSize = 1,
+  array $cond = [],
+  array $map = []
+): void</code></pre>
+  <p>Обходит большую коллекцию батчами. В MongoDB driver использует последовательное чтение по <code>_id</code>, чтобы не загружать всю коллекцию в память.</p>
+  <div class="code-title">Обработка батчами</div>
+<pre class="code-block"><code class="language-php">Article::iterate(
+  function (Article $article, int $batchIndex, int $index): void {
+    echo $article-&gt;title;
+  },
+  batchSize: 100,
+  cond: [&#x27;enabled&#x27; =&gt; true],
+  map: [&#x27;id&#x27;, &#x27;title&#x27;]
+);</code></pre>
+</section>
+<section class="section" id="insert-methods"><h2>Методы добавления данных</h2><p>Эти методы создают новые записи. Перед записью данные проходят через модель и document driver, поэтому типы приводятся согласно <code>@property</code>.</p></section>
+
+<section class="section method-section" id="insert">
+  <h3>insert()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function insert(array $data = []): int</code></pre>
+  <p>Создаёт одну запись. В MongoDB возвращает количество вставленных записей, в MySQL — id последней вставленной записи. Если в модели есть <code>createdAt</code> и <code>updatedAt</code> типа <code>integer</code>, driver заполнит их автоматически.</p>
+  <div class="code-title">Создать запись массивом</div>
+<pre class="code-block"><code class="language-php">Article::insert([
+  &#x27;title&#x27; =&gt; &#x27;Новая статья&#x27;,
+  &#x27;url&#x27; =&gt; &#x27;new-article&#x27;,
+  &#x27;enabled&#x27; =&gt; true,
+]);</code></pre>
+</section>
+
+<section class="section method-section" id="batch-insert">
+  <h3>batchInsert()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function batchInsert(array $data = []): int</code></pre>
+  <p>Создаёт несколько записей за один вызов. Каждая запись проходит через модель, поэтому scalar-типы, model references и typed objects нормализуются перед записью.</p>
+  <div class="code-title">Массовое добавление</div>
+<pre class="code-block"><code class="language-php">Article::batchInsert([
+  [
+    &#x27;title&#x27; =&gt; &#x27;Первая статья&#x27;,
+    &#x27;url&#x27; =&gt; &#x27;first-article&#x27;,
+    &#x27;enabled&#x27; =&gt; true,
+  ],
+  [
+    &#x27;title&#x27; =&gt; &#x27;Вторая статья&#x27;,
+    &#x27;url&#x27; =&gt; &#x27;second-article&#x27;,
+    &#x27;enabled&#x27; =&gt; true,
+  ],
+]);</code></pre>
+</section>
+<section class="section" id="write-methods"><h2>Методы записи и обновления данных</h2><p>Эти методы изменяют существующие записи или сохраняют объект модели.</p></section>
+
+<section class="section method-section" id="update">
+  <h3>update()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function update(
+  array|string|int $cond = [],
+  array $data = []
+): int</code></pre>
+  <p>Обновляет записи, которые подходят под условие. Если условие — строка или число, оно интерпретируется как primary value. Метод не добавляет автоматический <code>updatedAt</code>, если ты не передал его в <code>$data</code>.</p>
+  <div class="code-title">Обновить по id</div>
+<pre class="code-block"><code class="language-php">Article::update($articleId, [
+  &#x27;title&#x27; =&gt; &#x27;Новое название&#x27;,
+  &#x27;updatedAt&#x27; =&gt; time(),
+]);</code></pre><div class="code-title">Обновить несколько записей</div>
+<pre class="code-block"><code class="language-php">Article::update(
+  [&#x27;category&#x27; =&gt; $category],
+  [&#x27;enabled&#x27; =&gt; false]
+);</code></pre>
+</section>
+
+<section class="section method-section" id="fetch-one-and-update">
+  <h3>fetchOneAndUpdate()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function fetchOneAndUpdate(
+  array|string|int $cond = [],
+  array $sort = [],
+  array $data = []
+): static|null</code></pre>
+  <p>Находит одну запись, обновляет её и возвращает обновлённую модель. В текущем ядре этот метод реализован в MongoDB driver-е через <code>findAndModify</code>.</p>
+  <div class="code-title">Атомарно обновить и получить запись</div>
+<pre class="code-block"><code class="language-php">$article = Article::fetchOneAndUpdate(
+  [&#x27;url&#x27; =&gt; &#x27;about-us&#x27;],
+  [],
+  [
+    &#x27;title&#x27; =&gt; &#x27;About company&#x27;,
+    &#x27;updatedAt&#x27; =&gt; time(),
+  ]
+);</code></pre>
+</section>
+
+<section class="section method-section" id="populate">
+  <h3>populate()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public function populate(array $data, bool $fromSet = true): void</code></pre>
+  <p>Заполняет объект модели данными из массива. Неизвестные поля игнорируются. Значения известных полей приводятся к типам из metadata.</p>
+  <div class="code-title">Заполнить модель из массива</div>
+<pre class="code-block"><code class="language-php">$article = new Article();
+$article-&gt;populate([
+  &#x27;title&#x27; =&gt; &#x27;About us&#x27;,
+  &#x27;views&#x27; =&gt; &#x27;100&#x27;,
+  &#x27;enabled&#x27; =&gt; &#x27;1&#x27;,
+]);</code></pre>
+</section>
+
+<section class="section method-section" id="save">
+  <h3>save()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public function save(): int</code></pre>
+  <p>Сохраняет объект модели. Если primary value отсутствует — создаёт новую запись. Если primary value уже есть — обновляет существующую запись. Для <code>createdAt</code>/<code>updatedAt</code> применяются conventions driver-а.</p>
+  <div class="code-title">Создать через объект</div>
+<pre class="code-block"><code class="language-php">$article = new Article();
+$article-&gt;title = &#x27;Новая статья&#x27;;
+$article-&gt;url = &#x27;new-article&#x27;;
+$article-&gt;enabled = true;
+$article-&gt;save();</code></pre><div class="code-title">Обновить через объект</div>
+<pre class="code-block"><code class="language-php">$article = Article::one(&#x27;new-article&#x27;);
+$article-&gt;title = &#x27;Обновлённая статья&#x27;;
+$article-&gt;save();</code></pre>
+</section>
+<section class="section" id="delete-methods"><h2>Методы удаления данных</h2><p>Эти методы физически удаляют записи из базы. Для soft-delete обычно используют поле <code>enabled</code>.</p></section>
+
+<section class="section method-section" id="remove">
+  <h3>remove()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public function remove(): void</code></pre>
+  <p>Удаляет текущую модель. Если у объекта есть primary value, driver удалит соответствующую запись.</p>
+  <div class="code-title">Удалить объект</div>
+<pre class="code-block"><code class="language-php">$article = Article::one(&#x27;old-article&#x27;);
+
+if ($article) {
+  $article-&gt;remove();
+}</code></pre>
+</section>
+
+<section class="section method-section" id="batch-remove">
+  <h3>batchRemove()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function batchRemove(
+  array|string|int $cond = [],
+  ?int $limit = null
+): int</code></pre>
+  <p>Удаляет записи по условию и возвращает количество удалённых записей. Внутри вызывает driver method <code>remove()</code>.</p>
+  <div class="code-title">Удалить отключённые записи</div>
+<pre class="code-block"><code class="language-php">$removed = Article::batchRemove([
+  &#x27;enabled&#x27; =&gt; false,
+]);</code></pre><div class="code-title">Удалить одну запись по id</div>
+<pre class="code-block"><code class="language-php">$removed = Article::batchRemove($articleId, 1);</code></pre>
+</section>
+<section class="section" id="utility-methods"><h2>Служебные методы</h2><p>Эти методы помогают получить данные объекта, metadata или изменить поведение driver-а.</p></section>
+
+<section class="section method-section" id="to-array">
+  <h3>toArray()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public function toArray(): array</code></pre>
+  <p>Преобразует модель в массив. Model references и typed objects также преобразуются в массивы.</p>
+  <div class="code-title">API response</div>
+<pre class="code-block"><code class="language-php">$article = Article::one(&#x27;about-us&#x27;);
+
+return $article?-&gt;toArray();</code></pre>
+</section>
+
+<section class="section method-section" id="get-data">
+  <h3>getData()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public function getData(): array</code></pre>
+  <p>Возвращает внутренние данные документа без полного API-преобразования через <code>toArray()</code>. Полезно для диагностики и низкоуровневой работы.</p>
+  <div class="code-title">Raw data</div>
+<pre class="code-block"><code class="language-php">$article = Article::one(&#x27;about-us&#x27;);
+$data = $article-&gt;getData();</code></pre>
+</section>
+
+<section class="section method-section" id="meta">
+  <h3>meta() / getMeta()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function meta(): Air\Model\Meta
+
+public function getMeta(): Air\Model\Meta</code></pre>
+  <p>Возвращает metadata модели: collection, primary, список свойств, типы, enum, признаки model reference и typed object.</p>
+  <div class="code-title">Metadata</div>
+<pre class="code-block"><code class="language-php">$collection = Article::meta()-&gt;getCollection();
+$primary = Article::meta()-&gt;getPrimary();
+
+$article = new Article();
+$hasUrl = $article-&gt;getMeta()-&gt;hasProperty(&#x27;url&#x27;);</code></pre>
+</section>
+
+<section class="section method-section" id="add-cond">
+  <h3>addCond()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function addCond(array|string|int $cond = []): array</code></pre>
+  <p>Преобразует scalar condition в condition по primary и добавляет automatic filters <code>enabled</code> и <code>language</code>, если такие поля есть в модели и не были указаны явно.</p>
+  <div class="code-title">Проверить итоговое условие</div>
+<pre class="code-block"><code class="language-php">$cond = Article::addCond(&#x27;about-us&#x27;);
+
+// Например:
+// [
+//   &#x27;id&#x27; =&gt; &#x27;about-us&#x27;,
+//   &#x27;enabled&#x27; =&gt; true,
+// ]</code></pre>
+</section>
+
+<section class="section method-section" id="add-position">
+  <h3>addPosition()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function addPosition(array $sort = []): array</code></pre>
+  <p>Добавляет сортировку по <code>position ASC</code>, если у модели есть поле <code>position</code> и сортировка не была передана явно.</p>
+  <div class="code-title">Default sort</div>
+<pre class="code-block"><code class="language-php">$sort = MenuItem::addPosition([]);
+
+// [&#x27;position&#x27; =&gt; 1]</code></pre>
+</section>
+
+<section class="section method-section" id="set-driver">
+  <h3>setDriver()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function setDriver(Air\Model\Driver\DriverAbstract $class): void</code></pre>
+  <p>Позволяет временно заменить driver class для моделей. Обычно нужен для тестов, специальных миграций или нестандартных окружений.</p>
+  <div class="code-title">Custom driver</div>
+<pre class="code-block"><code class="language-php">Article::setDriver(new CustomDriver($config));</code></pre>
+</section>
+
+<section class="section method-section" id="reflect-schema">
+  <h3>reflectSchema()</h3>
+  <div class="code-title">Сигнатура</div>
+  <pre class="code-block"><code class="language-php">public static function reflectSchema(): void</code></pre>
+  <p>Просит driver синхронизировать схему модели с базой. В MySQL driver-е метод создаёт/изменяет таблицу по metadata модели. В MongoDB driver-е сейчас фактически пустой.</p>
+  <div class="code-title">Schema reflection</div>
+<pre class="code-block"><code class="language-php">Article::reflectSchema();
+Category::reflectSchema();</code></pre>
+</section>
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block">
+      <div class="toc-inner">
+        <div class="toc-title">На этой странице</div>
+        <a href="#read-methods">Чтение</a>
+<a href="#one">one</a>
+<a href="#fetch-one">fetchOne</a>
+<a href="#single-one">singleOne</a>
+<a href="#all">all</a>
+<a href="#fetch-all">fetchAll</a>
+<a href="#insert-methods">Добавление</a>
+<a href="#write-methods">Запись</a>
+<a href="#delete-methods">Удаление</a>
+<a href="#utility-methods">Служебные</a>
+      </div>
+    </aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

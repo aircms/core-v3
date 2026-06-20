@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Controllers · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link active" href="../getting-started/controller.html" aria-current="page">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Controllers</strong></div>
+      
+
+
+<section class="hero">
+    <span class="badge-soft mb-3">Core</span>
+    <h1>Controllers</h1>
+    <p class="lead mb-0">Controller в AirCMS — это класс, который получает управление после того, как router определил module, context, controller и action. Внутри controller обычно находится прикладная логика endpoint-а: чтение параметров, guard-проверки, работа с моделями, подготовка данных для API или передача данных во view.</p>
+</section>
+
+<section class="section" id="what-is-controller">
+    <h2>Что такое Controller</h2>
+    <p><strong>Controller</strong> — это объект, который связывает HTTP/CLI-запрос с кодом приложения. В AirCMS controller обычно наследуется от <code>Air\Core\Controller</code> и располагается внутри активного module/context.</p>
+    <p>Например route:</p>
+    <pre class="code-block"><code class="language-php">&#x27;/article/:article&#x27; =&gt; Route::r(
+    context: &#x27;blog&#x27;,
+    controller: &#x27;articles&#x27;,
+    action: &#x27;details&#x27;
+),</code></pre>
+    <p>для API-модуля будет искать такой класс и метод:</p>
+    <pre class="code-block"><code class="language-text">app/Module/Api/Blog/Controller/Articles.php
+
+App\Module\Api\Blog\Controller\Articles::details()</code></pre>
+    <div class="callout">
+        <strong>Важно:</strong> если <code>action</code> не указан, AirCMS вызывает <code>index()</code>. Если <code>controller</code> не указан, используется controller <code>Index</code>. Если <code>context</code> не указан, controller ищется напрямую в папке module: <code>App\Module\Api\Controller\...</code>.
+    </div>
+</section>
+
+<section class="section" id="when-controller-runs">
+    <h2>Когда запускается controller</h2>
+    <p>Controller запускается в методе <code>Air\Core\Front::run()</code>. До controller-а AirCMS уже успевает создать <code>Request</code>, <code>Response</code>, <code>Router</code>, определить активный module и route, подготовить <code>View</code> и выполнить <code>preRun()</code> у plugins.</p>
+    <p>Упрощённый порядок выполнения:</p>
+    <ol>
+        <li><code>Router</code> определяет module, context, controller и action.</li>
+        <li><code>FrontHelper::getView()</code> создаёт и настраивает <code>Air\View\View</code>.</li>
+        <li><code>FrontHelper::getControllerClassName()</code> определяет имя controller-класса.</li>
+        <li>AirCMS создаёт controller через <code>new ControllerClass()</code>.</li>
+        <li>В controller передаются <code>Request</code>, <code>Response</code>, <code>Router</code> и <code>View</code>.</li>
+        <li>Запускаются plugins <code>preRun()</code>.</li>
+        <li>Если plugins разрешили выполнение, вызывается <code>controller-&gt;init()</code>.</li>
+        <li>AirCMS вызывает action с автоматическим injection параметров.</li>
+        <li>После action вызывается <code>controller-&gt;postRun()</code>.</li>
+        <li>Результат action преобразуется в response body: JSON, string, view script или layout.</li>
+        <li>Запускаются plugins <code>postRun()</code>.</li>
+        <li><code>Front::render()</code> отправляет status code, headers и body.</li>
+    </ol>
+</section>
+
+<section class="section" id="basic-controller">
+    <h2>Базовый controller</h2>
+    <p>Минимальный API-controller может вернуть обычный массив. AirCMS автоматически преобразует массив в JSON.</p>
+    <div class="code-title">app/Module/Api/Controller/Health.php</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+
+class Health extends Controller
+{
+    public function index(): array
+    {
+        return [
+            &#x27;status&#x27; =&gt; &#x27;ok&#x27;,
+            &#x27;time&#x27; =&gt; time(),
+        ];
+    }
+}</code></pre>
+    <p>Если route ведёт на <code>/health</code>, он может быть описан так:</p>
+    <pre class="code-block"><code class="language-php">&#x27;/health&#x27; =&gt; Route::r(controller: &#x27;health&#x27;),</code></pre>
+</section>
+
+<section class="section" id="lifecycle">
+    <h2>Жизненный цикл controller-а</h2>
+    <p>В базовом <code>Air\Core\Controller</code> есть два метода жизненного цикла, которые можно переопределять в своих controller-ах:</p>
+    <div class="table-responsive">
+        <table class="table table-docs">
+            <thead><tr><th>Метод</th><th>Когда вызывается</th><th>Для чего использовать</th></tr></thead>
+            <tbody>
+                <tr><td><code>init()</code></td><td>Перед вызовом action.</td><td>Общие проверки, подготовка view, установка headers, проверка авторизации.</td></tr>
+                <tr><td><code>postRun()</code></td><td>После выполнения action, но до финального render response.</td><td>Пост-обработка, дополнительные headers, логирование, общие действия после endpoint-а.</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="code-title">Пример lifecycle</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+
+class Articles extends Controller
+{
+    public function init(): void
+    {
+        $this-&gt;getResponse()-&gt;setHeader(&#x27;Content-Type&#x27;, &#x27;application/json; charset=utf-8&#x27;);
+    }
+
+    public function index(): array
+    {
+        return [
+            &#x27;items&#x27; =&gt; [],
+        ];
+    }
+
+    public function postRun(): void
+    {
+        $this-&gt;getResponse()-&gt;setHeader(&#x27;X-Powered-By&#x27;, &#x27;AirCMS&#x27;);
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="controller-methods">
+    <h2>Основные методы Air\Core\Controller</h2>
+    <p>Controller получает доступ к request, response, router и view через встроенные методы.</p>
+    <div class="table-responsive">
+        <table class="table table-docs">
+            <thead><tr><th>Метод</th><th>Что делает</th><th>Пример использования</th></tr></thead>
+            <tbody>
+                <tr><td><code>getRequest()</code></td><td>Возвращает объект <code>Air\Core\Request</code>.</td><td>Получить GET/POST/route параметры вручную.</td></tr>
+                <tr><td><code>getResponse()</code></td><td>Возвращает объект <code>Air\Core\Response</code>.</td><td>Установить status code или header.</td></tr>
+                <tr><td><code>getRouter()</code></td><td>Возвращает текущий <code>Air\Core\Router</code>.</td><td>Узнать module, context, controller, action.</td></tr>
+                <tr><td><code>getView()</code></td><td>Возвращает <code>Air\View\View</code>.</td><td>Передать переменные в view, отключить layout, изменить script.</td></tr>
+                <tr><td><code>getParam($name, $default, $filters)</code></td><td>Читает параметр из route/POST, затем из GET.</td><td>Удобно для ручного чтения одного параметра.</td></tr>
+                <tr><td><code>getParams()</code></td><td>Возвращает объединённые route/POST и GET параметры.</td><td>Передать входные данные в form или service.</td></tr>
+                <tr><td><code>redirect($uri, $code)</code></td><td>Отправляет Location header и завершает выполнение.</td><td>Редирект в UI/admin controller.</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="code-title">Работа с request/response/router</div>
+    <pre class="code-block"><code class="language-php">public function details(): array
+{
+    $articleId = $this-&gt;getParam(&#x27;article&#x27;);
+    $module = $this-&gt;getRouter()-&gt;getModule();
+    $action = $this-&gt;getRouter()-&gt;getAction();
+
+    $this-&gt;getResponse()-&gt;setStatusCode(200);
+    $this-&gt;getResponse()-&gt;setHeader(&#x27;X-Module&#x27;, $module);
+
+    return [
+        &#x27;article&#x27; =&gt; $articleId,
+        &#x27;action&#x27; =&gt; $action,
+    ];
+}</code></pre>
+</section>
+
+<section class="section" id="action-result">
+    <h2>Что может возвращать action</h2>
+    <p>AirCMS обрабатывает результат action в зависимости от типа значения.</p>
+    <div class="table-responsive">
+        <table class="table table-docs">
+            <thead><tr><th>Результат</th><th>Поведение</th><th>Где полезно</th></tr></thead>
+            <tbody>
+                <tr><td><code>array</code></td><td>Автоматически кодируется в JSON.</td><td>API endpoints.</td></tr>
+                <tr><td><code>object</code> с <code>toArray()</code></td><td>Сначала вызывается <code>toArray()</code>, затем результат кодируется в JSON.</td><td>Возврат модели или DTO.</td></tr>
+                <tr><td><code>string</code></td><td>Строка становится body ответа.</td><td>Простой HTML/text output.</td></tr>
+                <tr><td><code>null</code></td><td>AirCMS пытается auto-render view script, затем layout.</td><td>UI страницы на <code>.phtml</code>.</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <pre class="code-block"><code class="language-php">public function json(): array
+{
+    return [
+        &#x27;ok&#x27; =&gt; true,
+    ];
+}
+
+public function plain(): string
+{
+    return &#x27;Hello from AirCMS&#x27;;
+}
+
+public function page(): null
+{
+    $this-&gt;getView()-&gt;title = &#x27;About project&#x27;;
+
+    return null;
+}</code></pre>
+</section>
+
+<section class="section" id="view-in-controller">
+    <h2>Как работать с View внутри controller-а</h2>
+    <p>Для UI-модуля controller может ничего не возвращать, а только подготовить данные для <code>.phtml</code> script-а. Если action возвращает <code>null</code>, AirCMS использует auto-render: ищет script по текущему controller/action и затем применяет layout.</p>
+    <div class="code-title">Controller</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Ui\Controller;
+
+use Air\Core\Controller;
+use App\Model\Article;
+
+class Articles extends Controller
+{
+    public function details(Article $article): null
+    {
+        $this-&gt;getView()-&gt;article = $article;
+        $this-&gt;getView()-&gt;title = $article-&gt;title;
+
+        return null;
+    }
+}</code></pre>
+    <div class="code-title">View script: app/Module/Ui/View/Scripts/articles/details.phtml</div>
+    <pre class="code-block"><code class="language-php">&lt;article&gt;
+    &lt;h1&gt;&lt;?php echo $this-&gt;article-&gt;title; ?&gt;&lt;/h1&gt;
+    &lt;div&gt;&lt;?php echo $this-&gt;article-&gt;description; ?&gt;&lt;/div&gt;
+&lt;/article&gt;</code></pre>
+    <div class="code-title">Layout: app/Module/Ui/View/Layouts/index.phtml</div>
+    <pre class="code-block"><code class="language-php">&lt;!doctype html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+&lt;head&gt;
+    &lt;?php echo $this-&gt;head(); ?&gt;
+    &lt;title&gt;&lt;?php echo $this-&gt;title; ?&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;main&gt;
+        &lt;?php echo $this-&gt;getContent(); ?&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<section class="section" id="manual-view-control">
+    <h2>Ручное управление View</h2>
+    <p>Иногда нужно отключить layout, отключить auto-render, выбрать другой script или вернуть HTML вручную.</p>
+    <div class="code-title">Отключить layout</div>
+    <pre class="code-block"><code class="language-php">public function fragment(): null
+{
+    $this-&gt;getView()-&gt;setLayoutEnabled(false);
+    $this-&gt;getView()-&gt;message = &#x27;Fragment content&#x27;;
+
+    return null;
+}</code></pre>
+    <div class="code-title">Выбрать другой script</div>
+    <pre class="code-block"><code class="language-php">public function preview(): null
+{
+    $this-&gt;getView()-&gt;setScript(&#x27;articles/card&#x27;);
+    $this-&gt;getView()-&gt;setLayoutEnabled(false);
+
+    return null;
+}</code></pre>
+    <div class="code-title">Вернуть HTML вручную</div>
+    <pre class="code-block"><code class="language-php">public function raw(): string
+{
+    $this-&gt;getView()-&gt;setLayoutEnabled(false);
+
+    return &#x27;&lt;strong&gt;Raw HTML&lt;/strong&gt;&#x27;;
+}</code></pre>
+</section>
+
+<section class="section" id="guards">
+    <h2>Как работать с Guards</h2>
+    <p><code>Air\Guard\Guard</code> — это небольшой assertion-helper. Его удобно использовать в controller-ах для проверки доступа, обязательных условий, статуса пользователя, наличия модели или корректности состояния.</p>
+    <p>Если условие не проходит, <code>Guard::ensure()</code> выбрасывает исключение. Это исключение затем попадает в стандартный error handling AirCMS.</p>
+    <div class="code-title">Guard внутри action</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Guard\Guard;
+use Air\Exception\NotAllowed;
+
+public function delete(Article $article): array
+{
+    Guard::ensure(
+        condition: $this-&gt;isAdmin(),
+        fail: new NotAllowed(&#x27;Only administrator can delete articles&#x27;)
+    );
+
+    $article-&gt;remove();
+
+    return [
+        &#x27;success&#x27; =&gt; true,
+    ];
+}</code></pre>
+    <div class="code-title">Несколько условий</div>
+    <pre class="code-block"><code class="language-php">use Air\Guard\Guard;
+use RuntimeException;
+
+public function publish(Article $article): array
+{
+    Guard::ensure([
+        fn() =&gt; $article-&gt;id !== null,
+        fn() =&gt; $article-&gt;enabled === true,
+        fn() =&gt; strlen($article-&gt;title) &gt; 0,
+    ], function (int $failedAt) {
+        throw new RuntimeException(&#x27;Guard failed at condition #&#x27; . $failedAt);
+    });
+
+    $article-&gt;publishedAt = time();
+    $article-&gt;save();
+
+    return $article-&gt;toArray();
+}</code></pre>
+    <div class="code-title">Guard в init()</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+use Air\Guard\Guard;
+use Air\Exception\NotAllowed;
+
+abstract class ProtectedController extends Controller
+{
+    public function init(): void
+    {
+        Guard::ensure(
+            condition: $this-&gt;getRequest()-&gt;getHeader(&#x27;Authorization&#x27;) !== null,
+            fail: new NotAllowed(&#x27;Authorization header is required&#x27;)
+        );
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="base-controller">
+    <h2>Базовый controller проекта</h2>
+    <p>Если в проекте много API endpoints, удобно сделать свой базовый controller и наследовать остальные controller-ы от него. Так можно централизовать CORS headers, авторизацию, чтение пользователя, guard-проверки и формат ответов.</p>
+    <div class="code-title">app/Module/Api/Controller/AppController.php</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+use Air\Exception\NotAllowed;
+use Air\Guard\Guard;
+
+abstract class AppController extends Controller
+{
+    protected ?string $token = null;
+
+    public function init(): void
+    {
+        $this-&gt;getResponse()-&gt;setHeader(&#x27;Content-Type&#x27;, &#x27;application/json; charset=utf-8&#x27;);
+
+        $this-&gt;token = $this-&gt;getRequest()-&gt;getHeader(&#x27;Authorization&#x27;);
+    }
+
+    protected function requireAuth(): void
+    {
+        Guard::ensure(
+            condition: !empty($this-&gt;token),
+            fail: new NotAllowed(&#x27;Authentication is required&#x27;)
+        );
+    }
+
+    protected function success(array $data = []): array
+    {
+        return [
+            &#x27;success&#x27; =&gt; true,
+            &#x27;data&#x27; =&gt; $data,
+        ];
+    }
+}</code></pre>
+    <div class="code-title">Наследование</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Controller;
+
+class Profile extends AppController
+{
+    public function index(): array
+    {
+        $this-&gt;requireAuth();
+
+        return $this-&gt;success([
+            &#x27;profile&#x27; =&gt; [],
+        ]);
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="controller-with-injection">
+    <h2>Controller и action injection</h2>
+    <p>Action может принимать параметры напрямую. AirCMS передаёт в action route-параметры, GET/POST/JSON параметры, модели и typed objects. Подробнее это описано в разделе Routing, но для controller-а важно понимать сам принцип: параметры action являются частью публичного контракта endpoint-а.</p>
+    <pre class="code-block"><code class="language-php">use App\Model\Article;
+use App\Type\ArticleFilter;
+
+class Articles extends Controller
+{
+    /**
+     * @param Article $article|url
+     */
+    public function details(Article $article): array
+    {
+        return $article-&gt;toArray();
+    }
+
+    public function search(ArticleFilter $filter, int $page = 1): array
+    {
+        return [
+            &#x27;filter&#x27; =&gt; $filter-&gt;toArray(),
+            &#x27;page&#x27; =&gt; $page,
+            &#x27;items&#x27; =&gt; [],
+        ];
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="status-headers-redirects">
+    <h2>Status code, headers и redirects</h2>
+    <p>Controller может напрямую управлять response object. Это полезно для 404, 403, custom headers, file responses, redirects и API status codes.</p>
+    <pre class="code-block"><code class="language-php">public function details(?Article $article = null): array
+{
+    if (!$article) {
+        $this-&gt;getResponse()-&gt;setStatusCode(404);
+
+        return [
+            &#x27;error&#x27; =&gt; &#x27;Article was not found&#x27;,
+        ];
+    }
+
+    $this-&gt;getResponse()-&gt;setHeader(&#x27;X-Article-ID&#x27;, $article-&gt;id);
+
+    return $article-&gt;toArray();
+}
+
+public function oldPage(): void
+{
+    $this-&gt;redirect(&#x27;/new-page&#x27;, 301);
+}</code></pre>
+</section>
+
+<section class="section" id="practical-controller">
+    <h2>Большой практический пример</h2>
+    <p>Ниже пример controller-а, который показывает несколько типичных приёмов сразу: <code>init()</code>, headers, guard, model injection, optional scalar-параметры, status code и единый формат ответа.</p>
+    <div class="code-title">app/Module/Api/Blog/Controller/Articles.php</div>
+    <pre class="code-block"><code class="language-php">&lt;?php
+
+declare(strict_types=1);
+
+namespace App\Module\Api\Blog\Controller;
+
+use Air\Core\Controller;
+use Air\Exception\NotAllowed;
+use Air\Guard\Guard;
+use App\Model\Article;
+
+class Articles extends Controller
+{
+    public function init(): void
+    {
+        $this-&gt;getResponse()-&gt;setHeader(&#x27;Content-Type&#x27;, &#x27;application/json; charset=utf-8&#x27;);
+    }
+
+    public function index(int $page = 1, int $limit = 20): array
+    {
+        return [
+            &#x27;page&#x27; =&gt; $page,
+            &#x27;limit&#x27; =&gt; $limit,
+            &#x27;items&#x27; =&gt; Article::all(
+                search: [&#x27;enabled&#x27; =&gt; true],
+                sort: [&#x27;createdAt&#x27; =&gt; -1],
+                count: $limit,
+                offset: ($page - 1) * $limit
+            ),
+        ];
+    }
+
+    /**
+     * @param Article $article|url
+     */
+    public function details(?Article $article = null): array
+    {
+        if (!$article) {
+            $this-&gt;getResponse()-&gt;setStatusCode(404);
+
+            return [
+                &#x27;error&#x27; =&gt; &#x27;Article was not found&#x27;,
+            ];
+        }
+
+        return $article-&gt;toArray();
+    }
+
+    public function remove(Article $article): array
+    {
+        Guard::ensure(
+            condition: $this-&gt;getRequest()-&gt;getHeader(&#x27;Authorization&#x27;) !== null,
+            fail: new NotAllowed(&#x27;Authorization is required&#x27;)
+        );
+
+        $article-&gt;remove();
+
+        return [
+            &#x27;success&#x27; =&gt; true,
+        ];
+    }
+
+    public function postRun(): void
+    {
+        $this-&gt;getResponse()-&gt;setHeader(&#x27;X-Framework&#x27;, &#x27;AirCMS&#x27;);
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="best-practices">
+    <h2>Рекомендации</h2>
+    <ul>
+        <li>Не перегружай controller слишком большим количеством бизнес-логики; сложную логику лучше выносить в service-классы.</li>
+        <li>Используй <code>init()</code> для общих проверок и headers, но не делай в нём тяжёлые операции без необходимости.</li>
+        <li>Для API возвращай массивы или объекты с <code>toArray()</code>.</li>
+        <li>Для UI-страниц возвращай <code>null</code> и используй auto-render view script-а.</li>
+        <li>Для авторизации и обязательных условий используй <code>Guard::ensure()</code>.</li>
+        <li>Для повторяющихся API-паттернов создай project-level base controller.</li>
+        <li>Не используй action names, совпадающие с методами базового <code>Air\Core\Controller</code>, например <code>init</code>, <code>postRun</code>, <code>getView</code>.</li>
+    </ul>
+</section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div><a href="#what-is-controller">Что такое Controller</a><a href="#when-controller-runs">Когда запускается</a><a href="#basic-controller">Базовый controller</a><a href="#lifecycle">Жизненный цикл</a><a href="#controller-methods">Методы</a><a href="#action-result">Результат action</a><a href="#view-in-controller">Работа с View</a><a href="#manual-view-control">Ручное управление View</a><a href="#guards">Guards</a><a href="#base-controller">Базовый controller проекта</a><a href="#controller-with-injection">Action injection</a><a href="#status-headers-redirects">Status, headers, redirects</a><a href="#practical-controller">Большой пример</a><a href="#best-practices">Рекомендации</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

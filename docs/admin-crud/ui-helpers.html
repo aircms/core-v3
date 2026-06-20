@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin UI helpers · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="false">Core</button>
+    <div id="navGroup0" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="true">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link active" href="../admin-crud/ui-helpers.html" aria-current="page">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Admin &amp; CRUD</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Admin &amp; CRUD</span><span>/</span><strong>Admin UI helpers</strong></div>
+
+<section class="hero" id="overview">
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <span class="badge-soft">Air/Crud/View/Ui</span><span class="badge-soft">page()</span><span class="badge-soft">card()</span><span class="badge-soft">tbl()</span>
+  </div>
+  <h1>Admin UI helpers</h1>
+  <p class="lead mb-0">Admin UI helpers — это набор глобальных функций для быстрой сборки HTML-интерфейсов внутри админки AirCMS: карточки, таблицы, кнопки, бейджи, сетка, изображения, свойства и готовая обёртка страницы.</p>
+</section>
+<section class="section" id="what">
+  <h2>Что это такое</h2>
+  <p>Файлы <code>Air/Crud/View/Ui/*</code> содержат небольшие функции, которые возвращают HTML-строки. Они удобны в кастомных admin actions, в ячейках таблиц, в модальных окнах, в preview-блоках и в страницах, где не хочется создавать отдельный <code>.phtml</code> view.</p>
+  <div class="callout callout-info"><strong>Важно:</strong> эти функции подключаются для admin-модуля через <code>Config::admin()</code>, где в <code>air.require</code> добавляется <code>vendor/aircms/core-v3/src/Air/Crud/View/Ui/ui.php</code>. В обычном API/UI-модуле их надо подключать отдельно, если они там нужны.</div>
+<div class="code-title">Admin config автоматически подключает UI helpers</div>
+<pre class="code-block"><code class="language-php">use Air\Config;
+
+return Config::defaults(
+  project: &#x27;AIR&#x27;,
+  admin: fn() =&gt; Config::admin(
+    domain: &#x27;admin.*&#x27;,
+    title: &#x27;AirCMS&#x27;,
+  ),
+);</code></pre>
+</section>
+<section class="section" id="reference"><h2>Справочник функций</h2><p>Ниже перечислены функции из <code>Air/Crud/View/Ui/*</code>. Каждый helper возвращает HTML-строку, поэтому его можно использовать в ячейке таблицы, в custom action, в callback-е, в модальном окне или в странице без отдельного view-файла.</p></section><section class="section" id="layout"><h2>Страница, заголовок и контейнеры</h2><div class="method-card"><h3><code>page($title = null, $content = null, $icon = null, $buttons = null): string</code></h3><p>Собирает полную admin-страницу из sticky-заголовка и контентной области.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return page(
+  title: &#x27;Orders dashboard&#x27;,
+  icon: FaIcon::ICON_BRIEFCASE,
+  buttons: btn(&#x27;Refresh&#x27;, [&#x27;action&#x27; =&gt; &#x27;dashboard&#x27;], style: SECONDARY),
+  content: card(&#x27;Content goes here&#x27;)
+);</code></pre></div><div class="method-card"><h3><code>title($title, $icon = null, $buttons = null): string</code></h3><p>Рисует верхний заголовок страницы. Полезно, когда страницу нужно собрать вручную.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo title(
+  title: &#x27;Import products&#x27;,
+  icon: FaIcon::ICON_UPLOAD,
+  buttons: btn(&#x27;Back&#x27;, [&#x27;controller&#x27; =&gt; &#x27;product&#x27;])
+);</code></pre></div><div class="method-card"><h3><code>contents($content): string</code></h3><p>Оборачивает основной контент страницы в стандартный контейнер с прокруткой.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo contents([
+  card(&#x27;Import result&#x27;, title: &#x27;Result&#x27;),
+  card(&#x27;Errors&#x27;, title: &#x27;Validation&#x27;)
+]);</code></pre></div><div class="method-card"><h3><code>card($content = null, $title = null, $containerClass = null, $titleClass = null, $bodyClass = null, $contentClass = null, string $size = SPACE3, string $color = SURFACE, bool $noLine = false, $data = null): string</code></h3><p>Создаёт карточку в стиле админки. Используйте для блоков статистики, деталей записи, групп свойств и кастомных страниц.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return card(
+  title: &#x27;Order summary&#x27;,
+  content: properties([
+    &#x27;Status&#x27; =&gt; badge(&#x27;Paid&#x27;, SUCCESS),
+    &#x27;Total&#x27; =&gt; &#x27;$120.00&#x27;,
+  ])
+);</code></pre></div></section><section class="section" id="buttons"><h2>Кнопки, ссылки и модальные действия</h2><div class="method-card"><h3><code>btn($content, $url = &#x27;#&#x27;, $class = null, $confirm = null, $style = PRIMARY, $size = SM, $icon = null, $attr = [], $data = [], $type = null): string</code></h3><p>Рисует кнопку или ссылку-кнопку. Подходит для actions, custom pages, quick links.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return btn(
+  content: &#x27;Sync all&#x27;,
+  url: [&#x27;action&#x27; =&gt; &#x27;syncAll&#x27;],
+  confirm: &#x27;Sync all products?&#x27;,
+  style: WARNING,
+  icon: FaIcon::ICON_ROTATE
+);</code></pre></div><div class="method-card"><h3><code>lnk($content, string $url, $confirm = null, $color = PRIMARY, $size = MD, $isBlank = false): string</code></h3><p>Рисует текстовую ссылку. Если URL содержит <code>@</code>, превращает его в mailto; если не начинается с http — в tel.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo lnk(&#x27;support@example.com&#x27;, &#x27;support@example.com&#x27;);
+echo lnk(&#x27;+40700000000&#x27;, &#x27;+40700000000&#x27;);
+echo lnk(&#x27;Open website&#x27;, &#x27;https://aircms.pro&#x27;, isBlank: true);</code></pre></div><div class="method-card"><h3><code>modal(string $url, $content): string</code></h3><p>Создаёт кликабельный элемент, который открывает URL внутри embed-модального окна.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return modal(
+  url: $this-&gt;getRouter()-&gt;assemble([&#x27;action&#x27; =&gt; &#x27;preview&#x27;], [&#x27;id&#x27; =&gt; $model-&gt;id]),
+  content: badge(&#x27;Preview&#x27;, INFO)
+);</code></pre></div><div class="method-card"><h3><code>html(string $url, $content, ?string $title = &#x27;&#x27;): string</code></h3><p>Создаёт кликабельный элемент, который загружает HTML через AJAX в модальное окно.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return html(
+  url: $this-&gt;getRouter()-&gt;assemble([&#x27;action&#x27; =&gt; &#x27;details&#x27;], [&#x27;id&#x27; =&gt; $order-&gt;id]),
+  content: &#x27;Details&#x27;,
+  title: &#x27;Order details&#x27;
+);</code></pre></div></section><section class="section" id="badges"><h2>Labels, badges and status output</h2><div class="method-card"><h3><code>badge($content, $color = PRIMARY, $url = null): string</code></h3><p>Рисует badge. Удобно для статусов, количества, флагов, быстрых ссылок.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo badge(&#x27;Active&#x27;, SUCCESS);
+echo badge(&#x27;Failed&#x27;, DANGER);
+echo badge(&#x27;Open order&#x27;, INFO, $orderUrl);</code></pre></div><div class="method-card"><h3><code>badgeCond($condition, $label, $url = null, $trueColor = PRIMARY, $falseColor = DARK): string</code></h3><p>Рисует положительный/отрицательный badge на основе условия.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo badgeCond($user-&gt;emailConfirmed, &#x27;email confirmed&#x27;);
+echo badgeCond(count($order-&gt;items), &#x27;items&#x27;, $orderUrl);</code></pre></div><div class="method-card"><h3><code>label(string $label, ?string $class = null, $color = PRIMARY, $size = MD): string</code></h3><p>Рисует простой текстовый label с цветом и размером.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo label(&#x27;VIP customer&#x27;, color: WARNING, size: LG);
+echo label(&#x27;Archived&#x27;, class: &#x27;text-decoration-line-through&#x27;, color: SECONDARY);</code></pre></div></section><section class="section" id="grid"><h2>Flex and grid helpers</h2><div class="method-card"><h3><code>vertical($content, $class = true, $space = SPACE1, $justify = START, $align = START): string</code></h3><p>Вертикальная flex-группа. Полезно для preview-карточек и ячеек таблиц.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return vertical([
+  label($product-&gt;title),
+  badge($product-&gt;enabled ? &#x27;Enabled&#x27; : &#x27;Disabled&#x27;),
+]);</code></pre></div><div class="method-card"><h3><code>horizontal($content, $class = null, $space = SPACE1, $justify = START, $align = START, $wrap = true): string</code></h3><p>Горизонтальная flex-группа. Используйте для набора badges, изображений, кнопок.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return horizontal(
+  content: [image($product-&gt;image), label($product-&gt;title)],
+  align: CENTER,
+  space: SPACE2,
+  wrap: false
+);</code></pre></div><div class="method-card"><h3><code>row($content = null, $class = null, $attr = null, $bgImage = null, $gt = SPACE1): string</code></h3><p>Bootstrap row helper. Используйте для сетки карточек.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return row([
+  col(card(&#x27;128&#x27;, title: &#x27;Orders&#x27;), md: 4),
+  col(card(&#x27;$9 200&#x27;, title: &#x27;Revenue&#x27;), md: 4),
+  col(card(&#x27;17&#x27;, title: &#x27;Refunds&#x27;), md: 4),
+]);</code></pre></div><div class="method-card"><h3><code>col($content = null, $class = null, $attr = null, $bgImage = null, ?int $col = null, ?int $md = null, ?int $lg = null, ?int $xl = null, ?int $xxl = null): string</code></h3><p>Bootstrap col helper. Используется вместе с <code>row()</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo col(
+  content: card(&#x27;Block content&#x27;),
+  md: 6,
+  xl: 4
+);</code></pre></div></section><section class="section" id="media"><h2>Images and files</h2><div class="method-card"><h3><code>image(File|string|null $image = null, bool $preview = true, $size = SM): ?string</code></h3><p>Рисует preview изображения или файла. Если передан <code>Air\Type\File</code>, берёт <code>src</code>, <code>thumbnail</code>, <code>alt</code>, <code>title</code> из объекта.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return image($product-&gt;image);
+
+return image(
+  image: $product-&gt;image,
+  preview: true,
+  size: SM
+);</code></pre></div><div class="method-card"><h3><code>images(?array $images = null, bool $preview = true): ?string</code></h3><p>Рисует набор изображений через <code>horizontal()</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return images($product-&gt;images);
+return images($order-&gt;attachments, preview: false);</code></pre></div><div class="method-card"><h3><code>modelPreview(ModelAbstract $model): string</code></h3><p>Автоматически собирает короткий preview модели: изображение из <code>image/images</code> и название из <code>title/name</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return modelPreview($order-&gt;user);
+return modelPreview($product);</code></pre></div></section><section class="section" id="data"><h2>Таблицы, свойства, JSON и даты</h2><div class="method-card"><h3><code>tbl(array $body = [], ?array $data = null, $footer = null): string</code></h3><p>Создаёт HTML-таблицу. В <code>$body</code> ключ — заголовок колонки, значение — callback или статическое значение.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return tbl(
+  body: [
+    &#x27;Product&#x27; =&gt; fn(Product $product) =&gt; modelPreview($product),
+    &#x27;Price&#x27; =&gt; fn(Product $product) =&gt; badge(&#x27;$&#x27; . $product-&gt;price, SUCCESS),
+    &#x27;Status&#x27; =&gt; fn(Product $product) =&gt; badgeCond($product-&gt;enabled, &#x27;enabled&#x27;),
+  ],
+  data: Product::fetchAll([], [&#x27;createdAt&#x27; =&gt; -1], count: 20)
+);</code></pre></div><div class="method-card"><h3><code>properties(array $keyValues = []): string</code></h3><p>Рисует список key/value свойств в сетке. Удобно для карточки деталей.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return properties([
+  &#x27;ID&#x27; =&gt; $order-&gt;id,
+  &#x27;Customer&#x27; =&gt; modelPreview($order-&gt;user),
+  &#x27;Status&#x27; =&gt; badge($order-&gt;status, INFO),
+  &#x27;Created&#x27; =&gt; format($order-&gt;createdAt),
+]);</code></pre></div><div class="method-card"><h3><code>json($json): string</code></h3><p>Рисует JSON в textarea с data-атрибутом <code>json-viewer</code>. Полезно для debug/details страниц.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">return json($payment-&gt;payload);
+return json($request-&gt;getParams());</code></pre></div><div class="method-card"><h3><code>duration(int $seconds, bool $showDays = true, bool $showHours = true, bool $showMinutes = true, bool $showSeconds = true): string</code></h3><p>Форматирует длительность.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo duration(3661);
+echo duration(time() - $queue-&gt;createdAt, showSeconds: false);</code></pre></div><div class="method-card"><h3><code>isToday(int $timestamp): bool</code></h3><p>Проверяет, относится ли timestamp к сегодняшнему дню.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">if (isToday($order-&gt;createdAt)) {
+  echo badge(&#x27;Today&#x27;, INFO);
+}</code></pre></div><div class="method-card"><h3><code>isTomorrow(int $timestamp): bool</code></h3><p>Проверяет, относится ли timestamp к завтрашнему дню.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo isTomorrow($delivery-&gt;date) ? badge(&#x27;Tomorrow&#x27;) : format($delivery-&gt;date);</code></pre></div><div class="method-card"><h3><code>format(?int $timestamp = null, string $format = &#x27;Y/m/d H:i&#x27;): string</code></h3><p>Форматирует timestamp через PHP <code>date()</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo format($order-&gt;createdAt);
+echo format($order-&gt;createdAt, &#x27;d.m.Y H:i&#x27;);</code></pre></div></section><section class="section" id="defines"><h2>Константы и CSS helpers</h2><div class="method-card"><h3><code>getFontSize(string $size = MD): ?string</code></h3><p>Возвращает CSS-класс размера: <code>fs-12</code>, <code>fs-16</code>, <code>fs-20</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo span(&#x27;Small note&#x27;, getFontSize(SM));
+echo span(&#x27;Large title&#x27;, getFontSize(LG));</code></pre></div><div class="method-card"><h3><code>getTextColor(?string $color = null): ?string</code></h3><p>Возвращает класс цвета текста, например <code>text-primary</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo span(&#x27;Warning&#x27;, getTextColor(WARNING));</code></pre></div><div class="method-card"><h3><code>getBgColor(?string $color = null): ?string</code></h3><p>Возвращает класс background color, например <code>body-bg-surface</code>.</p><div class="code-title">Пример</div>
+<pre class="code-block"><code class="language-php">echo div(&#x27;Block&#x27;, getBgColor(SURFACE));</code></pre></div></section>
+<section class="section" id="full-page">
+  <h2>Полноценная страница без View</h2>
+  <p>Если страница небольшая, можно не создавать <code>View/Scripts/*.phtml</code>. В admin controller можно отключить autorender и вернуть HTML, собранный через <code>page()</code>, <code>card()</code>, <code>tbl()</code>, <code>properties()</code> и другие helpers.</p>
+<div class="code-title">Admin controller без .phtml View</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Admin\Controller;
+
+use Air\Crud\Controller\AuthCrud;
+use Air\Type\FaIcon;
+use App\Model\Order;
+
+class Dashboard extends AuthCrud
+{
+  public function index(): string
+  {
+    $this-&gt;getView()-&gt;setAutoRender(false);
+
+    $orders = Order::fetchAll([], [&#x27;createdAt&#x27; =&gt; -1], count: 10);
+
+    return page(
+      title: &#x27;Dashboard&#x27;,
+      icon: FaIcon::ICON_CHART_LINE,
+      buttons: btn(&#x27;Refresh&#x27;, [&#x27;controller&#x27; =&gt; &#x27;dashboard&#x27;], style: SECONDARY),
+      content: vertical([
+        row([
+          col(card(Order::count(), title: &#x27;Orders&#x27;), md: 4),
+          col(card(Order::count([&#x27;status&#x27; =&gt; Order::STATUS_PAID]), title: &#x27;Paid&#x27;), md: 4),
+          col(card(Order::count([&#x27;status&#x27; =&gt; Order::STATUS_FAILED]), title: &#x27;Failed&#x27;), md: 4),
+        ]),
+        card(
+          title: &#x27;Latest orders&#x27;,
+          content: tbl(
+            body: [
+              &#x27;User&#x27; =&gt; fn(Order $order) =&gt; modelPreview($order-&gt;user),
+              &#x27;Status&#x27; =&gt; fn(Order $order) =&gt; badge($order-&gt;status, INFO),
+              &#x27;Created&#x27; =&gt; fn(Order $order) =&gt; format($order-&gt;createdAt),
+              &#x27;Actions&#x27; =&gt; fn(Order $order) =&gt; html(
+                $this-&gt;getRouter()-&gt;assemble(
+                  [&#x27;action&#x27; =&gt; &#x27;details&#x27;],
+                  [&#x27;order&#x27; =&gt; $order-&gt;id]
+                ),
+                &#x27;Details&#x27;,
+                &#x27;Order details&#x27;
+              ),
+            ],
+            data: $orders
+          )
+        ),
+      ], space: SPACE3)
+    );
+  }
+
+  public function details(Order $order): string
+  {
+    $this-&gt;getView()-&gt;setAutoRender(false);
+
+    return page(
+      title: &#x27;Order details&#x27;,
+      icon: FaIcon::ICON_RECEIPT,
+      content: card(
+        title: &#x27;Main information&#x27;,
+        content: properties([
+          &#x27;ID&#x27; =&gt; $order-&gt;id,
+          &#x27;User&#x27; =&gt; modelPreview($order-&gt;user),
+          &#x27;Status&#x27; =&gt; badge($order-&gt;status, INFO),
+          &#x27;Created&#x27; =&gt; format($order-&gt;createdAt),
+          &#x27;Payload&#x27; =&gt; json($order-&gt;payload),
+        ])
+      )
+    );
+  }
+}</code></pre><div class="callout callout-warning"><strong>Когда так делать:</strong> dashboard, debug/details, report, импорт, небольшие служебные страницы. Для больших шаблонов с большим количеством HTML лучше использовать обычный view script.</div></section>
+<footer class="doc-footer">AirCMS - <a href="https://aircms.pro">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На странице</div><a href="#what">Что это такое</a><a href="#reference">Справочник функций</a><a href="#full-page">Страница без View</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

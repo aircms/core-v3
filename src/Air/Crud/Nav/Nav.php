@@ -299,6 +299,11 @@ class Nav
         self::SETTINGS_EMAIL_QUEUE,
       ],
       [
+        self::SETTINGS_TELEGRAM_SETTINGS,
+        self::SETTINGS_TELEGRAM_TEMPLATES,
+        self::SETTINGS_TELEGRAM_QUEUE,
+      ],
+      [
         self::SETTINGS_SMS_SETTINGS,
         self::SETTINGS_SMS_TEMPLATES,
         self::SETTINGS_SMS_QUEUE,

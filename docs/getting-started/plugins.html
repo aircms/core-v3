@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plugins · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link active" href="../getting-started/plugins.html" aria-current="page">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Plugins</strong></div>
+      
+
+<section class="hero">
+    <span class="badge-soft mb-3">Core</span>
+    <h1>Plugins</h1>
+    <p class="lead mb-0">Plugins в AirCMS — это слой перехвата запроса до и после выполнения controller action. Через них удобно добавлять CORS, авторизацию, API-key проверку, логирование, rate limit, security headers, maintenance mode и другую сквозную логику.</p>
+</section>
+
+
+<section class="section" id="what-is-plugin">
+    <h2>Что такое plugin</h2>
+    <p>Plugin — это PHP-класс, который наследуется от <code>Air\Core\Plugin</code> и может реализовать два hook-метода: <code>preRun()</code> и <code>postRun()</code>. AirCMS автоматически находит plugin-классы в специальных папках активного приложения, создаёт их экземпляры и вызывает их во время обработки запроса.</p>
+    <div class="callout">
+        <strong>Главная идея:</strong> controller должен заниматься бизнес-логикой конкретного endpoint-а, а plugin — общей логикой, которая повторяется во многих endpoint-ах: headers, auth, CORS, audit log, блокировки, ограничения доступа.
+    </div>
+
+<div class="code-title">Базовый класс Air\Core\Plugin</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace Air\Core;
+
+class Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        return true;
+    }
+
+    public function postRun(Request $request, Response $response, Router $router): bool
+    {
+        return true;
+    }
+}</code></pre>
+
+    <p>Оба метода получают один и тот же набор объектов: <code>Request</code>, <code>Response</code> и <code>Router</code>. Через них plugin может прочитать входящий запрос, узнать текущий module/context/controller/action, добавить headers, изменить status code или полностью остановить выполнение action.</p>
+</section>
+
+
+<section class="section" id="lifecycle">
+    <h2>Когда запускаются plugins</h2>
+    <p>Plugins запускаются внутри <code>Front::run()</code>, когда AirCMS уже определил route, view и controller class, но ещё не вызвал <code>controller->init()</code> и сам action.</p>
+    <ol>
+        <li>AirCMS определяет активный module по domain/CLI route.</li>
+        <li>Router находит route и заполняет context, controller, action и URL-параметры.</li>
+        <li>AirCMS определяет controller class и создаёт controller object.</li>
+        <li>AirCMS загружает подходящие plugins.</li>
+        <li>Для каждого plugin вызывается <code>preRun()</code>.</li>
+        <li>Если все <code>preRun()</code> вернули <code>true</code>, запускаются <code>controller->init()</code>, action и <code>controller->postRun()</code>.</li>
+        <li>Формируется response body: JSON, string, view script или layout.</li>
+        <li>Для каждого plugin вызывается <code>postRun()</code>.</li>
+        <li>AirCMS отправляет status code, headers и body клиенту.</li>
+    </ol>
+    <div class="callout warning">
+        <strong>Важно:</strong> если любой <code>preRun()</code> вернёт <code>false</code>, controller action не будет выполнен. В этом случае <code>postRun()</code> также не вызывается, потому что основной блок выполнения action пропускается.
+    </div>
+</section>
+
+
+<section class="section" id="arguments">
+    <h2>Аргументы plugin-методов</h2>
+    <p>Методы <code>preRun()</code> и <code>postRun()</code> принимают три объекта.</p>
+    <div class="table-responsive">
+        <table class="table docs-table">
+            <thead>
+                <tr>
+                    <th>Аргумент</th>
+                    <th>Что содержит</th>
+                    <th>Где полезен</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Request $request</code></td>
+                    <td>HTTP method, URI, domain, IP, user-agent, headers, GET/POST/JSON params, files.</td>
+                    <td>Auth, CORS, rate limit, логирование запроса, проверка token/api-key.</td>
+                </tr>
+                <tr>
+                    <td><code>Response $response</code></td>
+                    <td>Status code, status message, response headers, response body.</td>
+                    <td>Добавить headers, вернуть ошибку, остановить request, изменить body после action.</td>
+                </tr>
+                <tr>
+                    <td><code>Router $router</code></td>
+                    <td>Module, context, controller, action, URL params, route config, URL assembler.</td>
+                    <td>Применять plugin только к конкретному context/controller/action.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<div class="code-title">Доступ к Request и Router</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class Debug extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $method = $request-&gt;getMethod();
+        $uri = $request-&gt;getUri();
+        $ip = $request-&gt;getIp();
+
+        $module = $router-&gt;getModule();
+        $context = $router-&gt;getContext();
+        $controller = $router-&gt;getController();
+        $action = $router-&gt;getAction();
+
+        return true;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="return-value">
+    <h2>На что влияет возвращаемое значение</h2>
+    <h3><code>preRun(): true</code></h3>
+    <p>Запрос продолжает выполняться. AirCMS переходит к следующему plugin, затем запускает controller action.</p>
+    <h3><code>preRun(): false</code></h3>
+    <p>AirCMS останавливает выполнение запроса до controller action. Такой plugin должен сам подготовить response: status code, headers и body.</p>
+
+<div class="code-title">Остановка запроса из preRun()</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class ApiKey extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $apiKey = $request-&gt;getHeader(&#x27;x-api-key&#x27;);
+
+        if ($apiKey !== getenv(&#x27;APP_API_KEY&#x27;)) {
+            $response-&gt;setStatusCode(401);
+            $response-&gt;setHeader(&#x27;Content-Type&#x27;, &#x27;application/json; charset=utf-8&#x27;);
+            $response-&gt;setBody(json_encode([
+                &#x27;success&#x27; =&gt; false,
+                &#x27;error&#x27; =&gt; &#x27;Invalid API key&#x27;,
+            ]));
+
+            return false;
+        }
+
+        return true;
+    }
+}</code></pre>
+
+    <h3><code>postRun(): true</code></h3>
+    <p>AirCMS продолжает выполнять следующие <code>postRun()</code> plugins.</p>
+    <h3><code>postRun(): false</code></h3>
+    <p>Останавливает выполнение следующих <code>postRun()</code> plugins, но не отменяет action: к этому моменту action уже выполнен и response body уже сформирован.</p>
+
+<div class="code-title">Модификация response после action</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class JsonHeaders extends Plugin
+{
+    public function postRun(Request $request, Response $response, Router $router): bool
+    {
+        $response-&gt;setHeader(&#x27;Content-Type&#x27;, &#x27;application/json; charset=utf-8&#x27;);
+        $response-&gt;setHeader(&#x27;X-Powered-By&#x27;, &#x27;AirCMS&#x27;);
+
+        return true;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="plugin-locations">
+    <h2>Где AirCMS ищет plugins</h2>
+    <p>AirCMS ищет plugins на трёх уровнях. Это позволяет подключать общую логику ко всему приложению, к конкретному module или только к конкретному context.</p>
+    <div class="table-responsive">
+        <table class="table docs-table">
+            <thead>
+                <tr>
+                    <th>Путь</th>
+                    <th>Namespace</th>
+                    <th>Когда запускается</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>app/Module/Plugin/*.php</code></td>
+                    <td><code>App\Module\Plugin</code></td>
+                    <td>Для всех modules: admin, api, ui, cli.</td>
+                </tr>
+                <tr>
+                    <td><code>app/Module/Api/Plugin/*.php</code></td>
+                    <td><code>App\Module\Api\Plugin</code></td>
+                    <td>Для всех routes внутри module <code>api</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>app/Module/Api/Catalog/Plugin/*.php</code></td>
+                    <td><code>App\Module\Api\Catalog\Plugin</code></td>
+                    <td>Только для routes с <code>context: 'catalog'</code> внутри module <code>api</code>.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>Порядок загрузки уровней: сначала global plugins, затем module plugins, затем context plugins. Внутри одной папки файлы загружаются через <code>glob()</code>, поэтому для понятного порядка лучше использовать имена с числовым префиксом.</p>
+
+<div class="code-title">Пример структуры plugins</div>
+<pre class="code-block"><code class="language-text">app/
+    Module/
+        Plugin/
+            010Maintenance.php
+            020SecurityHeaders.php
+        Api/
+            Plugin/
+                010Cors.php
+                020ApiAuth.php
+            Catalog/
+                Plugin/
+                    010CatalogLocale.php</code></pre>
+
+</section>
+
+
+<section class="section" id="global-plugin">
+    <h2>Plugin без context: global-level</h2>
+    <p>Global plugin лежит в <code>app/Module/Plugin</code>. Он запускается для любого module, если request дошёл до выполнения AirCMS. Такой уровень подходит для security headers, maintenance mode, общего audit log, проверки IP или общих cookies.</p>
+
+<div class="code-title">app/Module/Plugin/SecurityHeaders.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class SecurityHeaders extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $response-&gt;setHeader(&#x27;X-Frame-Options&#x27;, &#x27;SAMEORIGIN&#x27;);
+        $response-&gt;setHeader(&#x27;X-Content-Type-Options&#x27;, &#x27;nosniff&#x27;);
+        $response-&gt;setHeader(&#x27;Referrer-Policy&#x27;, &#x27;strict-origin-when-cross-origin&#x27;);
+
+        return true;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="module-plugin">
+    <h2>Plugin для module</h2>
+    <p>Module-level plugin лежит внутри конкретного module, например <code>app/Module/Api/Plugin</code>. Он запускается для всех API routes, независимо от context. Это удобно для CORS, JSON headers, API auth, API logging.</p>
+
+<div class="code-title">app/Module/Api/Plugin/Cors.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class Cors extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $response-&gt;setHeader(&#x27;Access-Control-Allow-Origin&#x27;, &#x27;*&#x27;);
+        $response-&gt;setHeader(&#x27;Access-Control-Allow-Headers&#x27;, &#x27;Content-Type, Authorization, X-Api-Key&#x27;);
+        $response-&gt;setHeader(&#x27;Access-Control-Allow-Methods&#x27;, &#x27;GET, POST, PUT, DELETE, OPTIONS&#x27;);
+
+        if ($request-&gt;getMethod() === Request::METHOD_OPTIONS) {
+            $response-&gt;setStatusCode(204);
+            $response-&gt;setBody(&#x27;&#x27;);
+
+            return false;
+        }
+
+        return true;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="context-plugin">
+    <h2>Plugin для context</h2>
+    <p>Context-level plugin лежит внутри папки context. Он запускается только для routes, где указан соответствующий <code>context</code>. Например, если route использует <code>context: 'catalog'</code>, AirCMS дополнительно проверит plugins в <code>app/Module/Api/Catalog/Plugin</code>.</p>
+
+<div class="code-title">Route с context: catalog</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Config;
+use Air\Core\Route;
+
+return Config::defaults(
+    project: &#x27;APP&#x27;,
+
+    api: fn() =&gt; Config::api(
+        domain: &#x27;api.*&#x27;,
+        routes: [
+            &#x27;/catalog/property/:property&#x27; =&gt; Route::r(
+                context: &#x27;catalog&#x27;,
+                controller: &#x27;property&#x27;,
+                action: &#x27;details&#x27;
+            ),
+        ]
+    )
+);</code></pre>
+<div class="code-title">app/Module/Api/Catalog/Plugin/CatalogAccess.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Catalog\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class CatalogAccess extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        if ($router-&gt;getContext() !== &#x27;catalog&#x27;) {
+            return true;
+        }
+
+        $country = $request-&gt;getParam(&#x27;country&#x27;);
+
+        if ($country === &#x27;blocked-country&#x27;) {
+            $response-&gt;setStatusCode(403);
+            $response-&gt;setBody(json_encode([
+                &#x27;success&#x27; =&gt; false,
+                &#x27;error&#x27; =&gt; &#x27;Catalog is not available for this country&#x27;,
+            ]));
+
+            return false;
+        }
+
+        return true;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="route-aware">
+    <h2>Plugin, который реагирует на controller/action</h2>
+    <p>Через <code>Router</code> plugin может понять, какой именно endpoint сейчас выполняется. Это полезно, если один plugin должен работать не для всего module, а только для нескольких controller/action.</p>
+
+<div class="code-title">Проверка controller/action</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class Auth extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $publicActions = [
+            &#x27;auth.login&#x27;,
+            &#x27;auth.refresh&#x27;,
+            &#x27;health.index&#x27;,
+        ];
+
+        $currentAction = $router-&gt;getController() . &#x27;.&#x27; . $router-&gt;getAction();
+
+        if (in_array($currentAction, $publicActions, true)) {
+            return true;
+        }
+
+        $token = $request-&gt;getHeader(&#x27;authorization&#x27;);
+
+        if (!$token) {
+            $response-&gt;setStatusCode(401);
+            $response-&gt;setBody(json_encode([
+                &#x27;success&#x27; =&gt; false,
+                &#x27;error&#x27; =&gt; &#x27;Authorization header is required&#x27;,
+            ]));
+
+            return false;
+        }
+
+        return true;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="logging">
+    <h2>Логирование запросов и ответов</h2>
+    <p>Plugins хорошо подходят для логирования, потому что <code>preRun()</code> видит входящий request, а <code>postRun()</code> видит уже сформированный response.</p>
+
+<div class="code-title">Логирование через Air\Log</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+use Air\Log;
+
+class ApiLog extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        Log::info(&#x27;API request&#x27;, [
+            &#x27;method&#x27; =&gt; $request-&gt;getMethod(),
+            &#x27;uri&#x27; =&gt; $request-&gt;getUri(),
+            &#x27;ip&#x27; =&gt; $request-&gt;getIp(),
+            &#x27;controller&#x27; =&gt; $router-&gt;getController(),
+            &#x27;action&#x27; =&gt; $router-&gt;getAction(),
+            &#x27;params&#x27; =&gt; $request-&gt;getParams(),
+        ]);
+
+        return true;
+    }
+
+    public function postRun(Request $request, Response $response, Router $router): bool
+    {
+        Log::info(&#x27;API response&#x27;, [
+            &#x27;uri&#x27; =&gt; $request-&gt;getUri(),
+            &#x27;statusCode&#x27; =&gt; $response-&gt;getStatusCode(),
+            &#x27;controller&#x27; =&gt; $router-&gt;getController(),
+            &#x27;action&#x27; =&gt; $router-&gt;getAction(),
+        ]);
+
+        return true;
+    }
+}</code></pre>
+
+    <div class="callout warning">
+        <strong>Важно:</strong> <code>Air\Log</code> пишет записи только если в конфигурации включены logs. Обычно это настройка вида <code>air.logs.enabled</code>. Если logs выключены, вызовы <code>Log::info()</code> и <code>Log::error()</code> не сохранят запись.
+    </div>
+</section>
+
+
+<section class="section" id="maintenance">
+    <h2>Maintenance mode</h2>
+    <p>Global plugin можно использовать для временного отключения публичной части сайта или API. В таком plugin удобно разрешить доступ только для CLI, admin или определённых IP.</p>
+
+<div class="code-title">Maintenance plugin</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class Maintenance extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $enabled = getenv(&#x27;APP_MAINTENANCE&#x27;) === &#x27;1&#x27;;
+
+        if (!$enabled) {
+            return true;
+        }
+
+        if ($router-&gt;getModule() === &#x27;admin&#x27;) {
+            return true;
+        }
+
+        if (in_array($request-&gt;getIp(), [&#x27;127.0.0.1&#x27;, &#x27;::1&#x27;], true)) {
+            return true;
+        }
+
+        $response-&gt;setStatusCode(503);
+        $response-&gt;setHeader(&#x27;Retry-After&#x27;, &#x27;3600&#x27;);
+        $response-&gt;setBody(&#x27;Service temporarily unavailable&#x27;);
+
+        return false;
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="locale">
+    <h2>Определение языка через plugin</h2>
+    <p>Context-level или module-level plugin можно использовать для чтения языка из URL, header или query string. Например, API может принимать <code>?lang=en</code>, а plugin — сохранять выбранный язык в request params, чтобы action получил его через injection.</p>
+
+<div class="code-title">Передача lang дальше в action</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Plugin;
+
+use Air\Core\Plugin;
+use Air\Core\Request;
+use Air\Core\Response;
+use Air\Core\Router;
+
+class Locale extends Plugin
+{
+    public function preRun(Request $request, Response $response, Router $router): bool
+    {
+        $lang = $request-&gt;getParam(&#x27;lang&#x27;, &#x27;ru&#x27;);
+
+        if (!in_array($lang, [&#x27;ru&#x27;, &#x27;en&#x27;, &#x27;es&#x27;, &#x27;zh&#x27;], true)) {
+            $lang = &#x27;ru&#x27;;
+        }
+
+        $request-&gt;setGetParam(&#x27;lang&#x27;, $lang);
+
+        return true;
+    }
+}</code></pre>
+<div class="code-title">Action получает lang через injection</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+
+class Articles extends Controller
+{
+    public function index(string $lang = &#x27;ru&#x27;): array
+    {
+        return [
+            &#x27;language&#x27; =&gt; $lang,
+            &#x27;items&#x27; =&gt; [],
+        ];
+    }
+}</code></pre>
+
+</section>
+
+
+<section class="section" id="practical-cases">
+    <h2>Для чего plugins полезны</h2>
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>CORS</h5>
+                <p>Добавить <code>Access-Control-Allow-*</code> headers и быстро отвечать на <code>OPTIONS</code> requests.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Auth / API keys</h5>
+                <p>Проверить JWT, session, API key или подпись до запуска controller action.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Logging</h5>
+                <p>Сохранять входящий request, выбранный route, status code и ошибки интеграций.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Rate limit</h5>
+                <p>Ограничивать частоту запросов по IP, user id, token или endpoint-у.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Security headers</h5>
+                <p>Добавлять <code>X-Frame-Options</code>, <code>Content-Security-Policy</code>, <code>Referrer-Policy</code>.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="doc-card">
+                <h5>Maintenance mode</h5>
+                <p>Отключать публичные modules, оставляя доступ для admin, CLI или выбранных IP.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section" id="best-practices">
+    <h2>Практические рекомендации</h2>
+    <ul>
+        <li>Не помещайте бизнес-логику конкретного endpoint-а в plugin. Для этого лучше использовать controller/service.</li>
+        <li>Используйте global plugins только для действительно общей логики.</li>
+        <li>Для API-специфичной логики используйте <code>app/Module/Api/Plugin</code>.</li>
+        <li>Для context-специфичной логики используйте <code>app/Module/Api/{Context}/Plugin</code>.</li>
+        <li>Если <code>preRun()</code> возвращает <code>false</code>, всегда явно задавайте status code и body.</li>
+        <li>Не выбрасывайте исключения в plugin без необходимости: это отправит запрос в error handling pipeline.</li>
+        <li>Если порядок plugins важен, используйте имена вроде <code>010Cors.php</code>, <code>020Auth.php</code>, <code>030Log.php</code>.</li>
+    </ul>
+</section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div><a href="#what-is-plugin">Что такое plugin</a><a href="#lifecycle">Когда запускается</a><a href="#arguments">Аргументы</a><a href="#return-value">Возвращаемое значение</a><a href="#plugin-locations">Где искать plugins</a><a href="#global-plugin">Global plugin</a><a href="#module-plugin">Module plugin</a><a href="#context-plugin">Context plugin</a><a href="#route-aware">Controller/action</a><a href="#logging">Логирование</a><a href="#maintenance">Maintenance</a><a href="#locale">Locale</a><a href="#practical-cases">Сценарии</a><a href="#best-practices">Рекомендации</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

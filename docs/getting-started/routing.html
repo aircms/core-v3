@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Routing · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link active" href="../getting-started/routing.html" aria-current="page">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Routing</strong></div>
+      
+
+<section class="hero">
+  <span class="badge-soft mb-3">Core</span>
+  <h1>Routing</h1>
+  <p class="lead mb-0">Routing в AirCMS — это слой, который связывает входящий URL с конкретным модулем, контекстом, контроллером, action-методом и параметрами запроса. На этой странице разобраны все основные варианты роутов и механизм automatic injection в action.</p>
+</section>
+
+<section class="section" id="what-is-routing">
+  <h2>Что такое Routing в AirCMS</h2>
+  <p>В AirCMS все HTTP- и CLI-запросы проходят через один entry point — <code>www/index.php</code>. После загрузки конфигурации <code>Air\Core\Front</code> передаёт запрос в <code>Air\Core\Router</code>. Router определяет:</p>
+  <div class="row g-3">
+    <div class="col-md-6"><div class="doc-card"><h5>Модуль</h5><p><code>admin</code>, <code>api</code>, <code>ui</code> или <code>cli</code>. Модуль обычно выбирается по домену, например <code>api.*</code> или <code>admin.*</code>.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Context</h5><p>Дополнительная папка внутри модуля. Например <code>context: 'catalog'</code> означает папку <code>Catalog</code>.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Controller</h5><p>Класс контроллера внутри папки <code>Controller</code>. Например <code>controller: 'property'</code> означает файл <code>Property.php</code>.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Action</h5><p>Метод контроллера. Если action не указан явно, AirCMS вызывает <code>index()</code>.</p></div></div>
+  </div>
+  <div class="callout">
+    <strong>Важно:</strong> в структуре AirCMS папка называется <code>Controller</code> в единственном числе, а не <code>Controllers</code>.
+  </div>
+</section>
+
+<section class="section" id="where-routes-defined">
+  <h2>Где описываются роуты</h2>
+  <p>Роуты обычно описываются в <code>config.php</code> внутри конфигурации конкретного модуля: <code>Config::api()</code>, <code>Config::ui()</code> или <code>Config::cli()</code>. Для admin-модуля чаще используется CRUD navigation, но технически routing-механизм общий.</p>
+<div class="code-title">config.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+use Air\Config;
+use Air\Core\Route;
+
+return Config::defaults(
+    project: &#x27;AIR&#x27;,
+
+    api: fn() =&gt; Config::api(
+        domain: &#x27;api.*&#x27;,
+        strictRoutes: true,
+        strictInject: true,
+        routes: [
+            &#x27;/&#x27; =&gt; Route::r(),
+
+            &#x27;/catalog&#x27; =&gt; Route::r(
+                context: &#x27;catalog&#x27;,
+                controller: &#x27;catalog&#x27;
+            ),
+
+            &#x27;/catalog/property/:property&#x27; =&gt; Route::r(
+                context: &#x27;catalog&#x27;,
+                controller: &#x27;property&#x27;,
+                action: &#x27;details&#x27;
+            ),
+        ]
+    ),
+
+    ui: fn() =&gt; Config::ui(
+        domain: &#x27;*&#x27;,
+        routes: [
+            &#x27;/&#x27; =&gt; Route::r(controller: &#x27;index&#x27;),
+        ]
+    ),
+
+    cli: fn() =&gt; Config::cli(
+        routes: [
+            &#x27;/notification/email&#x27; =&gt; Route::r(
+                controller: &#x27;notification&#x27;,
+                action: &#x27;email&#x27;
+            ),
+        ]
+    )
+);</code></pre>
+  <p>Ключ массива — это URI-шаблон. Значение — описание route. Обычно оно создаётся через <code>Route::r()</code>.</p>
+</section>
+
+<section class="section" id="route-r">
+  <h2>Route::r()</h2>
+  <p><code>Route::r()</code> — helper для создания массива route-настроек. Он принимает <code>context</code>, <code>controller</code>, <code>action</code> и статические <code>params</code>.</p>
+<div class="code-title">Сигнатура</div>
+<pre class="code-block"><code class="language-php">Route::r(
+    ?string $context = null,
+    ?string $controller = null,
+    ?string $action = null,
+    ?array $params = null
+);</code></pre>
+  <div class="table-responsive">
+    <table class="table docs-table align-middle">
+      <thead><tr><th>Параметр</th><th>Что означает</th><th>Значение по умолчанию</th></tr></thead>
+      <tbody>
+        <tr><td><code>context</code></td><td>Папка-контекст внутри модуля. Например <code>Catalog</code>, <code>Blog</code>, <code>Seo</code>.</td><td>Пусто, то есть контроллер ищется прямо в модуле.</td></tr>
+        <tr><td><code>controller</code></td><td>Имя контроллера. AirCMS делает <code>ucfirst()</code> и ищет класс в папке <code>Controller</code>.</td><td><code>index</code></td></tr>
+        <tr><td><code>action</code></td><td>Метод контроллера.</td><td><code>index</code></td></tr>
+        <tr><td><code>params</code></td><td>Статические параметры, которые будут добавлены в request и <code>urlParams</code>.</td><td><code>null</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="route-types">
+  <h2>Какие могут быть роуты</h2>
+  <p>В AirCMS route может быть очень явным или почти пустым. Чем меньше параметров указано, тем больше используется значений по умолчанию: <code>controller = index</code>, <code>action = index</code>.</p>
+
+  <h3>1. Route без context, controller и action</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/&#x27; =&gt; Route::r(),
+]</code></pre>
+  <p>Для API-модуля такой route будет искать:</p>
+<pre class="code-block"><code class="language-text">App\Module\Api\Controller\Index::index()</code></pre>
+  <p>Для UI-модуля тот же принцип:</p>
+<pre class="code-block"><code class="language-text">App\Module\Ui\Controller\Index::index()</code></pre>
+  <h3>2. Route без context, но с controller</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/auth&#x27; =&gt; Route::r(controller: &#x27;auth&#x27;),
+]</code></pre>
+  <p>AirCMS не видит <code>action</code>, поэтому вызывает <code>index()</code>:</p>
+<pre class="code-block"><code class="language-text">App\Module\Api\Controller\Auth::index()</code></pre><div class="code-title">app/Module/Api/Controller/Auth.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Controller;
+
+use Air\Core\Controller;
+
+class Auth extends Controller
+{
+    public function index(): array
+    {
+        return [
+            &#x27;status&#x27; =&gt; &#x27;auth endpoint&#x27;,
+        ];
+    }
+}</code></pre>
+  <h3>3. Route без context, но с controller и action</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/auth/login&#x27; =&gt; Route::r(
+        controller: &#x27;auth&#x27;,
+        action: &#x27;login&#x27;
+    ),
+]</code></pre>
+  <p>Такой route будет искать:</p>
+<pre class="code-block"><code class="language-text">App\Module\Api\Controller\Auth::login()</code></pre>
+  <h3>4. Route с context, но без controller</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/candidates&#x27; =&gt; Route::r(context: &#x27;candidate&#x27;),
+]</code></pre>
+  <p>Если controller не указан, используется <code>index</code>. Если action не указан, тоже используется <code>index</code>:</p>
+<pre class="code-block"><code class="language-text">App\Module\Api\Candidate\Controller\Index::index()</code></pre>
+  <p>Такой вариант удобен, когда context — это отдельная область API, а входная точка этой области называется <code>Index</code>.</p>
+
+  <h3>5. Route с context и controller, но без action</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/catalog/property&#x27; =&gt; Route::r(
+        context: &#x27;catalog&#x27;,
+        controller: &#x27;property&#x27;
+    ),
+]</code></pre>
+  <p>Action не указан, значит будет вызван <code>index()</code>:</p>
+<pre class="code-block"><code class="language-text">App\Module\Api\Catalog\Controller\Property::index()</code></pre><div class="code-title">app/Module/Api/Catalog/Controller/Property.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Catalog\Controller;
+
+use Air\Core\Controller;
+
+class Property extends Controller
+{
+    public function index(): array
+    {
+        return [
+            &#x27;items&#x27; =&gt; [],
+        ];
+    }
+}</code></pre>
+  <h3>6. Route с context, controller и action</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/article/:article&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;details&#x27;
+    ),
+]</code></pre>
+  <p>Такой route будет искать:</p>
+<pre class="code-block"><code class="language-text">App\Module\Api\Blog\Controller\Articles::details()</code></pre>
+  <p>Часть <code>:article</code> — это URL-параметр. Для запроса <code>/article/hello-world</code> AirCMS добавит параметр <code>article = hello-world</code> в request.</p>
+
+  <h3>7. Route со статическими params</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/articles&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        params: [
+            &#x27;type&#x27; =&gt; &#x27;public&#x27;,
+        ]
+    ),
+]</code></pre>
+  <p>Статические <code>params</code> добавляются в <code>urlParams</code> и request. Их можно получить через <code>$this->getParam('type')</code> или принять в action через injection.</p>
+<pre class="code-block"><code class="language-php">public function index(string $type): array
+{
+    return [
+        &#x27;type&#x27; =&gt; $type,
+    ];
+}</code></pre>
+  <h3>8. Wildcard route</h3>
+  <p>Если ни один route не подошёл, Router может проверить специальный route <code>*</code>. Его значение должно быть callable. Такой route удобен для SEO, динамических страниц, CMS-страниц и собственных fallback-правил.</p>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;*&#x27; =&gt; function (string $uri): ?array {
+        if (str_starts_with($uri, &#x27;/page/&#x27;)) {
+            return Route::r(
+                context: &#x27;page&#x27;,
+                controller: &#x27;page&#x27;,
+                action: &#x27;details&#x27;,
+                params: [
+                    &#x27;url&#x27; =&gt; trim($uri, &#x27;/&#x27;),
+                ]
+            );
+        }
+
+        return null;
+    },
+]</code></pre>
+  <div class="callout warning"><strong>Важно:</strong> wildcard route сработает только после проверки обычных routes. Если <code>strictRoutes</code> включён и wildcard не вернул route, AirCMS выбросит ошибку роутинга.</div>
+</section>
+
+<section class="section" id="strict-routes">
+  <h2>strictRoutes и fallback-поведение</h2>
+  <p>Поведение Router зависит от параметра <code>strictRoutes</code> в конфигурации модуля.</p>
+<pre class="code-block"><code class="language-php">api: fn() =&gt; Config::api(
+    domain: &#x27;api.*&#x27;,
+    strictRoutes: true,
+    routes: [
+        &#x27;/articles&#x27; =&gt; Route::r(
+            context: &#x27;blog&#x27;,
+            controller: &#x27;articles&#x27;
+        ),
+    ]
+)</code></pre>
+  <div class="table-responsive">
+    <table class="table docs-table align-middle">
+      <thead><tr><th>Режим</th><th>Что происходит</th></tr></thead>
+      <tbody>
+        <tr><td><code>strictRoutes: true</code></td><td>Если URI не найден в <code>routes</code> и wildcard не помог, AirCMS выбрасывает ошибку <code>RouterWasNotFound</code>.</td></tr>
+        <tr><td><code>strictRoutes: false</code></td><td>AirCMS может использовать fallback: первая часть URI становится controller, вторая — action, следующие пары становятся параметрами.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Например при <code>strictRoutes: false</code> запрос <code>/article/details/id/123</code> может быть разобран как:</p>
+<pre class="code-block"><code class="language-text">controller = article
+action     = details
+id         = 123</code></pre>
+  <p>Для публичного API чаще лучше использовать <code>strictRoutes: true</code>, чтобы API оставался предсказуемым и не принимал случайные URL.</p>
+</section>
+
+<section class="section" id="url-params">
+  <h2>URL-параметры</h2>
+  <p>В URI-шаблоне параметры начинаются с двоеточия: <code>:article</code>, <code>:property</code>, <code>:language</code>. Router извлекает их из URL, записывает в <code>urlParams</code> и добавляет в request как GET-параметры.</p>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/:language/article/:article&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;details&#x27;
+    ),
+]</code></pre>
+  <p>Для запроса:</p>
+<pre class="code-block"><code class="language-text">/en/article/hello-world</code></pre>
+  <p>AirCMS получит:</p>
+<pre class="code-block"><code class="language-text">language = en
+article  = hello-world</code></pre>
+  <div class="callout"><strong>Ограничение:</strong> path-параметры в текущем Router рассчитаны на значения из букв, цифр, <code>-</code> и <code>_</code>. Для сложных значений используйте query/body-параметры или собственную обработку.</div>
+</section>
+
+<section class="section" id="injection-overview">
+  <h2>Action injection</h2>
+  <p>Action injection — это автоматическая передача параметров в метод контроллера. AirCMS смотрит на аргументы action-метода, берёт значения из route params, GET, POST или JSON body, приводит их к нужному типу и передаёт в метод.</p>
+  <p>Общая логика такая:</p>
+  <ol>
+    <li>Router находит route и извлекает URL-параметры.</li>
+    <li>Request содержит данные из <code>$_GET</code>, <code>$_POST</code>, <code>$_REQUEST</code> или JSON body.</li>
+    <li><code>Front::inject()</code> смотрит на параметры action-метода.</li>
+    <li>Для каждого параметра берётся значение по имени параметра.</li>
+    <li>Если указан тип, значение приводится к этому типу или превращается в model/typed object.</li>
+  </ol>
+<pre class="code-block"><code class="language-php">public function details(string $article): array
+{
+    return [
+        &#x27;article&#x27; =&gt; $article,
+    ];
+}</code></pre>
+  <p>Если route содержит <code>:article</code>, параметр <code>$article</code> будет заполнен автоматически.</p>
+</section>
+
+<section class="section" id="scalar-injection">
+  <h2>Injection скалярных типов</h2>
+  <p>AirCMS умеет автоматически приводить значения к базовым PHP-типам: <code>int</code>, <code>string</code>, <code>bool</code>, <code>array</code>. Если параметр не найден, используется default value, если он указан в сигнатуре метода.</p>
+
+  <h3>String из route parameter</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/article/:url&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;details&#x27;
+    ),
+]</code></pre><pre class="code-block"><code class="language-php">public function details(string $url): array
+{
+    return [
+        &#x27;url&#x27; =&gt; $url,
+    ];
+}</code></pre>
+  <p>Запрос <code>/article/hello-world</code> передаст в action строку <code>hello-world</code>.</p>
+
+  <h3>Integer из route parameter</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/page/:page&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;
+    ),
+]</code></pre><pre class="code-block"><code class="language-php">public function index(int $page = 1): array
+{
+    return [
+        &#x27;page&#x27; =&gt; $page,
+    ];
+}</code></pre>
+  <p>Запрос <code>/page/5</code> передаст <code>5</code> как integer.</p>
+
+  <h3>Boolean из GET/POST</h3>
+<pre class="code-block"><code class="language-php">public function index(bool $enabled = true): array
+{
+    return [
+        &#x27;enabled&#x27; =&gt; $enabled,
+    ];
+}</code></pre>
+  <p>Запрос <code>/articles?enabled=0</code> передаст значение в параметр <code>$enabled</code>. Важно помнить, что PHP-функция <code>boolval()</code> имеет свои правила приведения строк.</p>
+
+  <h3>Необязательные параметры</h3>
+<pre class="code-block"><code class="language-php">public function index(
+    int $page = 1,
+    int $limit = 20,
+    string $query = &#x27;&#x27;
+): array {
+    return [
+        &#x27;page&#x27; =&gt; $page,
+        &#x27;limit&#x27; =&gt; $limit,
+        &#x27;query&#x27; =&gt; $query,
+    ];
+}</code></pre>
+  <p>Если <code>page</code>, <code>limit</code> или <code>query</code> не пришли в запросе, будут использованы значения по умолчанию из сигнатуры метода.</p>
+</section>
+
+<section class="section" id="get-post-injection">
+  <h2>Injection GET, POST и JSON body</h2>
+  <p>Параметры могут приходить не только из URL-шаблона, но и из query string, формы, POST-запроса или JSON body.</p>
+
+  <h3>Одиночные GET-параметры</h3>
+<pre class="code-block"><code class="language-text">GET /api/articles?page=2&amp;limit=10&amp;query=sea</code></pre><pre class="code-block"><code class="language-php">public function index(
+    int $page = 1,
+    int $limit = 20,
+    string $query = &#x27;&#x27;
+): array {
+    return [
+        &#x27;page&#x27; =&gt; $page,
+        &#x27;limit&#x27; =&gt; $limit,
+        &#x27;query&#x27; =&gt; $query,
+    ];
+}</code></pre>
+  <h3>Массив из GET</h3>
+<pre class="code-block"><code class="language-text">GET /api/properties?ids[]=1&amp;ids[]=2&amp;ids[]=3</code></pre><pre class="code-block"><code class="language-php">public function index(array $ids = []): array
+{
+    return [
+        &#x27;ids&#x27; =&gt; $ids,
+    ];
+}</code></pre>
+  <h3>Вложенный массив из GET</h3>
+<pre class="code-block"><code class="language-text">GET /api/properties?filter[price][min]=100000&amp;filter[price][max]=250000&amp;filter[type]=apartment</code></pre><pre class="code-block"><code class="language-php">public function index(array $filter = []): array
+{
+    return [
+        &#x27;filter&#x27; =&gt; $filter,
+        &#x27;minPrice&#x27; =&gt; $filter[&#x27;price&#x27;][&#x27;min&#x27;] ?? null,
+        &#x27;maxPrice&#x27; =&gt; $filter[&#x27;price&#x27;][&#x27;max&#x27;] ?? null,
+        &#x27;type&#x27; =&gt; $filter[&#x27;type&#x27;] ?? null,
+    ];
+}</code></pre>
+  <h3>POST form-data или x-www-form-urlencoded</h3>
+<pre class="code-block"><code class="language-text">POST /api/contact
+name=John&amp;email=john@example.com&amp;message=Hello</code></pre><pre class="code-block"><code class="language-php">public function index(
+    string $name,
+    string $email,
+    string $message
+): array {
+    return [
+        &#x27;success&#x27; =&gt; true,
+        &#x27;name&#x27; =&gt; $name,
+        &#x27;email&#x27; =&gt; $email,
+        &#x27;message&#x27; =&gt; $message,
+    ];
+}</code></pre>
+  <h3>JSON body</h3>
+  <p>Если заголовок <code>Content-Type</code> содержит <code>application/json</code>, AirCMS читает тело запроса и кладёт JSON-данные в request params.</p>
+<pre class="code-block"><code class="language-json">{
+    &quot;title&quot;: &quot;New article&quot;,
+    &quot;enabled&quot;: true,
+    &quot;tags&quot;: [&quot;php&quot;, &quot;aircms&quot;],
+    &quot;meta&quot;: {
+        &quot;title&quot;: &quot;SEO title&quot;,
+        &quot;description&quot;: &quot;SEO description&quot;
+    }
+}</code></pre><pre class="code-block"><code class="language-php">public function create(
+    string $title,
+    bool $enabled = false,
+    array $tags = [],
+    array $meta = []
+): array {
+    return [
+        &#x27;title&#x27; =&gt; $title,
+        &#x27;enabled&#x27; =&gt; $enabled,
+        &#x27;tags&#x27; =&gt; $tags,
+        &#x27;meta&#x27; =&gt; $meta,
+    ];
+}</code></pre>
+</section>
+
+<section class="section" id="model-injection">
+  <h2>Injection моделей</h2>
+  <p>Если action-параметр типизирован классом модели, который наследуется от <code>Air\Model\ModelAbstract</code>, AirCMS может автоматически загрузить модель из базы данных.</p>
+
+  <h3>Модель по id</h3>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/article/:article&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;details&#x27;
+    ),
+]</code></pre><pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Blog\Controller;
+
+use Air\Core\Controller;
+use App\Model\Article;
+
+class Articles extends Controller
+{
+    public function details(Article $article): array
+    {
+        return $article-&gt;toArray();
+    }
+}</code></pre>
+  <p>Имя параметра <code>$article</code> должно совпадать с именем route-параметра <code>:article</code>. По умолчанию AirCMS пытается найти модель по primary field, обычно это <code>id</code>.</p>
+
+  <h3>Fallback с id на url</h3>
+  <p>Если lookup-поле — <code>id</code>, но значение не похоже на MongoDB <code>ObjectId</code>, AirCMS пробует загрузить модель по полю <code>url</code>. Это удобно для slug-URL:</p>
+<pre class="code-block"><code class="language-text">/article/64f1e8f6b2d0e2a0a1b2c3d4    # поиск по id
+/article/hello-world                     # fallback-поиск по url</code></pre>
+  <h3>Модель по другому полю через PHPDoc</h3>
+  <p>Чтобы явно указать поле для поиска, используется PHPDoc у action-метода. После имени параметра пишется <code>|field</code>.</p>
+<pre class="code-block"><code class="language-php">/**
+ * @param Article $article|url
+ */
+public function details(Article $article): array
+{
+    return $article-&gt;toArray();
+}</code></pre>
+  <p>Теперь <code>$article</code> будет загружаться по полю <code>url</code>, а не по <code>id</code>.</p>
+
+  <h3>Модель с дополнительными условиями</h3>
+  <p>В PHPDoc можно добавить JSON-условия после <code>&</code>. Они будут добавлены к условию поиска.</p>
+<pre class="code-block"><code class="language-php">/**
+ * @param Article $article|url&amp;{&quot;enabled&quot;:true}
+ */
+public function details(Article $article): array
+{
+    return $article-&gt;toArray();
+}</code></pre>
+  <p>Такой action загрузит статью по <code>url</code> и дополнительно потребует <code>enabled = true</code>.</p>
+
+  <h3>Nullable model injection</h3>
+  <p>Если модель может быть не найдена, лучше явно разрешить <code>null</code> в сигнатуре. Это особенно важно при <code>strictInject: true</code>, когда обычный <code>one()</code> может вернуть <code>null</code>.</p>
+<pre class="code-block"><code class="language-php">/**
+ * @param Article $article|url
+ */
+public function details(?Article $article = null): array
+{
+    if (!$article) {
+        $this-&gt;getResponse()-&gt;setStatusCode(404);
+
+        return [
+            &#x27;error&#x27; =&gt; &#x27;Article was not found&#x27;,
+        ];
+    }
+
+    return $article-&gt;toArray();
+}</code></pre>
+  <div class="callout warning"><strong>Практика:</strong> если action принимает модель без <code>?</code>, а модель не найдена, PHP может получить несовместимый тип аргумента. Для публичных detail endpoints безопаснее использовать <code>?Model $model = null</code> и вернуть 404 вручную.</div>
+</section>
+
+<section class="section" id="typed-object-injection">
+  <h2>Injection typed objects</h2>
+  <p>Если action-параметр типизирован классом, который не является моделью, AirCMS создаёт объект через <code>new ClassName($value)</code>. Это хорошо работает с объектами, которые наследуются от <code>Air\Type\TypeAbstract</code>, потому что <code>TypeAbstract</code> умеет принимать массив данных.</p>
+
+  <h3>Typed object для фильтра</h3>
+<div class="code-title">app/Type/PropertyFilter.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Type;
+
+use Air\Type\TypeAbstract;
+
+class PropertyFilter extends TypeAbstract
+{
+    public ?string $type = null;
+    public ?int $minPrice = null;
+    public ?int $maxPrice = null;
+
+    /**
+     * @var string[]
+     */
+    public array $districts = [];
+}</code></pre><pre class="code-block"><code class="language-text">GET /api/properties?filter[type]=apartment&amp;filter[minPrice]=100000&amp;filter[maxPrice]=250000&amp;filter[districts][]=center</code></pre><pre class="code-block"><code class="language-php">use App\Type\PropertyFilter;
+
+public function index(PropertyFilter $filter): array
+{
+    return [
+        &#x27;type&#x27; =&gt; $filter-&gt;type,
+        &#x27;minPrice&#x27; =&gt; $filter-&gt;minPrice,
+        &#x27;maxPrice&#x27; =&gt; $filter-&gt;maxPrice,
+        &#x27;districts&#x27; =&gt; $filter-&gt;districts,
+    ];
+}</code></pre>
+  <p>Здесь параметр <code>filter</code> приходит как вложенный массив, а AirCMS создаёт из него <code>PropertyFilter</code>.</p>
+
+  <h3>Typed object из JSON body</h3>
+<pre class="code-block"><code class="language-json">{
+    &quot;filter&quot;: {
+        &quot;type&quot;: &quot;house&quot;,
+        &quot;minPrice&quot;: 150000,
+        &quot;districts&quot;: [&quot;center&quot;, &quot;north&quot;]
+    }
+}</code></pre><pre class="code-block"><code class="language-php">public function search(PropertyFilter $filter): array
+{
+    return $filter-&gt;toArray();
+}</code></pre>
+  <div class="callout"><strong>Важно:</strong> имя параметра action должно совпадать с ключом в запросе. Для <code>PropertyFilter $filter</code> данные должны прийти в параметре <code>filter</code>.</div>
+</section>
+
+<section class="section" id="custom-injector">
+  <h2>Custom injector</h2>
+  <p>Router также поддерживает кастомный <code>injector</code> на уровне конкретного route. Это callback, который получает значение route-параметра и возвращает готовое значение для action.</p>
+  <p>Так как <code>Route::r()</code> возвращает обычный массив, дополнительные настройки можно добавить через объединение массивов.</p>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/secure/:token&#x27; =&gt; Route::r(
+        controller: &#x27;secure&#x27;,
+        action: &#x27;index&#x27;
+    ) + [
+        &#x27;injector&#x27; =&gt; [
+            &#x27;token&#x27; =&gt; fn(?string $token) =&gt; hash(&#x27;sha256&#x27;, (string)$token),
+        ],
+    ],
+]</code></pre><pre class="code-block"><code class="language-php">public function index(string $token): array
+{
+    return [
+        &#x27;tokenHash&#x27; =&gt; $token,
+    ];
+}</code></pre>
+  <p>Custom injector стоит использовать для специальных случаев: токены, нормализация параметров, предварительная расшифровка, создание value object.</p>
+</section>
+
+<section class="section" id="request-access">
+  <h2>Ручное получение параметров</h2>
+  <p>Injection удобен, но иногда проще явно получить параметры через controller helpers.</p>
+<pre class="code-block"><code class="language-php">public function index(): array
+{
+    $page = (int)$this-&gt;getParam(&#x27;page&#x27;, 1);
+    $filter = $this-&gt;getParam(&#x27;filter&#x27;, []);
+    $allParams = $this-&gt;getParams();
+
+    return [
+        &#x27;page&#x27; =&gt; $page,
+        &#x27;filter&#x27; =&gt; $filter,
+        &#x27;allParams&#x27; =&gt; $allParams,
+    ];
+}</code></pre>
+  <div class="table-responsive">
+    <table class="table docs-table align-middle">
+      <thead><tr><th>Метод</th><th>Что делает</th></tr></thead>
+      <tbody>
+        <tr><td><code>$this->getParam($name, $default)</code></td><td>Берёт параметр из request params, а затем из GET-параметров.</td></tr>
+        <tr><td><code>$this->getParams()</code></td><td>Возвращает объединённый набор request params и GET params.</td></tr>
+        <tr><td><code>$this->getRequest()->getGet($name)</code></td><td>Берёт значение только из GET.</td></tr>
+        <tr><td><code>$this->getRequest()->getPost($name)</code></td><td>Берёт значение только из POST/body.</td></tr>
+        <tr><td><code>$this->getRouter()->getUrlParams()</code></td><td>Возвращает параметры, извлечённые из URI-шаблона и статических <code>params</code>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="route-assemble">
+  <h2>Генерация URL</h2>
+  <p>Кроме описания входящих routes, <code>Air\Core\Route</code> умеет собирать URL по route-настройкам. Это удобно в UI, редиректах и ссылках между страницами.</p>
+<pre class="code-block"><code class="language-php">use Air\Core\Route;
+
+$url = Route::a(
+    context: &#x27;blog&#x27;,
+    controller: &#x27;articles&#x27;,
+    action: &#x27;details&#x27;,
+    params: [
+        &#x27;article&#x27; =&gt; &#x27;hello-world&#x27;,
+    ]
+);</code></pre>
+  <p>Если в конфигурации есть route <code>/article/:article</code>, результатом будет примерно:</p>
+<pre class="code-block"><code class="language-text">/article/hello-world</code></pre>
+  <p>Если подходящий route не найден, Router соберёт fallback-URI из controller/action и query string.</p>
+</section>
+
+<section class="section" id="practical-example">
+  <h2>Большой пример</h2>
+  <p>Ниже пример API для блога: список статей, детали по slug, создание статьи из JSON body и поиск с typed object.</p>
+<div class="code-title">config.php</div>
+<pre class="code-block"><code class="language-php">routes: [
+    &#x27;/articles&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;
+    ),
+
+    &#x27;/article/:article&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;details&#x27;
+    ),
+
+    &#x27;/article/create&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;create&#x27;
+    ),
+
+    &#x27;/articles/search&#x27; =&gt; Route::r(
+        context: &#x27;blog&#x27;,
+        controller: &#x27;articles&#x27;,
+        action: &#x27;search&#x27;
+    ),
+]</code></pre><div class="code-title">app/Module/Api/Blog/Controller/Articles.php</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Module\Api\Blog\Controller;
+
+use Air\Core\Controller;
+use App\Model\Article;
+use App\Type\ArticleFilter;
+
+class Articles extends Controller
+{
+    public function index(int $page = 1, int $limit = 20): array
+    {
+        return [
+            &#x27;page&#x27; =&gt; $page,
+            &#x27;limit&#x27; =&gt; $limit,
+            &#x27;items&#x27; =&gt; [],
+        ];
+    }
+
+    /**
+     * @param Article $article|url&amp;{&quot;enabled&quot;:true}
+     */
+    public function details(?Article $article = null): array
+    {
+        if (!$article) {
+            $this-&gt;getResponse()-&gt;setStatusCode(404);
+
+            return [
+                &#x27;error&#x27; =&gt; &#x27;Article was not found&#x27;,
+            ];
+        }
+
+        return $article-&gt;toArray();
+    }
+
+    public function create(
+        string $title,
+        string $description = &#x27;&#x27;,
+        bool $enabled = false,
+        array $tags = []
+    ): array {
+        $article = Article::insert([
+            &#x27;title&#x27; =&gt; $title,
+            &#x27;description&#x27; =&gt; $description,
+            &#x27;enabled&#x27; =&gt; $enabled,
+            &#x27;tags&#x27; =&gt; $tags,
+        ]);
+
+        return $article-&gt;toArray();
+    }
+
+    public function search(ArticleFilter $filter): array
+    {
+        return [
+            &#x27;filter&#x27; =&gt; $filter-&gt;toArray(),
+            &#x27;items&#x27; =&gt; [],
+        ];
+    }
+}</code></pre>
+</section>
+
+<section class="section" id="best-practices">
+  <h2>Практические рекомендации</h2>
+  <ul>
+    <li>Для публичного API включай <code>strictRoutes: true</code>, чтобы не было случайных endpoints.</li>
+    <li>Для detail endpoints используй явный action, например <code>details()</code>, а не перегружай <code>index()</code>.</li>
+    <li>Имена route-параметров называй так же, как параметры action: <code>:article</code> → <code>$article</code>.</li>
+    <li>Для моделей по slug используй PHPDoc <code>@param Article $article|url</code>.</li>
+    <li>Для фильтров и сложных входных данных используй typed objects на базе <code>TypeAbstract</code>.</li>
+    <li>Для необязательных scalar/array-параметров всегда указывай default value.</li>
+    <li>Для nullable моделей используй <code>?Model $model = null</code> и явно возвращай 404, если модель не найдена.</li>
+  </ul>
+</section>
+
+<footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer></article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div><a href="#what-is-routing">Что такое Routing</a><a href="#where-routes-defined">Где описываются роуты</a><a href="#route-r">Route::r()</a><a href="#route-types">Виды роутов</a><a href="#strict-routes">strictRoutes</a><a href="#url-params">URL-параметры</a><a href="#injection-overview">Action injection</a><a href="#scalar-injection">Скалярные типы</a><a href="#get-post-injection">GET, POST, JSON</a><a href="#model-injection">Модели</a><a href="#typed-object-injection">Typed objects</a><a href="#custom-injector">Custom injector</a><a href="#request-access">Ручное получение</a><a href="#route-assemble">Генерация URL</a><a href="#practical-example">Большой пример</a><a href="#best-practices">Рекомендации</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

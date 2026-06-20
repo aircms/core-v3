@@ -95,16 +95,16 @@ class Config
   ): array
   {
     return [
-      'domain' => $domain,
-      'strict' => $strictRoutes,
-      'module' => 'api',
-      'routes' => $routes,
-      'air'    => [
+      'domain'  => $domain,
+      'strict'  => $strictRoutes,
+      'module'  => 'api',
+      'routes'  => $routes,
+      'require' => $require,
+      'air'     => [
         'strictInject' => $strictInject,
         'cache'        => [
           'enabled' => $cacheEnabled,
         ],
-        'require'      => $require,
       ],
     ];
   }
@@ -151,6 +151,31 @@ class Config
       'air'    => [
         'strictInject' => $strictInject,
         'require'      => $require,
+      ],
+    ];
+  }
+
+  public static function module(
+    string $domain,
+    string $module,
+    bool   $strictRoutes = true,
+    bool   $strictInject = true,
+    bool   $cacheEnabled = false,
+    array  $routes = [],
+    array  $require = [],
+  ): array
+  {
+    return [
+      'domain'  => $domain,
+      'module'  => $module,
+      'strict'  => $strictRoutes,
+      'routes'  => $routes,
+      'require' => $require,
+      'air'     => [
+        'strictInject' => $strictInject,
+        'cache'        => [
+          'enabled' => $cacheEnabled,
+        ],
       ],
     ];
   }

@@ -103,7 +103,7 @@ final class Front
       }
     }
 
-    foreach ($this->config['air']['require'] as $file) {
+    foreach (($this->config['air']['require'] ?? []) as $file) {
       if (str_starts_with($file, 'vendor')) {
         require_once dirname($this->config['air']['loader']['path']) . '/' . $file;
       } else {
@@ -135,7 +135,7 @@ final class Front
         $this->router->initRoute();
       }
 
-      $view = FrontHelper::getView($this->router, $this->config);
+      $view                = FrontHelper::getView($this->router, $this->config);
       $controllerClassName = FrontHelper::getControllerClassName($this->router, $this->config);
 
       if (!$controllerClassName) {
@@ -297,7 +297,7 @@ final class Front
   {
     $reflection = new ReflectionMethod($controller, $router->getAction());
 
-    $injector = $router->getInjector();
+    $injector   = $router->getInjector();
     $docComment = $reflection->getDocComment();
 
     $params = [];
@@ -361,7 +361,7 @@ final class Front
       if (isset($injector[$var])) {
         $args[$var] = $injector[$var]($router->getUrlParams()[$var] ?? null);
       } else {
-        $value = $router->getUrlParams()[$var] ?? $request->getParam($var);
+        $value        = $router->getUrlParams()[$var] ?? $request->getParam($var);
         $defaultValue = $parameter->isDefaultValueAvailable() ? $parameter->getDefaultValue() : null;
 
         if (!$parameter->getType()) {
@@ -422,7 +422,7 @@ final class Front
                     }
                     $userCond = [];
                   } else {
-                    $allCond = [$params[$parameter->getName()]['main'] => $value];
+                    $allCond  = [$params[$parameter->getName()]['main'] => $value];
                     $userCond = ($params[$parameter->getName()]['cond'] ?? []);
                   }
 

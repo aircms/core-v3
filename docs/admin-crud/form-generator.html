@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Генератор форм · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="false">Core</button>
+    <div id="navGroup0" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link" href="../getting-started/worker.html">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="true">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link active" href="../admin-crud/form-generator.html" aria-current="page">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Admin &amp; CRUD</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Admin &amp; CRUD</span><span>/</span><strong>Генератор форм</strong></div>
+<section class="hero" id="overview">
+  <div class="d-flex flex-wrap gap-2 mb-3">
+    <span class="badge-soft">Generator::minimal()</span>
+    <span class="badge-soft">Generator::full()</span>
+    <span class="badge-soft">Generator::fullRequired()</span>
+  </div>
+  <h1>Генератор форм</h1>
+  <p class="lead mb-0">Генератор форм в AirCMS нужен для быстрого создания admin-формы на основе meta-описания модели. Он читает поля модели, их имена, типы и enum-значения, после чего собирает готовую форму с правильными элементами.</p>
+</section>
+<section class="section" id="what-is-it">
+  <h2>Что это такое</h2>
+  <p><code>Air\Form\Generator</code> — это вспомогательный класс для админки. Он не заменяет обычные формы, а помогает быстро собрать типовую форму редактирования модели: title, url, description, image, enabled, meta, references, enum-поля и другие часто используемые поля.</p>
+  <div class="callout warning">Генератор форм лучше рассматривать как инструмент для CRUD-админки. В API обычно удобнее использовать чистый класс формы, потому что API-форма валидирует данные, но не обязана рисовать HTML-элементы.</div>
+</section>
+<section class="section" id="levels">
+  <h2>Уровни генерации</h2>
+  <p>В ядре есть три основных уровня генерации. Они отличаются тем, какие группы полей будут включены в форму.</p>
+  <div class="table-responsive">
+    <table class="table docs-table align-middle">
+      <thead>
+        <tr><th>Метод</th><th>Что генерирует</th><th>Когда использовать</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Generator::minimal()</code></td><td>Базовые поля по именам: title, url, description, image, enabled, meta, richContent и т.д.</td><td>Когда нужна простая CRUD-форма без автоматического добавления связей и enum-полей.</td></tr>
+        <tr><td><code>Generator::full()</code></td><td>Базовые поля + model references + enum-поля.</td><td>Когда модель типовая и можно доверить генератору большую часть формы.</td></tr>
+        <tr><td><code>Generator::fullRequired()</code></td><td>Похоже на <code>full()</code>, но reference-поля создаются как обязательные.</td><td>Когда связанные модели должны быть выбраны обязательно.</td></tr>
+      </tbody>
+    </table>
+  </div>
+<div class="code-title">Базовое использование</div>
+<pre class="code-block"><code class="language-php">use Air\Form\Generator;
+
+$form = Generator::minimal($article);
+$form = Generator::full($article);
+$form = Generator::fullRequired($article);</code></pre></section>
+<section class="section" id="signatures">
+  <h2>Сигнатуры методов</h2>
+  <p>Каждый метод принимает модель и дополнительный список элементов, которыми можно расширить или переопределить автоматически сгенерированные поля.</p>
+<div class="code-title">Air\Form\Generator</div>
+<pre class="code-block"><code class="language-php">public static function minimal(?ModelAbstract $model = null, array $elements = []): Form
+public static function full(?ModelAbstract $model = null, array $elements = []): Form
+public static function fullRequired(?ModelAbstract $model, array $elements = []): Form</code></pre></section>
+<section class="section" id="based-on">
+  <h2>На основе чего генерируется форма</h2>
+  <p>Генератор смотрит на <code>$model->getMeta()</code>. Meta строится из PHPDoc модели: <code>@collection</code>, <code>@primary</code>, <code>@property</code>, типа поля и enum-констант.</p>
+<div class="code-title">Модель, из которой можно сгенерировать форму</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Model;
+
+use Air\Crud\Model\Language;
+use Air\Model\ModelAbstract;
+use Air\Type\File;
+use Air\Type\Meta;
+use Air\Type\RichContent;
+
+/**
+ * @collection Article
+ *
+ * @property string $id
+ * @property string $title
+ * @property string $url
+ * @property string $description
+ * @property File $image
+ * @property File[] $images
+ * @property RichContent[] $richContent
+ * @property Meta $meta
+ * @property Category $category
+ * @property Category[] $tags
+ * @property string $status
+ * @property Language $language
+ * @property boolean $enabled
+ * @property integer $position
+ * @property integer $createdAt
+ * @property integer $updatedAt
+ */
+class Article extends ModelAbstract
+{
+  public const string STATUS_DRAFT = &#x27;draft&#x27;;
+  public const string STATUS_PUBLISHED = &#x27;published&#x27;;
+}</code></pre></section>
+<section class="section" id="field-rules">
+  <h2>Какие поля модели учитывает генератор</h2>
+  <p>Генератор использует не только тип поля, но и его имя. Поэтому для типовых CRUD-разделов важно придерживаться стандартных имён.</p>
+  <div class="table-responsive">
+    <table class="table docs-table align-middle">
+      <thead>
+        <tr><th>Поле модели</th><th>Ожидаемый тип</th><th>Элемент формы</th><th>Комментарий</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>language</code></td><td><code>Air\Crud\Model\Language</code></td><td><code>Model</code></td><td>Выбор языка записи.</td></tr>
+        <tr><td><code>enabled</code></td><td><code>boolean</code></td><td><code>Checkbox</code></td><td>Флаг активности записи.</td></tr>
+        <tr><td><code>date</code></td><td><code>integer</code></td><td><code>Date</code></td><td>Дата как timestamp.</td></tr>
+        <tr><td><code>dateTime</code></td><td><code>integer</code></td><td><code>DateTime</code></td><td>Дата и время как timestamp.</td></tr>
+        <tr><td><code>time</code></td><td><code>string</code> / <code>integer</code></td><td><code>Time</code></td><td>Время.</td></tr>
+        <tr><td><code>title</code>, <code>subTitle</code>, <code>name</code>, <code>login</code></td><td><code>string</code></td><td><code>Text</code></td><td>Короткие текстовые поля.</td></tr>
+        <tr><td><code>url</code></td><td><code>string</code></td><td><code>Url</code></td><td>URL/slug с trim + lowercase.</td></tr>
+        <tr><td><code>description</code></td><td><code>string</code></td><td><code>Textarea</code></td><td>Длинное текстовое описание.</td></tr>
+        <tr><td><code>image</code>, <code>file</code></td><td><code>Air\Type\File</code></td><td><code>Storage</code></td><td>Один файл.</td></tr>
+        <tr><td><code>images</code>, <code>files</code></td><td><code>Air\Type\File[]</code></td><td><code>Storage</code> multiple</td><td>Несколько файлов.</td></tr>
+        <tr><td><code>meta</code></td><td><code>Air\Type\Meta</code></td><td><code>Meta</code></td><td>SEO meta tags.</td></tr>
+        <tr><td><code>content</code></td><td><code>string</code></td><td><code>Tiny</code></td><td>HTML/WYSIWYG-контент.</td></tr>
+        <tr><td><code>embed</code></td><td><code>string</code></td><td><code>Embed</code></td><td>YouTube, Vimeo, Google Maps и т.д.</td></tr>
+        <tr><td><code>richContent</code></td><td><code>Air\Type\RichContent[]</code></td><td><code>RichContent</code></td><td>Составной контент из блоков.</td></tr>
+        <tr><td><code>icon</code></td><td><code>string</code></td><td><code>Icon</code></td><td>Google Symbols icon.</td></tr>
+        <tr><td><code>faIcon</code></td><td><code>Air\Type\FaIcon</code></td><td><code>FaIcon</code></td><td>Font Awesome icon.</td></tr>
+        <tr><td>model reference</td><td><code>Category</code></td><td><code>Model</code></td><td>Добавляется в <code>full()</code> / <code>fullRequired()</code>.</td></tr>
+        <tr><td>model references</td><td><code>Category[]</code></td><td><code>MultipleModel</code></td><td>Добавляется в <code>full()</code> / <code>fullRequired()</code>.</td></tr>
+        <tr><td>enum-поле</td><td><code>string</code> + constants</td><td><code>Select</code></td><td>Добавляется в <code>full()</code> / <code>fullRequired()</code>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="section" id="minimal">
+  <h2>Generator::minimal()</h2>
+  <p><code>minimal()</code> удобен для простых разделов. Он создаёт типовые поля по стандартным именам, но не добавляет автоматически все связи с другими моделями и enum-поля.</p>
+<div class="code-title">Минимальная форма</div>
+<pre class="code-block"><code class="language-php">protected function getForm($model = null): ?Form
+{
+  return Generator::minimal($model);
+}</code></pre><p>Дополнительные элементы можно передать вторым аргументом. Если элемент имеет то же имя, что и автоматически найденное поле, он переопределит generated-элемент.</p><div class="code-title">Переопределение отдельных элементов</div>
+<pre class="code-block"><code class="language-php">protected function getForm($model = null): ?Form
+{
+  return Generator::minimal($model, [
+    Input::textarea(&#x27;description&#x27;, allowNull: true),
+    Input::storage(&#x27;image&#x27;, allowNull: true),
+  ]);
+}</code></pre></section>
+<section class="section" id="full">
+  <h2>Generator::full()</h2>
+  <p><code>full()</code> подходит для типовых CRUD-разделов, где нужно получить почти полную форму по модели: основные поля, references и enum-поля.</p>
+<div class="code-title">Полная форма</div>
+<pre class="code-block"><code class="language-php">protected function getForm($model = null): ?Form
+{
+  return Generator::full($model);
+}</code></pre><p>Если модель содержит связь с другой моделью, генератор создаст поле выбора модели. Если поле содержит enum-константы, будет создан <code>Select</code>.</p><div class="code-title">References и enum в модели</div>
+<pre class="code-block"><code class="language-php">/**
+ * @property Category $category
+ * @property Category[] $tags
+ * @property string $status
+ */
+class Article extends ModelAbstract
+{
+  public const string STATUS_DRAFT = &#x27;draft&#x27;;
+  public const string STATUS_PUBLISHED = &#x27;published&#x27;;
+}</code></pre></section>
+<section class="section" id="full-required">
+  <h2>Generator::fullRequired()</h2>
+  <p><code>fullRequired()</code> используется, когда reference-поля должны быть обязательными. Например, товар всегда должен иметь категорию, а статья всегда должна быть привязана к автору.</p>
+<div class="code-title">Полная форма с обязательными связями</div>
+<pre class="code-block"><code class="language-php">protected function getForm($model = null): ?Form
+{
+  return Generator::fullRequired($model);
+}</code></pre><div class="callout warning">Используйте <code>fullRequired()</code> аккуратно. Если в проекте есть черновики, импорт или неполные записи, обязательные reference-поля могут мешать сохранению промежуточных данных.</div></section>
+<section class="section" id="groups">
+  <h2>Группы и расположение полей</h2>
+  <p>Если передать элементы обычным массивом, они попадут в группу <code>General</code>. Если передать ассоциативный массив, ключи станут названиями вкладок/групп в форме.</p>
+<div class="code-title">Группировка полей</div>
+<pre class="code-block"><code class="language-php">protected function getForm($model = null): ?Form
+{
+  return Generator::full($model, [
+    &#x27;General&#x27; =&gt; [
+      Input::text(&#x27;title&#x27;),
+      Input::text(&#x27;url&#x27;),
+    ],
+    &#x27;Content&#x27; =&gt; [
+      Input::tiny(&#x27;content&#x27;),
+      Input::richContent(&#x27;richContent&#x27;),
+    ],
+    &#x27;SEO&#x27; =&gt; [
+      Input::meta(&#x27;meta&#x27;),
+    ],
+  ]);
+}</code></pre></section>
+<section class="section" id="clean-form">
+  <h2>Когда использовать чистую форму</h2>
+  <p>Генератор хорош для быстрых CRUD-разделов. Чистая форма лучше, когда структура сложнее стандартной или когда форму нужно переиспользовать вне admin manage.</p>
+  <div class="table-responsive">
+    <table class="table docs-table align-middle">
+      <thead>
+        <tr><th>Ситуация</th><th>Что выбрать</th><th>Почему</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Простая модель: title, url, description, image, enabled</td><td><code>Generator::minimal()</code></td><td>Быстро и достаточно.</td></tr>
+        <tr><td>Типовой CRUD с категориями, тегами и статусами</td><td><code>Generator::full()</code></td><td>Генератор сам добавит references и enum.</td></tr>
+        <tr><td>Все связи обязательны</td><td><code>Generator::fullRequired()</code></td><td>Reference-поля будут обязательными.</td></tr>
+        <tr><td>Нужно сложное расположение полей, подсказки, свои validators</td><td>Чистая форма</td><td>Код будет явным и предсказуемым.</td></tr>
+        <tr><td>Форма используется в API</td><td>Чистая форма</td><td>API валидирует данные, но не обязан рисовать HTML.</td></tr>
+        <tr><td>Кастомная admin-страница не через manage</td><td>Чистая форма</td><td>Легче контролировать action, method, значения и обработку.</td></tr>
+      </tbody>
+    </table>
+  </div>
+<div class="code-title">Чистая форма для админки</div>
+<pre class="code-block"><code class="language-php">&lt;?php
+
+namespace App\Form\Admin;
+
+use Air\Form\Form;
+use Air\Form\Input;
+use Air\Validator\StringLength;
+
+class ArticleForm extends Form
+{
+  public function __construct($model = null)
+  {
+    parent::__construct(options: [
+      &#x27;data&#x27; =&gt; $model,
+    ], elements: [
+      Input::text(&#x27;title&#x27;, validators: [
+        StringLength::class =&gt; [
+          &#x27;min&#x27; =&gt; 3,
+          &#x27;max&#x27; =&gt; 255,
+        ],
+      ]),
+      Input::text(&#x27;url&#x27;),
+      Input::textarea(&#x27;description&#x27;, allowNull: true),
+      Input::storage(&#x27;image&#x27;, allowNull: true),
+      Input::checkbox(&#x27;enabled&#x27;),
+    ]);
+  }
+}</code></pre><div class="code-title">Использование чистой формы в CRUD-контроллере</div>
+<pre class="code-block"><code class="language-php">protected function getForm($model = null): ?Form
+{
+  return new \App\Form\Admin\ArticleForm($model);
+}</code></pre></section>
+<section class="section" id="real-cases">
+  <h2>Рабочие кейсы</h2>
+  <div class="row g-3">
+    <div class="col-md-6"><div class="doc-card"><h5>Страница настроек</h5><p>Для <code>Single</code> можно использовать <code>Generator::full()</code>, если модель содержит стандартные поля: title, description, image, meta, enabled.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Каталог товаров</h5><p>Для <code>Many</code> удобно начать с <code>Generator::full()</code>, а затем переопределить image, description и category своими элементами.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>SEO-страницы</h5><p>Если модель содержит <code>url</code>, <code>title</code>, <code>content</code> и <code>meta</code>, генератор быстро соберёт базовую форму.</p></div></div>
+    <div class="col-md-6"><div class="doc-card"><h5>Сложный checkout/settings flow</h5><p>Лучше использовать чистую форму, потому что там обычно нужны свои validators, вложенные объекты и нестандартная обработка.</p></div></div>
+  </div>
+</section>
+<footer class="doc-footer">AirCMS - <a href="https://aircms.pro">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На странице</div><a href="#what-is-it">Что это такое</a><a href="#levels">Уровни генерации</a><a href="#signatures">Сигнатуры</a><a href="#based-on">Основа генерации</a><a href="#field-rules">Поля модели</a><a href="#minimal">minimal()</a><a href="#full">full()</a><a href="#full-required">fullRequired()</a><a href="#groups">Группы</a><a href="#clean-form">Генератор или чистая форма</a><a href="#real-cases">Кейсы</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>

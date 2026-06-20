@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Worker · AirCMS Docs</title>
+  <meta name="description" content="Документация AirCMS Core V3">
+  <script src="../assets/js/theme.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/docs.css">
+</head>
+<body data-root-prefix="../">
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <a href="../index.html" class="brand-link" aria-label="AirCMS V3">
+      <span class="brand-logo">A</span>
+      <span class="brand-name">AirCMS V3</span>
+    </a>
+  </div>
+<nav class="sidebar-nav">
+  <div class="nav-group">
+    <button class="nav-group-title" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup0" aria-expanded="true">Core</button>
+    <div id="navGroup0" class="collapse show"><div class="nav-group-links">
+      <a class="nav-link" href="../getting-started/index.html">Обзор</a>
+      <a class="nav-link" href="../getting-started/public-entry-point.html">Public entry point</a>
+      <a class="nav-link" href="../getting-started/basic-configuration-environment.html">Configuration &amp; Env</a>
+      <a class="nav-link" href="../getting-started/controller.html">Controllers</a>
+      <a class="nav-link" href="../getting-started/request-response.html">Request &amp; Response</a>
+      <a class="nav-link" href="../getting-started/views-layouts.html">Views and layouts</a>
+      <a class="nav-link" href="../getting-started/error-handling.html">Error handling</a>
+      <a class="nav-link" href="../getting-started/plugins.html">Plugins</a>
+      <a class="nav-link" href="../getting-started/routing.html">Routing</a>
+      <a class="nav-link active" href="../getting-started/worker.html" aria-current="page">Worker</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup1" aria-expanded="false">ORM &amp; Models</button>
+    <div id="navGroup1" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../orm-models/index.html">Описание моделей</a>
+      <a class="nav-link" href="../orm-models/conventions.html">Conventions</a>
+      <a class="nav-link" href="../orm-models/methods.html">Methods</a>
+      <a class="nav-link" href="../orm-models/meta.html">Meta models</a>
+      <a class="nav-link" href="../orm-models/examples.html">Examples</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup2" aria-expanded="false">Forms</button>
+    <div id="navGroup2" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../forms/index.html">Обзор</a>
+      <a class="nav-link" href="../forms/elements.html">Элементы формы</a>
+      <a class="nav-link" href="../forms/element-classes.html">Классы элементов</a>
+      <a class="nav-link" href="../forms/input-factory.html">Input factory</a>
+      <a class="nav-link" href="../forms/filters-validators.html">Validators &amp; Filters</a>
+      <a class="nav-link" href="../forms/validation.html">Validation</a>
+      <a class="nav-link" href="../forms/complex-data.html">Complex data</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup3" aria-expanded="false">Admin &amp; CRUD</button>
+    <div id="navGroup3" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../admin-crud/index.html">Обзор</a>
+      <a class="nav-link" href="../admin-crud/setup.html">Меню и контроллеры</a>
+      <a class="nav-link" href="../admin-crud/authorization.html">Авторизация</a>
+      <a class="nav-link" href="../admin-crud/single.html">Single</a>
+      <a class="nav-link" href="../admin-crud/many.html">Many</a>
+      <a class="nav-link" href="../admin-crud/table-cells.html">Ячейки таблицы</a>
+      <a class="nav-link" href="../admin-crud/filters.html">Фильтры и выборка</a>
+      <a class="nav-link" href="../admin-crud/forms.html">Формы в админке</a>
+      <a class="nav-link" href="../admin-crud/form-generator.html">Генератор форм</a>
+      <a class="nav-link" href="../admin-crud/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../admin-crud/context-menu.html">Контекстные действия</a>
+      <a class="nav-link" href="../admin-crud/collection-actions.html">Действия списка</a>
+      <a class="nav-link" href="../admin-crud/custom-pages.html">Свои страницы</a>
+      <a class="nav-link" href="../admin-crud/ui-helpers.html">Admin UI helpers</a>
+      <a class="nav-link" href="../admin-crud/operations.html">CRUD operations</a>
+      <a class="nav-link" href="../admin-crud/magic.html">Magic и переводы</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup4" aria-expanded="false">Utilities</button>
+    <div id="navGroup4" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../utilities/index.html">Обзор</a>
+      <a class="nav-link" href="../utilities/map.html">Map</a>
+      <a class="nav-link" href="../utilities/http-client.html">HTTP client</a>
+      <a class="nav-link" href="../utilities/array-utilities.html">Array utilities</a>
+      <a class="nav-link" href="../utilities/string-utilities.html">String utilities</a>
+      <a class="nav-link" href="../utilities/cookie.html">Cookie</a>
+      <a class="nav-link" href="../utilities/crypt.html">Crypt</a>
+      <a class="nav-link" href="../utilities/csv.html">CSV</a>
+      <a class="nav-link" href="../utilities/dom-parser.html">DOM parser</a>
+      <a class="nav-link" href="../utilities/bot-detection.html">Bot detection</a>
+      <a class="nav-link" href="../utilities/password.html">Password</a>
+      <a class="nav-link" href="../utilities/sitemap.html">Sitemap</a>
+      <a class="nav-link" href="../utilities/slug.html">Slug</a>
+      <a class="nav-link" href="../utilities/guard.html">Guard</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup5" aria-expanded="false">Встроенные уведомления</button>
+    <div id="navGroup5" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../notifications/index.html">Обзор</a>
+      <a class="nav-link" href="../notifications/queues.html">Очереди и workers</a>
+      <a class="nav-link" href="../notifications/templates.html">Шаблоны</a>
+      <a class="nav-link" href="../notifications/email.html">Email</a>
+      <a class="nav-link" href="../notifications/telegram.html">Telegram</a>
+      <a class="nav-link" href="../notifications/sms.html">SMS</a>
+      <a class="nav-link" href="../notifications/smsto.html">SMS.to</a>
+      <a class="nav-link" href="../notifications/gatewayapi.html">GatewayAPI</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup6" aria-expanded="false">Storage</button>
+    <div id="navGroup6" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../storage/index.html">Обзор</a>
+      <a class="nav-link" href="../storage/storage-api.html">Air\Storage</a>
+      <a class="nav-link" href="../storage/file-object.html">File object</a>
+      <a class="nav-link" href="../storage/image-modifications.html">Модификация изображений</a>
+      <a class="nav-link" href="../storage/admin-usage.html">Файлы в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup7" aria-expanded="false">Localization</button>
+    <div id="navGroup7" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../localization/index.html">Обзор</a>
+      <a class="nav-link" href="../localization/language.html">Language</a>
+      <a class="nav-link" href="../localization/phrase.html">Phrase</a>
+      <a class="nav-link" href="../localization/orm-effect.html">Влияние на ORM</a>
+      <a class="nav-link" href="../localization/admin-ui.html">Админка</a>
+      <a class="nav-link" href="../localization/api-examples.html">API-примеры</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup8" aria-expanded="false">Billing</button>
+    <div id="navGroup8" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../billing/index.html">Обзор</a>
+      <a class="nav-link" href="../billing/providers.html">Провайдеры</a>
+      <a class="nav-link" href="../billing/adapter.html">Payment adapter</a>
+      <a class="nav-link" href="../billing/direct.html">Прямое использование</a>
+      <a class="nav-link" href="../billing/flow.html">Практический flow</a>
+      <a class="nav-link" href="../billing/admin-settings.html">Настройки в админке</a>
+    </div></div>
+  </div>
+  <div class="nav-group">
+    <button class="nav-group-title collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navGroup9" aria-expanded="false">Built-in Type Objects</button>
+    <div id="navGroup9" class="collapse"><div class="nav-group-links">
+      <a class="nav-link" href="../types/index.html">Обзор</a>
+      <a class="nav-link" href="../types/type-abstract.html">TypeAbstract</a>
+      <a class="nav-link" href="../types/file.html">File</a>
+      <a class="nav-link" href="../types/meta.html">Meta</a>
+      <a class="nav-link" href="../types/rich-content.html">RichContent</a>
+      <a class="nav-link" href="../types/page.html">Page &amp; PageItem</a>
+      <a class="nav-link" href="../types/quote-social-faicon.html">Quote, Social, FaIcon</a>
+    </div></div>
+  </div>
+</nav>
+</aside>
+<main class="main">
+  <header class="topbar">
+    <button class="topbar-icon-button d-lg-none" id="mobileMenuBtn" type="button" aria-label="Открыть меню">
+      <span class="icon-menu"></span>
+    </button>
+    <div class="topbar-title d-none d-md-block">Core</div>
+    <div class="topbar-actions ms-auto">
+      <button class="search-trigger" id="docsSearchOpen" type="button" aria-label="Открыть поиск" aria-keyshortcuts="Control+K Meta+K">
+        <span class="search-icon" aria-hidden="true"></span>
+        <span class="search-trigger-text">Поиск</span>
+        <span class="search-shortcut"><kbd>Ctrl</kbd><kbd>K</kbd></span>
+      </button>
+      <div class="theme-switch" role="group" aria-label="Переключение темы">
+        <button class="theme-btn" data-theme-value="auto" type="button" title="Системная тема" aria-label="Системная тема"><span class="icon-auto"></span></button>
+        <button class="theme-btn" data-theme-value="light" type="button" title="Светлая тема" aria-label="Светлая тема"><span class="icon-sun"></span></button>
+        <button class="theme-btn" data-theme-value="dark" type="button" title="Тёмная тема" aria-label="Тёмная тема"><span class="icon-moon"></span></button>
+      </div>
+    </div>
+  </header>
+  <div class="search-modal" id="docsSearchModal" aria-hidden="true">
+    <div class="search-modal-backdrop" data-search-close></div>
+    <div class="search-dialog" role="dialog" aria-modal="true" aria-labelledby="docsSearchTitle">
+      <div class="search-dialog-head">
+        <span class="search-icon" aria-hidden="true"></span>
+        <label class="visually-hidden" for="docsSearchInput" id="docsSearchTitle">Поиск по документации</label>
+        <input id="docsSearchInput" class="search-dialog-input" autocomplete="off" placeholder="Ищи по классам, методам, секциям, тексту и примерам кода">
+        <button class="search-close" type="button" data-search-close aria-label="Закрыть поиск">Esc</button>
+      </div>
+      <div class="search-dialog-results" id="docsSearchResults" role="listbox" aria-label="Результаты поиска"></div>
+      <div class="search-dialog-help">
+        <span>↑↓ выбрать</span>
+        <span>Enter перейти</span>
+        <span>Esc закрыть</span>
+      </div>
+    </div>
+  </div>
+  <div class="content-shell">
+    <article class="content">
+      <div class="breadcrumbs"><span>AirCMS Docs</span><span>/</span><span>Core</span><span>/</span><strong>Worker</strong></div>
+      <section class="hero">
+          <span class="badge-soft mb-3">Core</span>
+          <h1>Worker</h1>
+          <p class="lead mb-0">Worker в AirCMS — это специальный CLI-контроллер для фоновых задач: обработки очередей, отправки уведомлений, импорта, парсинга, синхронизации и периодической обработки данных.</p>
+      </section>
+      
+      <section class="section" id="what-is-worker">
+          <h2>Что такое Worker</h2>
+          <p><strong>Worker</strong> — это controller, который запускается не через браузер, а из командной строки через тот же входной файл <code>www/index.php</code>. Он использует общий механизм AirCMS: конфигурацию, роутер, request, controller, dependency/injection-логику и обработку ошибок.</p>
+          <p>Главное отличие от обычного controller в том, что <code>Air\Core\Worker</code> предназначен для повторного выполнения одного метода в цикле. Метод вызывается снова и снова, пока не вернёт строгое значение <code>false</code>.</p>
+          <div class="callout warning">
+              <strong>Важно:</strong> методы задач в Worker обычно нужно делать <code>protected</code>. Если сделать task-method публичным, он может быть вызван как обычный action один раз, без worker-цикла <code>didStarted()</code>, <code>didTick()</code>, <code>didFinished()</code>.
+          </div>
+      </section>
+      
+      <section class="section" id="when-started">
+          <h2>Когда Worker запускается</h2>
+          <p>Worker запускается, когда приложение выполняется в CLI-режиме и в командной строке передан параметр <code>route</code>. Внутри <code>Request::fillRequestFromCli()</code> AirCMS читает аргументы командной строки, берёт значение <code>route</code>, превращает его в URI и устанавливает домен <code>cli</code>. После этого обычный роутер AirCMS выбирает CLI-модуль и controller/action.</p>
+      <div class="code-title">Примеры запуска</div>
+      <pre class="code-block"><code class="language-bash">php www/index.php route=notification/email
+      php www/index.php route=notification/telegram
+      php www/index.php route=catalog/reindex limit=100 offset=0 dryRun=1</code></pre>
+          <p>В примере <code>route=notification/email</code> будет преобразован в URI <code>/notification/email</code>. Если CLI-модуль не работает в strict-routes режиме, такой URI будет разобран как controller <code>notification</code> и action <code>email</code>.</p>
+      </section>
+      
+      <section class="section" id="configuration">
+          <h2>Конфигурация CLI-модуля</h2>
+          <p>CLI-модуль подключается в основном <code>config.php</code> через <code>Config::cli()</code>. Можно использовать свободный режим, где route разбирается по URI, или strict mode, где разрешены только явно объявленные маршруты.</p>
+      <div class="code-title">config.php</div>
+      <pre class="code-block"><code class="language-php">&lt;?php
+
+      use Air\Config;
+      use Air\Core\Route;
+
+      return Config::defaults(
+          project: &#x27;AIR&#x27;,
+
+          cli: fn() =&gt; Config::cli(
+              strictRoutes: true,
+              routes: [
+                  &#x27;/notification/email&#x27; =&gt; Route::r(
+                      controller: &#x27;notification&#x27;,
+                      action: &#x27;email&#x27;
+                  ),
+                  &#x27;/notification/telegram&#x27; =&gt; Route::r(
+                      controller: &#x27;notification&#x27;,
+                      action: &#x27;telegram&#x27;
+                  ),
+                  &#x27;/catalog/reindex&#x27; =&gt; Route::r(
+                      controller: &#x27;catalog&#x27;,
+                      action: &#x27;reindex&#x27;
+                  ),
+              ],
+          ),
+      );</code></pre>
+          <div class="table-responsive">
+              <table class="table docs-table">
+                  <thead>
+                      <tr>
+                          <th>Параметр</th>
+                          <th>Что делает</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td><code>strictRoutes</code></td>
+                          <td>Если <code>true</code>, AirCMS разрешает только явно описанные CLI routes. Если route не найден, будет выброшено исключение роутинга.</td>
+                      </tr>
+                      <tr>
+                          <td><code>strictInject</code></td>
+                          <td>Влияет на model injection. При <code>true</code> используется обычный <code>one()</code>, при <code>false</code> — <code>fetchOne()</code>.</td>
+                      </tr>
+                      <tr>
+                          <td><code>routes</code></td>
+                          <td>Список CLI-маршрутов. Ключ — URI, значение — <code>Route::r()</code>.</td>
+                      </tr>
+                      <tr>
+                          <td><code>require</code></td>
+                          <td>Дополнительные PHP-файлы, которые нужно подключить при bootstrap CLI-модуля.</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </section>
+      
+      <section class="section" id="location">
+          <h2>Где находится Worker</h2>
+          <p>Worker-классы находятся в CLI-модуле проекта. Для route <code>notification/email</code> AirCMS будет искать controller примерно по такому пути:</p>
+      <div class="code-title">Структура файла</div>
+      <pre class="code-block"><code class="language-text">app/
+      └── Module/
+          └── Cli/
+              └── Controller/
+                  └── Notification.php</code></pre>
+          <p>И соответствующий class name:</p>
+      <pre class="code-block"><code class="language-text">App\Module\Cli\Controller\Notification</code></pre>
+      </section>
+      
+      <section class="section" id="basic-worker">
+          <h2>Базовый пример Worker</h2>
+          <p>Ниже пример worker-а, который обрабатывает очереди Email и Telegram. Методы <code>email()</code> и <code>telegram()</code> объявлены как <code>protected</code>, чтобы вызов прошёл через <code>Worker::__call()</code> и запустился worker-цикл.</p>
+      <div class="code-title">app/Module/Cli/Controller/Notification.php</div>
+      <pre class="code-block"><code class="language-php">&lt;?php
+
+      declare(strict_types=1);
+
+      namespace App\Module\Cli\Controller;
+
+      use Air\Core\Worker;
+      use Air\Email;
+      use Air\Telegram;
+
+      class Notification extends Worker
+      {
+          protected function email(): ?bool
+          {
+              return Email::consume();
+          }
+
+          protected function telegram(): ?bool
+          {
+              return Telegram::consume();
+          }
+      }</code></pre>
+          <p>Запуск:</p>
+      <pre class="code-block"><code class="language-bash">php www/index.php route=notification/email
+      php www/index.php route=notification/telegram</code></pre>
+      </section>
+      
+      <section class="section" id="lifecycle">
+          <h2>Жизненный цикл Worker</h2>
+          <p>Worker использует общий жизненный цикл controller-а и добавляет свои хуки вокруг цикла выполнения задачи.</p>
+          <ol>
+              <li>Запускается <code>www/index.php</code>.</li>
+              <li><code>Front</code> загружает config и bootstrap.</li>
+              <li><code>Request::fillRequestFromCli()</code> читает CLI arguments.</li>
+              <li><code>Router</code> определяет CLI module, controller и action.</li>
+              <li>Создаётся worker controller.</li>
+              <li>Выполняются plugins <code>preRun()</code>, если они есть.</li>
+              <li>Вызывается <code>Controller::init()</code>.</li>
+              <li>Вызов protected action попадает в <code>Worker::__call()</code>.</li>
+              <li>Один раз вызывается <code>didStarted()</code>.</li>
+              <li>Целевой метод выполняется в цикле.</li>
+              <li>После каждой успешной итерации вызывается <code>didTick()</code> и затем <code>sleep()</code>.</li>
+              <li>Когда целевой метод вернул <code>false</code>, цикл завершается.</li>
+              <li>Один раз вызывается <code>didFinished()</code>.</li>
+              <li>После завершения worker-цикла вызывается <code>Controller::postRun()</code>.</li>
+              <li>Выполняются plugins <code>postRun()</code>, если они есть.</li>
+          </ol>
+          <div class="callout">
+              <strong>didTick не вызывается для последней итерации, которая вернула false.</strong> В коде Worker сначала проверяет результат на <code>false</code>, и только потом вызывает <code>didTick()</code>.
+          </div>
+      </section>
+      
+      <section class="section" id="lifecycle-methods">
+          <h2>Методы жизненного цикла</h2>
+          <p>Worker наследует методы обычного controller-а и добавляет три собственных hook-метода.</p>
+          <div class="table-responsive">
+              <table class="table docs-table">
+                  <thead>
+                      <tr>
+                          <th>Метод</th>
+                          <th>Когда вызывается</th>
+                          <th>Для чего использовать</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td><code>init()</code></td>
+                          <td>Один раз перед запуском action/worker method.</td>
+                          <td>Проверить окружение, подготовить сервисы, установить лимиты, прочитать общие параметры.</td>
+                      </tr>
+                      <tr>
+                          <td><code>didStarted(string $method, array $params)</code></td>
+                          <td>Один раз перед началом worker-цикла.</td>
+                          <td>Записать старт в лог, вывести информацию в консоль, сохранить время начала.</td>
+                      </tr>
+                      <tr>
+                          <td><code>didTick(string $method, array $params)</code></td>
+                          <td>После каждой итерации, если результат не равен <code>false</code>.</td>
+                          <td>Логировать heartbeat, освобождать ресурсы, выводить прогресс.</td>
+                      </tr>
+                      <tr>
+                          <td><code>didFinished(string $method, array $params)</code></td>
+                          <td>Один раз после выхода из цикла.</td>
+                          <td>Записать завершение в лог, отправить уведомление, закрыть соединения.</td>
+                      </tr>
+                      <tr>
+                          <td><code>postRun()</code></td>
+                          <td>После завершения worker-цикла.</td>
+                          <td>Финальная очистка на уровне controller-а.</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      <div class="code-title">Worker с lifecycle hooks</div>
+      <pre class="code-block"><code class="language-php">&lt;?php
+
+      declare(strict_types=1);
+
+      namespace App\Module\Cli\Controller;
+
+      use Air\Core\Worker;
+      use Air\Log;
+
+      class Import extends Worker
+      {
+          public function init(): void
+          {
+              ini_set(&#x27;memory_limit&#x27;, &#x27;512M&#x27;);
+              set_time_limit(0);
+          }
+
+          protected function didStarted(string $method, array $params = []): void
+          {
+              Log::info(&#x27;Worker started&#x27;, [
+                  &#x27;method&#x27; =&gt; $method,
+                  &#x27;params&#x27; =&gt; $params,
+              ]);
+          }
+
+          protected function didTick(string $method, array $params = []): void
+          {
+              Log::info(&#x27;Worker tick&#x27;, [
+                  &#x27;method&#x27; =&gt; $method,
+              ]);
+          }
+
+          protected function didFinished(string $method, array $params = []): void
+          {
+              Log::info(&#x27;Worker finished&#x27;, [
+                  &#x27;method&#x27; =&gt; $method,
+              ]);
+          }
+
+          public function postRun(): void
+          {
+              gc_collect_cycles();
+          }
+
+          protected function products(): ?bool
+          {
+              // Возвращайте false, когда больше нечего обрабатывать.
+              return false;
+          }
+      }</code></pre>
+      </section>
+      
+      <section class="section" id="return-value">
+          <h2>На что влияет возвращаемое значение</h2>
+          <p>Возвращаемое значение целевого worker-метода управляет циклом. AirCMS проверяет результат строго через <code>$r === false</code>.</p>
+          <div class="table-responsive">
+              <table class="table docs-table">
+                  <thead>
+                      <tr>
+                          <th>Возвращаемое значение</th>
+                          <th>Что произойдёт</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td><code>false</code></td>
+                          <td>Worker остановит цикл, вызовет <code>didFinished()</code>, затем <code>postRun()</code>.</td>
+                      </tr>
+                      <tr>
+                          <td><code>true</code></td>
+                          <td>Worker вызовет <code>didTick()</code>, подождёт <code>air.worker.sleep</code> секунд и запустит следующую итерацию.</td>
+                      </tr>
+                      <tr>
+                          <td><code>null</code></td>
+                          <td>Цикл продолжится, потому что <code>null !== false</code>. Это может случайно создать бесконечный worker.</td>
+                      </tr>
+                      <tr>
+                          <td>Любое другое значение</td>
+                          <td>Цикл тоже продолжится, потому что останавливает только строгое <code>false</code>.</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      <div class="code-title">Явное управление циклом</div>
+      <pre class="code-block"><code class="language-php">protected function email(): ?bool
+      {
+          $processed = Email::consume();
+
+          if (!$processed) {
+              return false;
+          }
+
+          return true;
+      }</code></pre>
+          <div class="callout warning">
+              Если worker должен выполнить задачу один раз и завершиться, верните <code>false</code> после выполнения работы. Если нужен бесконечный daemon-процесс, возвращайте <code>true</code>, пока процесс должен продолжаться.
+          </div>
+      </section>
+      
+      <section class="section" id="sleep">
+          <h2>Пауза между итерациями</h2>
+          <p>После каждой успешной итерации Worker вызывает <code>sleep()</code>. Значение берётся из конфигурации <code>air.worker.sleep</code>. Если значение не задано, используется <code>1</code> секунда.</p>
+      <div class="code-title">Базовая CLI-конфигурация</div>
+      <pre class="code-block"><code class="language-php">&lt;?php
+
+      return Config::defaults(
+          project: &#x27;AIR&#x27;,
+
+          cli: fn() =&gt; Config::cli(
+              routes: [
+                  &#x27;/notification/email&#x27; =&gt; Route::r(
+                      controller: &#x27;notification&#x27;,
+                      action: &#x27;email&#x27;
+                  ),
+              ],
+          ),
+      );</code></pre>
+          <p>Если нужно изменить sleep, это можно сделать через общий config project-а, если в проекте используется собственное расширение секции <code>air</code>, или через bootstrap/override конфигурации. Внутри Worker используется такой путь:</p>
+      <pre class="code-block"><code class="language-php">Front::getInstance()-&gt;getConfig()[&#x27;air&#x27;][&#x27;worker&#x27;][&#x27;sleep&#x27;] ?? 1</code></pre>
+      </section>
+      
+      <section class="section" id="cli-params">
+          <h2>Параметры командной строки</h2>
+          <p>AirCMS читает CLI-параметры в формате <code>key=value</code>. Параметр <code>route</code> используется для выбора controller/action, остальные параметры попадают в request params.</p>
+      <div class="code-title">Запуск с параметрами</div>
+      <pre class="code-block"><code class="language-bash">php www/index.php route=catalog/reindex limit=100 offset=0 dryRun=1 language=ru</code></pre>
+          <p>Внутри request будут доступны:</p>
+      <pre class="code-block"><code class="language-text">limit=100
+      offset=0
+      dryRun=1
+      language=ru</code></pre>
+          <div class="callout warning">
+              CLI-параметры приходят как строки. Если нужно число или boolean — приводите тип вручную внутри worker-а.
+          </div>
+      </section>
+      
+      <section class="section" id="read-cli-params">
+          <h2>Как читать CLI-параметры</h2>
+          <p>Есть два практических способа: читать параметры через <code>$this-&gt;getParam()</code> или принимать их как аргументы worker-метода. Для Worker безопаснее принимать параметры через <code>...$params</code>, особенно если набор параметров может меняться.</p>
+      <div class="code-title">Чтение через getParam()</div>
+      <pre class="code-block"><code class="language-php">protected function reindex(...$params): ?bool
+      {
+          $limit = (int)$this-&gt;getParam(&#x27;limit&#x27;, 100);
+          $offset = (int)$this-&gt;getParam(&#x27;offset&#x27;, 0);
+          $dryRun = (bool)$this-&gt;getParam(&#x27;dryRun&#x27;, false);
+          $language = (string)$this-&gt;getParam(&#x27;language&#x27;, &#x27;ru&#x27;);
+
+          // Здесь можно обработать часть данных.
+
+          return false;
+      }</code></pre><div class="code-title">Чтение через variadic params</div>
+      <pre class="code-block"><code class="language-php">protected function reindex(...$params): ?bool
+      {
+          $limit = (int)($params[&#x27;limit&#x27;] ?? 100);
+          $offset = (int)($params[&#x27;offset&#x27;] ?? 0);
+          $dryRun = (bool)($params[&#x27;dryRun&#x27;] ?? false);
+          $language = (string)($params[&#x27;language&#x27;] ?? &#x27;ru&#x27;);
+
+          return false;
+      }</code></pre><div class="code-title">Явные аргументы метода</div>
+      <pre class="code-block"><code class="language-php">protected function reindex(
+          string $limit = &#x27;100&#x27;,
+          string $offset = &#x27;0&#x27;,
+          string $dryRun = &#x27;0&#x27;,
+          string $language = &#x27;ru&#x27;
+      ): ?bool {
+          $limit = (int)$limit;
+          $offset = (int)$offset;
+          $dryRun = (bool)$dryRun;
+
+          return false;
+      }</code></pre>
+          <div class="callout">
+              В текущем механизме Worker параметры командной строки передаются в worker-метод как raw params. Поэтому для CLI лучше считать их строками и приводить типы вручную.
+          </div>
+      </section>
+      
+      <section class="section" id="pagination-example">
+          <h2>Пример worker-а с пакетной обработкой</h2>
+          <p>Частый сценарий — обработать данные порциями. Например, импортировать или переиндексировать записи пачками.</p>
+      <div class="code-title">app/Module/Cli/Controller/Catalog.php</div>
+      <pre class="code-block"><code class="language-php">&lt;?php
+
+      declare(strict_types=1);
+
+      namespace App\Module\Cli\Controller;
+
+      use Air\Core\Worker;
+      use Air\Log;
+      use App\Model\Product;
+
+      class Catalog extends Worker
+      {
+          private int $offset = 0;
+          private int $processed = 0;
+
+          protected function reindex(...$params): ?bool
+          {
+              $limit = (int)($params[&#x27;limit&#x27;] ?? 100);
+              $language = (string)($params[&#x27;language&#x27;] ?? &#x27;ru&#x27;);
+
+              $products = Product::fetchAll(
+                  [
+                      &#x27;language&#x27; =&gt; $language,
+                  ],
+                  [
+                      &#x27;createdAt&#x27; =&gt; 1,
+                  ],
+                  count: $limit,
+                  offset: $this-&gt;offset
+              );
+
+              if (!count($products)) {
+                  Log::info(&#x27;Catalog reindex finished&#x27;, [
+                      &#x27;processed&#x27; =&gt; $this-&gt;processed,
+                      &#x27;language&#x27; =&gt; $language,
+                  ]);
+
+                  return false;
+              }
+
+              foreach ($products as $product) {
+                  // Выполнить переиндексацию записи.
+                  $this-&gt;processed++;
+              }
+
+              $this-&gt;offset += $limit;
+
+              return true;
+          }
+      }</code></pre><div class="code-title">Запуск</div>
+      <pre class="code-block"><code class="language-bash">php www/index.php route=catalog/reindex limit=200 language=ru</code></pre>
+      </section>
+      
+      <section class="section" id="one-shot-command">
+          <h2>Одноразовая CLI-команда</h2>
+          <p>Если команда должна выполниться один раз, можно всё равно использовать Worker, но метод должен вернуть <code>false</code> после выполнения работы. Однако если цикл вообще не нужен, проще использовать обычный <code>Controller</code> в CLI-модуле.</p>
+      <pre class="code-block"><code class="language-php">&lt;?php
+
+      declare(strict_types=1);
+
+      namespace App\Module\Cli\Controller;
+
+      use Air\Core\Worker;
+      use Air\Log;
+
+      class Maintenance extends Worker
+      {
+          protected function clearTemp(...$params): ?bool
+          {
+              $days = (int)($params[&#x27;days&#x27;] ?? 7);
+
+              // Очистка временных данных.
+
+              Log::info(&#x27;Temporary data was cleared&#x27;, [
+                  &#x27;days&#x27; =&gt; $days,
+              ]);
+
+              return false;
+          }
+      }</code></pre><pre class="code-block"><code class="language-bash">php www/index.php route=maintenance/clearTemp days=30</code></pre>
+      </section>
+      
+      <section class="section" id="supervisor">
+          <h2>Supervisor</h2>
+          <p>Worker обычно запускается под контролем Supervisor или systemd. Это позволяет автоматически перезапускать процесс после падения или после завершения.</p>
+      <div class="code-title">Supervisor config</div>
+      <pre class="code-block"><code class="language-ini">[program:aircms-notification-email]
+      user=www-data
+      command=php www/index.php route=notification/email
+      directory=/var/www/project
+      autostart=true
+      autorestart=true
+      stdout_logfile=/var/log/supervisor/aircms-email.log
+      stderr_logfile=/var/log/supervisor/aircms-email-error.log</code></pre>
+          <p>Если worker должен завершаться, когда очередь пуста, оставьте <code>autorestart=true</code>, и Supervisor снова поднимет процесс. Если worker должен жить постоянно, возвращайте <code>true</code> после успешной итерации и <code>false</code> только при необходимости остановки.</p>
+      </section>
+      
+      <section class="section" id="best-practices">
+          <h2>Практические рекомендации</h2>
+          <ul>
+              <li>Делайте task-methods в Worker как <code>protected</code>, чтобы использовался worker-цикл.</li>
+              <li>Возвращайте <code>false</code>, когда больше нечего обрабатывать.</li>
+              <li>Не возвращайте случайно <code>null</code>, если worker должен остановиться.</li>
+              <li>Для параметров командной строки используйте формат <code>key=value</code>.</li>
+              <li>Считайте CLI-параметры строками и приводите типы вручную.</li>
+              <li>Для произвольного набора параметров используйте <code>...$params</code>.</li>
+              <li>Логируйте старт, прогресс и завершение через <code>Air\Log</code>.</li>
+              <li>Для production-запуска используйте Supervisor или systemd.</li>
+          </ul>
+      </section>
+
+      <footer class="doc-footer">AirCMS - <a href="https://aircms.pro" target="_blank" rel="noopener">aircms.pro</a></footer>
+    </article>
+    <aside class="toc d-none d-xl-block"><div class="toc-inner"><div class="toc-title">На этой странице</div><a href="#what-is-worker">Что такое Worker</a><a href="#when-started">Когда запускается</a><a href="#configuration">Конфигурация</a><a href="#location">Где находится</a><a href="#basic-worker">Базовый пример</a><a href="#lifecycle">Жизненный цикл</a><a href="#lifecycle-methods">Методы жизненного цикла</a><a href="#return-value">Возвращаемое значение</a><a href="#sleep">Пауза между итерациями</a><a href="#cli-params">CLI-параметры</a><a href="#read-cli-params">Чтение параметров</a><a href="#pagination-example">Пакетная обработка</a><a href="#one-shot-command">Одноразовая команда</a><a href="#supervisor">Supervisor</a><a href="#best-practices">Рекомендации</a></div></aside>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/search-index.js"></script>
+<script src="../assets/js/highlight.js"></script>
+<script src="../assets/js/docs.js"></script>
+</body>
+</html>
